@@ -5,21 +5,21 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>R Notes</title>
-  <meta name="description" content="無傷無痛零基礎碼盲也能懂的 R 程式語言">
+  <title>Book R</title>
+  <meta name="description" content="無傷無痛零基礎的 R 程式語言">
   <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
 
-  <meta property="og:title" content="R Notes" />
+  <meta property="og:title" content="Book R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="無傷無痛零基礎碼盲也能懂的 R 程式語言" />
+  <meta property="og:description" content="無傷無痛零基礎的 R 程式語言" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R Notes" />
+  <meta name="twitter:title" content="Book R" />
   
-  <meta name="twitter:description" content="無傷無痛零基礎碼盲也能懂的 R 程式語言" />
+  <meta name="twitter:description" content="無傷無痛零基礎的 R 程式語言" />
   
 
 
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
-  <link rel="shortcut icon" href="img/RStudio_30177.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
 <link rel="prev" href="01-intro.html">
 
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
@@ -86,7 +86,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -106,13 +106,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.3</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R_Basic</a><ul>
-<li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數的賦值與基本型態</a><ul>
+<li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="02-basic.html"><a href="02-basic.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
 <li class="chapter" data-level="2.1.2" data-path="02-basic.html"><a href="02-basic.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
 <li class="chapter" data-level="2.1.3" data-path="02-basic.html"><a href="02-basic.html#-factor"><i class="fa fa-check"></i><b>2.1.3</b> 類別物件 (factor)</a></li>
-<li class="chapter" data-level="2.1.4" data-path="02-basic.html"><a href="02-basic.html#-list"><i class="fa fa-check"></i><b>2.1.4</b> 序列 (list)</a></li>
-<li class="chapter" data-level="2.1.5" data-path="02-basic.html"><a href="02-basic.html#section-2.1.5"><i class="fa fa-check"></i><b>2.1.5</b> 文字處理</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-basic.html"><a href="02-basic.html#-matrix"><i class="fa fa-check"></i><b>2.1.4</b> 陣列或矩陣 (matrix)</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-basic.html"><a href="02-basic.html#-list"><i class="fa fa-check"></i><b>2.1.5</b> 序列 (list)</a></li>
 <li class="chapter" data-level="2.1.6" data-path="02-basic.html"><a href="02-basic.html#section-2.1.6"><i class="fa fa-check"></i><b>2.1.6</b> 特殊變數介紹</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 基本運算</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -124,7 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Notes</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Book R</a>
           </h1>
         </div>
 
@@ -138,8 +143,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 LastUpdate: 2018-07-10
 </div>
 <div id="section-2.1" class="section level2">
-<h2><span class="header-section-number">2.1</span> 變數的賦值與基本型態</h2>
-<p>R 語言中變數 (Variable) 的賦值方式可以使用，1. <code>&lt;-</code> (箭號) 以及 2. <code>=</code> (等號)表示。<br> 根據 <a href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google R Style Guide</a> 建議使用 <code>&lt;-</code> 進行變數賦值。另外，R 語言中程式的註解以 <code>#</code> (井號) 表示。</p>
+<h2><span class="header-section-number">2.1</span> 變數與常用資料結構</h2>
+<ul>
+<li>變數 (variable)
+<ul>
+<li>R 語言中變數的賦值方式可以使用，1. <code>&lt;-</code> (箭號) 以及 2. <code>=</code> (等號)表示。</li>
+<li>根據 <a href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google R Style Guide</a> 建議使用 <code>&lt;-</code> 進行變數賦值。</li>
+<li>另外，R 語言中程式的註解以 <code>#</code> (井號) 表示。</li>
+</ul></li>
+<li>資料結構 (data structure)
+<ul>
+<li>資料結構為電腦中為了運算方便，儲存、組織資料的方式。</li>
+<li>R 語言中的資料結構除了一般程式語言常見結構外 (vector, matrix, array, list)，還有 (tibble, data.frame, data.table) 等知名結構。</li>
+<li>本文著重於介紹最常用的 vector 以及 data.frame，進階教材可參考 <a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a>。</li>
+</ul></li>
+</ul>
 <div id="-vector" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> 向量 (vector)</h3>
 <ul>
@@ -427,14 +445,54 @@ Levels: female male</code></pre>
 <pre><code>[1] M M F F F
 Levels: M F</code></pre>
 </div>
+<div id="-matrix" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> 陣列或矩陣 (matrix)</h3>
+<ul>
+<li>matrix
+<ul>
+<li>矩陣是線性代數、數值運算中最基本的資料結構，開發演算法之基礎。</li>
+<li>建立 matrix 時需提供 vector 型態之資料，並設定行數或列數，且須透過 <code>byrow</code> 參數以指定排列順序</li>
+<li>data.frame 可視為 matrix 之功能延伸 (vector –&gt; matrix –&gt; data.frame)</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nrow =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#取值：與 data.frame 相同</span>
+x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+x[<span class="dv">2</span>, <span class="dv">1</span>]</code></pre></div>
+<pre><code>[1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#矩陣乘法 1*1+2*3, 1*2+2*4</span>
+x</code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">%*%</span><span class="st"> </span>x</code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    7   10
+[2,]   15   22</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#行列式，須為 row, col 數相同之對稱矩陣 1*4-2*3</span>
+<span class="kw">det</span>(x)</code></pre></div>
+<pre><code>[1] -2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#轉換成 data.frame</span>
+<span class="kw">as.data.frame</span>(x)</code></pre></div>
+<pre><code>  V1 V2
+1  1  2
+2  3  4</code></pre>
+</div>
 <div id="-list" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> 序列 (list)</h3>
+<h3><span class="header-section-number">2.1.5</span> 序列 (list)</h3>
 <ul>
 <li>list
 <ul>
 <li>為 R 環境中最廣義的物件，可以將上述所有物件都包含至同一個物件下。</li>
 <li>序列 (list) 的表達形式與向量類似，只是每一個元素可以是各種物件型態(vector, data.frame, list, … )。</li>
-<li>基本的取值方法是[[ ]] (雙層中括號)，x[[i]] 表示list物件中第i個值。如過list物件的位置有命名，則可以用$ (錢號) 來提取物件。</li>
+<li>基本的取值方法是 <code>[[ ]]</code> (雙層中括號)，x[[i]] 表示list物件中第i個值。如過list物件的位置有命名，則可以用$ (錢號) 來提取物件。</li>
 </ul></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">L &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">z =</span> df)
@@ -492,14 +550,175 @@ $y
   z.v21   z.v22   z.v23   z.v24   z.v31   z.v32   z.v33   z.v34 
     &quot;1&quot;     &quot;3&quot;     &quot;4&quot;     &quot;2&quot;  &quot;TRUE&quot; &quot;FALSE&quot;  &quot;TRUE&quot; &quot;FALSE&quot; </code></pre>
 </div>
-<div id="section-2.1.5" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> 文字處理</h3>
+<div id="section-2.1.6" class="section level3">
+<h3><span class="header-section-number">2.1.6</span> 特殊變數介紹</h3>
 <ul>
-<li>String Manipulation</li>
+<li>保留字 (Reserved word)
+<ul>
+<li>程式語言通常會事先定義的常用或具有特殊意義之變數。</li>
+<li>命名變數時宜避開保留字命名，以免會出現不可預知之錯誤。</li>
+<li><code>pi</code></li>
+</ul></li>
+<li>R 常用保留字
+<ul>
+<li>NA, not vailable, 通常指遺漏值 (missing value)，可利用 is.na() 函數來判別</li>
+<li>numeric(0), length(numeric(0) = 0, 長度為0的數值型物件</li>
+<li>Inf, infinity, 無窮大</li>
+<li>NaN, not a number, 可利用 is.na() 函數來判別</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NA</span> <span class="co"># NA</span></code></pre></div>
+<pre><code>[1] NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>[1]  2 NA  5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">4.39</span>, <span class="fl">2.11</span>, <span class="fl">3.17</span>)
+x[x<span class="op">&gt;</span><span class="dv">5</span>] <span class="co"># numeric(0)</span></code></pre></div>
+<pre><code>numeric(0)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">100</span><span class="op">/</span><span class="dv">0</span> <span class="co"># Inf</span></code></pre></div>
+<pre><code>[1] Inf</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">-</span>pi<span class="op">/</span><span class="dv">0</span> <span class="co">#-Inf</span></code></pre></div>
+<pre><code>[1] -Inf</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span> <span class="co"># NaN</span></code></pre></div>
+<pre><code>[1] NaN</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">Inf</span><span class="op">-</span><span class="ot">Inf</span> <span class="co"># NaN</span></code></pre></div>
+<pre><code>[1] NaN</code></pre>
+</div>
+</div>
+<div id="section-2.2" class="section level2">
+<h2><span class="header-section-number">2.2</span> 基本運算</h2>
+<div id="section-2.2.1" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> 數學運算</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">100</span>
+y &lt;-<span class="st"> </span><span class="dv">400</span>
+
+x <span class="op">+</span><span class="st"> </span>y</code></pre></div>
+<pre><code>[1] 500</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">-</span><span class="st"> </span>y</code></pre></div>
+<pre><code>[1] -300</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span>y</code></pre></div>
+<pre><code>[1] 40000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">/</span><span class="st"> </span>y</code></pre></div>
+<pre><code>[1] 0.25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(x)</code></pre></div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">^</span><span class="dv">2</span></code></pre></div>
+<pre><code>[1] 10000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(x)</code></pre></div>
+<pre><code>[1] 4.60517</code></pre>
+</div>
+<div id="section-2.2.2" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> 基礎統計</h3>
+<ul>
+<li>內建套件與資料集
+<ul>
+<li>library(help = ‘stats’)</li>
+<li>data()</li>
+<li>為避免運算結果影響內建資料集，常以新物件方式存取</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 另存入新物件中</span>
+irisDat &lt;-<span class="st"> </span>iris
+
+<span class="co"># Descriptive statistics</span>
+<span class="kw">min</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 4.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 7.9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 4.3 7.9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 876.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 5.843333</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 5.8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>  0%  25%  50%  75% 100% 
+ 4.3  5.1  5.8  6.4  7.9 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  4.300   5.100   5.800   5.843   6.400   7.900 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Data trasformation</span>
+irisDat<span class="op">$</span>log.Sepal.Length &lt;-<span class="st"> </span><span class="kw">log</span>(irisDat<span class="op">$</span>Sepal.Length)
+<span class="kw">head</span>(irisDat)</code></pre></div>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species log.Sepal.Length
+1          5.1         3.5          1.4         0.2  setosa         1.629241
+2          4.9         3.0          1.4         0.2  setosa         1.589235
+3          4.7         3.2          1.3         0.2  setosa         1.547563
+4          4.6         3.1          1.5         0.2  setosa         1.526056
+5          5.0         3.6          1.4         0.2  setosa         1.609438
+6          5.4         3.9          1.7         0.4  setosa         1.686399</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Deviation 離差</span>
+irisDat<span class="op">$</span>dev &lt;-<span class="st"> </span>irisDat<span class="op">$</span>Sepal.Length <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(irisDat<span class="op">$</span>Sepal.Length)
+irisDat<span class="op">$</span>dev.sq &lt;-<span class="st"> </span>irisDat<span class="op">$</span>dev<span class="op">^</span><span class="dv">2</span>
+<span class="kw">head</span>(irisDat)</code></pre></div>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species log.Sepal.Length        dev    dev.sq
+1          5.1         3.5          1.4         0.2  setosa         1.629241 -0.7433333 0.5525444
+2          4.9         3.0          1.4         0.2  setosa         1.589235 -0.9433333 0.8898778
+3          4.7         3.2          1.3         0.2  setosa         1.547563 -1.1433333 1.3072111
+4          4.6         3.1          1.5         0.2  setosa         1.526056 -1.2433333 1.5458778
+5          5.0         3.6          1.4         0.2  setosa         1.609438 -0.8433333 0.7112111
+6          5.4         3.9          1.7         0.4  setosa         1.686399 -0.4433333 0.1965444</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Variance 變異數</span>
+<span class="kw">sum</span>(irisDat<span class="op">$</span>dev.sq)<span class="op">/</span>(<span class="kw">nrow</span>(irisDat)<span class="op">-</span><span class="dv">1</span>)</code></pre></div>
+<pre><code>[1] 0.6856935</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 0.6856935</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Standard deviation 標準差</span>
+<span class="kw">sqrt</span>(<span class="kw">sum</span>(irisDat<span class="op">$</span>dev.sq)<span class="op">/</span>(<span class="kw">nrow</span>(irisDat)<span class="op">-</span><span class="dv">1</span>))</code></pre></div>
+<pre><code>[1] 0.8280661</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="kw">var</span>(irisDat<span class="op">$</span>Sepal.Length))</code></pre></div>
+<pre><code>[1] 0.8280661</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(irisDat<span class="op">$</span>Sepal.Length)</code></pre></div>
+<pre><code>[1] 0.8280661</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Linear Regression 簡單線性迴歸</span>
+<span class="kw">lm</span>(Petal.Width <span class="op">~</span><span class="st"> </span>Petal.Length, <span class="dt">data=</span>irisDat)</code></pre></div>
+<pre><code>
+Call:
+lm(formula = Petal.Width ~ Petal.Length, data = irisDat)
+
+Coefficients:
+ (Intercept)  Petal.Length  
+     -0.3631        0.4158  </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(Petal.Width <span class="op">~</span><span class="st"> </span>Petal.Length, <span class="dt">data=</span>irisDat))</code></pre></div>
+<pre><code>
+Call:
+lm(formula = Petal.Width ~ Petal.Length, data = irisDat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.56515 -0.12358 -0.01898  0.13288  0.64272 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -0.363076   0.039762  -9.131  4.7e-16 ***
+Petal.Length  0.415755   0.009582  43.387  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.2065 on 148 degrees of freedom
+Multiple R-squared:  0.9271,    Adjusted R-squared:  0.9266 
+F-statistic:  1882 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="section-2.2.3" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> 文字處理</h3>
+<ul>
+<li>String Manipulation
+<ul>
+<li>處理 string 型態之方法集合</li>
 <li>正規表達式 (regex) 補充教材：
 <ul>
-<li><a href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正規表示式</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正規表達式</a></li>
 <li><a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/SvetlanaEdenRFiles/regExprTalk.pdf">Introduction to String Matching and Modification in R Using Regular Expressions</a></li>
+</ul></li>
 </ul></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r1 &lt;-<span class="st"> &quot;Hello&quot;</span>
@@ -545,31 +764,6 @@ r5 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&
 <pre><code>[1] 1 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grepl</span>(<span class="st">&quot;ll&quot;</span>, r5)</code></pre></div>
 <pre><code>[1]  TRUE FALSE</code></pre>
-</div>
-<div id="section-2.1.6" class="section level3">
-<h3><span class="header-section-number">2.1.6</span> 特殊變數介紹</h3>
-<ul>
-<li>保留字</li>
-<li>NA, not vailable, 通常指遺漏值 (missing value)，可利用 is.na() 函數來判別</li>
-<li>numeric(0), length(numeric(0) = 0, 長度為0的數值型物件</li>
-<li>Inf, infinity, 無窮大</li>
-<li>NaN, not a number, 可利用 is.na() 函數來判別</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NA</span> <span class="co"># NA</span></code></pre></div>
-<pre><code>[1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
-<pre><code>[1]  2 NA  5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">4.39</span>, <span class="fl">2.11</span>, <span class="fl">3.17</span>)
-x[x<span class="op">&gt;</span><span class="dv">5</span>] <span class="co"># numeric(0)</span></code></pre></div>
-<pre><code>numeric(0)</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">100</span><span class="op">/</span><span class="dv">0</span> <span class="co"># Inf</span></code></pre></div>
-<pre><code>[1] Inf</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">-</span>pi<span class="op">/</span><span class="dv">0</span> <span class="co">#-Inf</span></code></pre></div>
-<pre><code>[1] -Inf</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">0</span><span class="op">/</span><span class="dv">0</span> <span class="co"># NaN</span></code></pre></div>
-<pre><code>[1] NaN</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">Inf</span><span class="op">-</span><span class="ot">Inf</span> <span class="co"># NaN</span></code></pre></div>
-<pre><code>[1] NaN</code></pre>
 
 </div>
 </div>
@@ -621,7 +815,7 @@ gitbook.start({
 "edit": null,
 "download": null,
 "toc": {
-"collapse": "rmd",
+"collapse": "section",
 "scroll_highlight": true
 },
 "toolbar": {

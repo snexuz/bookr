@@ -1,11 +1,11 @@
 --- 
-title: R Notes
+title: Book R
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
     number_sections: true
     lib_dir: assets
-    split_by: section
+    split_by: rmd
     css: style.css
     includes:
       in_header: in_header.html
@@ -13,7 +13,7 @@ output:
       after_body: after_body.html
     config:
       toc:
-        collapse: rmd
+        collapse: section
         scroll_highlight: yes
         before: null
         after: null
@@ -37,8 +37,8 @@ output:
         all: ['facebook', 'linkedin', 'twitter']
 documentclass: book
 link-citations: yes
-description: 無傷無痛零基礎碼盲也能懂的 R 程式語言
-favicon: "img/RStudio_30177.ico"
+description: 無傷無痛零基礎的 R 程式語言
+favicon: "img/Blackvariant-Button-Ui-Requests-5-RStudio.ico"
 ---
 
 ```{r setup, include=FALSE, cache=FALSE}
@@ -48,7 +48,7 @@ library(reshape2)   # long and wide format
 opts_chunk$set(echo = TRUE, comment="", message=FALSE, warning=FALSE)
 ```
 
-<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: -5px;">無傷無痛零基礎碼盲也能懂的 R 程式語言<br> Chia-Hsin Liu</div>
+<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: 20px;">無傷痛零基礎也能懂的 R 程式語言<br> Chia-Hsin Liu</div>
 
 # Perface{-}
 

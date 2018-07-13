@@ -34,11 +34,8 @@
             - `cmd+shift+c`
 - 文學院也能懂得程式『語言』
     - 語言用來溝通，符號只是簡記，理解而非死記
-    - 以設定工作目錄為例
-```
-getwd()
-setwd() 
-```    
+    - 以設定工作目錄為例：`getwd()`、`setwd()`
+
 - Shortcuts! 專業的表現
     - Run current line/selection
         - Ctrl+Enter, Ctrl+r

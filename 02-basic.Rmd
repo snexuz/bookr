@@ -9,10 +9,17 @@ options(width = 100)
 opts_chunk$set(echo = TRUE, comment="", message=FALSE, warning=FALSE)
 ```
 
-## 變數的賦值與基本型態
+## 變數與常用資料結構
 
-R 語言中變數 (Variable) 的賦值方式可以使用，1. `<-` (箭號) 以及 2. `=` (等號)表示。<br>
-根據 [Google R Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) 建議使用 `<-` 進行變數賦值。另外，R 語言中程式的註解以 `#` (井號) 表示。
+- 變數 (variable)
+    - R 語言中變數的賦值方式可以使用，1. `<-` (箭號) 以及 2. `=` (等號)表示。
+    - 根據 [Google R Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) 建議使用 `<-` 進行變數賦值。
+    - 另外，R 語言中程式的註解以 `#` (井號) 表示。
+- 資料結構 (data structure)
+    - 資料結構為電腦中為了運算方便，儲存、組織資料的方式。
+    - R 語言中的資料結構除了一般程式語言常見結構外 (vector, matrix, array, list)，還有 (tibble, data.frame, data.table) 等知名結構。
+    - 本文著重於介紹最常用的 vector 以及 data.frame，進階教材可參考 [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)。
+
 
 ### 向量 (vector)
 
@@ -36,6 +43,7 @@ z <- c(TRUE, FALSE, TRUE)
 z
 class(z)
 ```
+
 - 向量的類別轉換
     - 向量物件一次只能接受一種類別，若同時在一個向量中給定多種類別，R 將會依以下順序進行自動轉換：字串 > 數值 > 布林。
     - 可利用以下函數自行轉換向量的類別：as.character, as.numeric, as.logical。
@@ -220,12 +228,41 @@ as.numeric(gender) # 1=female, 2=male internally (alphabetically)
 factor(gender, levels=c("male", "female"), labels=c("M", "F"))
 ```
 
+
+### 陣列或矩陣 (matrix)
+
+- matrix
+    - 矩陣是線性代數、數值運算中最基本的資料結構，開發演算法之基礎。
+    - 建立 matrix 時需提供 vector 型態之資料，並設定行數或列數，且須透過 `byrow` 參數以指定排列順序
+    - data.frame 可視為 matrix 之功能延伸 (vector --> matrix --> data.frame)
+
+```{r}
+matrix(1:4, nrow = 2)
+matrix(1:4, nrow = 2, byrow = TRUE)
+
+#取值：與 data.frame 相同
+x <- matrix(1:4, nrow = 2, byrow = TRUE)
+x[2, 1]
+
+#矩陣乘法 1*1+2*3, 1*2+2*4
+x
+x %*% x
+
+#行列式，須為 row, col 數相同之對稱矩陣 1*4-2*3
+det(x)
+
+#轉換成 data.frame
+as.data.frame(x)
+
+```
+
 ### 序列 (list)
 
 - list 
     - 為 R 環境中最廣義的物件，可以將上述所有物件都包含至同一個物件下。
     - 序列 (list) 的表達形式與向量類似，只是每一個元素可以是各種物件型態(vector, data.frame, list, ... )。
-    - 基本的取值方法是[[ ]] (雙層中括號)，x[[i]] 表示list物件中第i個值。如過list物件的位置有命名，則可以用$ (錢號) 來提取物件。
+    - 基本的取值方法是 `[[ ]]` (雙層中括號)，x[[i]] 表示list物件中第i個值。如過list物件的位置有命名，則可以用$ (錢號) 來提取物件。
+
 ```{r comment=""}
 L <- list(x = c(1:5), y = c("a", "b", "c"), z = df)
 L
@@ -242,15 +279,106 @@ unlist(L)
 ```
 
 
-### 文字處理
+### 特殊變數介紹
 
-- String Manipulation
-- 正規表達式 (regex) 補充教材：
-    - [正規表示式](https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
-    - [Introduction to String Matching and Modification in R Using Regular Expressions](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/SvetlanaEdenRFiles/regExprTalk.pdf)
+- 保留字 (Reserved word)
+    - 程式語言通常會事先定義的常用或具有特殊意義之變數。
+    - 命名變數時宜避開保留字命名，以免會出現不可預知之錯誤。
+    - `pi`
+- R 常用保留字    
+    - NA, not vailable, 通常指遺漏值 (missing value)，可利用 is.na() 函數來判別
+    - numeric(0), length(numeric(0) = 0, 長度為0的數值型物件
+    - Inf, infinity, 無窮大
+    - NaN, not a number, 可利用 is.na() 函數來判別
 
 ```{r comment=""}
+NA # NA
+c(1, NA, 4) + 1
+x <- c(4.39, 2.11, 3.17)
+x[x>5] # numeric(0)
+100/0 # Inf
+-pi/0 #-Inf
+0/0 # NaN
+Inf-Inf # NaN
+```
 
+
+## 基本運算
+
+### 數學運算
+```{r}
+x <- 100
+y <- 400
+
+x + y
+x - y
+x * y
+x / y
+
+sqrt(x)
+x^2
+log(x)
+
+```
+
+### 基礎統計
+
+- 內建套件與資料集
+    - library(help = 'stats')
+    - data()
+    - 為避免運算結果影響內建資料集，常以新物件方式存取
+
+```{r}
+head(iris)
+
+# 另存入新物件中
+irisDat <- iris
+
+# Descriptive statistics
+min(irisDat$Sepal.Length)
+max(irisDat$Sepal.Length)
+range(irisDat$Sepal.Length)
+
+sum(irisDat$Sepal.Length)
+mean(irisDat$Sepal.Length)
+median(irisDat$Sepal.Length)
+
+quantile(irisDat$Sepal.Length)
+summary(irisDat$Sepal.Length)
+
+# Data trasformation
+irisDat$log.Sepal.Length <- log(irisDat$Sepal.Length)
+head(irisDat)
+
+# Deviation 離差
+irisDat$dev <- irisDat$Sepal.Length - mean(irisDat$Sepal.Length)
+irisDat$dev.sq <- irisDat$dev^2
+head(irisDat)
+
+# Variance 變異數
+sum(irisDat$dev.sq)/(nrow(irisDat)-1)
+var(irisDat$Sepal.Length)
+
+# Standard deviation 標準差
+sqrt(sum(irisDat$dev.sq)/(nrow(irisDat)-1))
+sqrt(var(irisDat$Sepal.Length))
+sd(irisDat$Sepal.Length)
+
+# Linear Regression 簡單線性迴歸
+lm(Petal.Width ~ Petal.Length, data=irisDat)
+summary(lm(Petal.Width ~ Petal.Length, data=irisDat))
+```
+
+
+### 文字處理
+ 
+- String Manipulation
+    - 處理 string 型態之方法集合
+    - 正規表達式 (regex) 補充教材：
+        - [正規表達式](https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
+        - [Introduction to String Matching and Modification in R Using Regular Expressions](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/SvetlanaEdenRFiles/regExprTalk.pdf)
+
+```{r comment=""}
 r1 <- "Hello"
 class(r1)
 
@@ -292,21 +420,3 @@ grepl("ll", r5)
 ```
 
 
-### 特殊變數介紹
-
-- 保留字
-- NA, not vailable, 通常指遺漏值 (missing value)，可利用 is.na() 函數來判別
-- numeric(0), length(numeric(0) = 0, 長度為0的數值型物件
-- Inf, infinity, 無窮大
-- NaN, not a number, 可利用 is.na() 函數來判別
-
-```{r comment=""}
-NA # NA
-c(1, NA, 4) + 1
-x <- c(4.39, 2.11, 3.17)
-x[x>5] # numeric(0)
-100/0 # Inf
--pi/0 #-Inf
-0/0 # NaN
-Inf-Inf # NaN
-```
