@@ -1,0 +1,57 @@
+--- 
+title: R Notes
+site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    number_sections: true
+    lib_dir: assets
+    split_by: section
+    css: style.css
+    includes:
+      in_header: in_header.html
+      before_body: null
+      after_body: after_body.html
+    config:
+      toc:
+        collapse: rmd
+        scroll_highlight: yes
+        before: null
+        after: null
+      toolbar:
+        position: fixed
+      edit : null
+      download: null
+      search: no
+      fontsettings:
+        theme: white
+        family: sans
+        size: 2
+      sharing:
+        facebook: yes
+        twitter: yes
+        google: no
+        linkedin: yes
+        weibo: no
+        instapper: no
+        vk: no
+        all: ['facebook', 'linkedin', 'twitter']
+documentclass: book
+link-citations: yes
+description: 無傷無痛零基礎碼盲也能懂的 R 程式語言
+favicon: "img/RStudio_30177.ico"
+---
+
+```{r setup, include=FALSE, cache=FALSE}
+library(knitr)      # dynamic report generation, RMarkdown
+library(ggplot2)    # data Viz
+library(reshape2)   # long and wide format
+opts_chunk$set(echo = TRUE, comment="", message=FALSE, warning=FALSE)
+```
+
+<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: -5px;">無傷無痛零基礎碼盲也能懂的 R 程式語言<br> Chia-Hsin Liu</div>
+
+# Perface{-}
+
+- 介紹
+- 內容索引
+- 更新記錄

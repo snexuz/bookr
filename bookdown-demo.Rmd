@@ -1,0 +1,466 @@
+--- 
+title: R Notes
+site: bookdown::bookdown_site
+output:
+  bookdown::gitbook:
+    number_sections: true
+    lib_dir: assets
+    split_by: section
+    css: style.css
+    includes:
+      in_header: in_header.html
+      before_body: null
+      after_body: after_body.html
+    config:
+      toc:
+        collapse: rmd
+        scroll_highlight: yes
+        before: null
+        after: null
+      toolbar:
+        position: fixed
+      edit : null
+      download: null
+      search: no
+      fontsettings:
+        theme: white
+        family: sans
+        size: 2
+      sharing:
+        facebook: yes
+        twitter: yes
+        google: no
+        linkedin: yes
+        weibo: no
+        instapper: no
+        vk: no
+        all: ['facebook', 'linkedin', 'twitter']
+documentclass: book
+link-citations: yes
+description: 無傷無痛零基礎碼盲也能懂的 R 程式語言
+favicon: "img/RStudio_30177.ico"
+---
+
+```{r setup, include=FALSE, cache=FALSE}
+library(knitr)      # dynamic report generation, RMarkdown
+library(ggplot2)    # data Viz
+library(reshape2)   # long and wide format
+opts_chunk$set(echo = TRUE, comment="", message=FALSE, warning=FALSE)
+```
+
+<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: -5px;">無傷無痛零基礎碼盲也能懂的 R 程式語言<br> Chia-Hsin Liu</div>
+
+# Perface{-}
+
+- 介紹
+- 內容索引
+- 更新記錄
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>LastUpdate: 2018-07-10</div>
+
+- why use R?
+    - R 來自世界上最專業的統計學家
+    - [R 可以輸出高品質的視覺化](http://www.r-bloggers.com/mapping-the-worlds-biggest-airlines/)
+    - [R 有驚人彈性和潛力](http://r4stats.com/2013/03/19/r-2012-growth-exceeds-sas-all-time-total/)
+    - R 很容易和其他工具整合 (C/C++, Java, Python, ODBC, SQL, Hadoop, Spark, SAS, SPSS, Stata, Tensorflow)
+    - R 很容易擴充和客製化
+    - 不用錢！
+- what R can do?
+    - [CRAN Task Views](https://cran.r-project.org/web/views/)
+    - [rmarkdown](https://rmarkdown.rstudio.com/) / [shiny](https://shiny.rstudio.com/) / [bookdown](https://bookdown.org/yihui/bookdown/) / [blogdown](https://bookdown.org/yihui/blogdown/)
+    - [Some things R can do you might not be aware of](http://simplystatistics.org/2013/12/30/some-things-r-can-do-you-might-not-be-aware-of/)
+
+##  Prerequisites  
+
+- R 環境設定
+    - install R Core: [The R Project for Statistical Computing](http://www.r-project.org/)
+    - Powerful IDE (整合開發環境) for R
+        - [R studio ](http://www.rstudio.com/)
+    - Alternative IDE 
+        - [Jupyter IRkernel](https://github.com/IRkernel/IRkernel)
+        - [Microsoft R Application Network](https://mran.microsoft.com/)
+    - R-Studio 使用界面介紹    
+- 如何『自學』R 語言
+    - 『視窗編排法』
+    - 『作中學筆記法』
+        - COPY & PASTE: 
+            - `ctrl+c, ctrl+v`
+            - `cmd+c, cmd+v`
+        - 善用註解做筆記：``#`` 
+            - `ctrl+shift+c`
+            - `cmd+shift+c`
+- 文學院也能懂得程式『語言』
+    - 語言用來溝通，符號只是簡記，理解而非死記
+    - 以設定工作目錄為例
+```
+getwd()
+setwd() 
+```    
+- Shortcuts! 專業的表現
+    - Run current line/selection
+        - Ctrl+Enter, Ctrl+r
+        - Command+Enter
+        - [Keyboard Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
+    - IDE 的重要性！什麼都可以忘，就是不能忘記 **[TAB]** 鍵
+<br><img src='img/tabs.jpg' align='center'></img><br>
+- 善用教學文件
+    * help()　是很棒的學習資源
+    * ? 　　　一個問號讓我們更謙卑
+    * ??　　　兩個問號讓我們探索世界
+    * apropos()　指令部分關鍵字搜尋
+      
+
+## Packages
+
+- [The Comprehensive R Archive Network - CRAN](https://cran.r-project.org/)
+    - [Packages](https://cloud.r-project.org/web/packages/)
+    - [Manuals](https://cloud.r-project.org/)
+- 套件安裝 / `install.packages()`
+    - rmarkdown
+    - dplyr
+    - ggplot2....
+- 載入套件 / `library("package.name")`
+
+
+## Resources
+- 肯定需要
+    - [Quick R](http://www.statmethods.net/index.html): [Data Types](http://www.statmethods.net/input/datatypes.html) / [Control Flow](http://www.statmethods.net/management/controlstructures.html)
+    - [R Reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+    - [R Studio](https://www.rstudio.com/)
+    - [R pubs](https://rpubs.com/) 
+    - [Bookdown](https://bookdown.org/)
+    - [Azure Machine Learning](https://docs.microsoft.com/zh-tw/azure/machine-learning/studio/r-quickstart)
+    - [R & RStudio Troubleshooting Guide](https://github.com/dspim/R/wiki/R-&-RStudio-Troubleshooting-Guide)
+- 擺脫小白
+    - [Google!](http://www.google.com)
+    - [Stackoverflow](http://stackoverflow.com/)
+    - [Github](https://github.com/explore)
+- 別作阿宅
+    - [R 翻轉教室](http://wush978.github.io/DataScienceAndR/)
+    - [DSP 智庫驅動](http://dsp.im/) / [Data Challenge](http://dc.dsp.im/main/content/KAMERA-Emergency-Medicine-Challenge) 
+    - [D4SG, Data for Social Good](https://www.facebook.com/groups/1642333189376600/?fref=ts) 
+    - [TW R User group](http://www.meetup.com/Taiwan-R/)
+    - [台灣資料科學愛好者交流區](https://www.facebook.com/groups/datasci.tw/?fref=ts)
+
+    
+
+<!--chapter:end:01-intro.Rmd-->
+
+# R_Basic
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>LastUpdate: 2018-07-10</div>
+
+```{r include=FALSE, cache=FALSE}
+library(knitr)      # dynamic report generation, RMarkdown
+library(ggplot2)    # data Viz
+library(reshape2)   # long and wide format
+options(width = 100)
+opts_chunk$set(echo = TRUE, comment="", message=FALSE, warning=FALSE)
+```
+
+## 變數的賦值與基本型態
+
+R 語言中變數 (Variable) 的賦值方式可以使用，1. `<-` (箭號) 以及 2. `=` (等號)表示。<br>
+根據 [Google R Style Guide](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml) 建議使用 `<-` 進行變數賦值。另外，R 語言中程式的註解以 `#` (井號) 表示。
+
+### 向量 (vector)
+
+- 基本類別
+    - R 物件最基本的單位是向量 (vector)，以 c() 表示 (Combine)，元素與元素之間逗號分隔。
+    - 常用基本類別 (class)，即 1.數值向量 (numeric vector)、2. 字串向量 (character vector) 以及 3. 布林向量 (logical vector)。
+    
+```{r comment=""}
+# numeric vector
+x <- c(4.39, 2.11, 3.17)
+x 
+class(x) # 可利用class(x)查詢物件的類別
+
+# character vector，以雙引號 " " 或單引號 ' ' 註記 
+y <- c("apple", "book", "cat")
+y
+class(y)
+
+# logical vector，以TRUE / FALSE 註記，亦可簡化為 T / F
+z <- c(TRUE, FALSE, TRUE)
+z
+class(z)
+```
+- 向量的類別轉換
+    - 向量物件一次只能接受一種類別，若同時在一個向量中給定多種類別，R 將會依以下順序進行自動轉換：字串 > 數值 > 布林。
+    - 可利用以下函數自行轉換向量的類別：as.character, as.numeric, as.logical。
+<br><a href='https://tw.dictionary.search.yahoo.com/search?p=as' target='_blank'><img src='img/as.PNG' align='center'></img></a><br>    
+    
+```{r comment=""}
+# 向量只容許一種類別 (字串 > 數值 > 布林)
+c(1, 2, "three") # 數值被轉換成字串
+c(1, 2, TRUE, FALSE) # 布林值 TRUE 被轉換成1，FALSE被轉換成0
+c(1.1, 2.4, TRUE, FALSE)
+c("one", 2.4, TRUE) # 所有元素都被轉換成字串
+
+# 字串轉數字
+a1 <- c("89", "91", "102")
+as.numeric(a1)
+
+# 布林轉數字
+a2 <- c(TRUE, TRUE, FALSE)
+as.numeric(a2)
+
+# 數字轉布林
+a3 <- c(-2, -1, 0, 1, 2)
+as.logical(a3)
+
+# 數字轉字串
+as.character(a3)
+```
+
+- 向量物件的簡記
+    - 連續整數向量可以利用 : (冒號) 簡記，譬如數列 1, 2, 3 在 R 語言中可利用 1:3 簡記。R 中的向量具有 recycling properties，便於執行四則運算。
+    
+```{r comment=""}
+# basic expression of integer vector
+c(1, 2, 3)
+
+# simple expression
+1:3
+3:1
+
+# shorter arguments are recycled
+1:3 * 2
+1:4 + 1:2
+c(0.5, 1.5, 2.5, 3.5) * c(2, 1)
+
+# warning (why?)
+1:3 * 1:2
+```
+
+- 元素的命名
+    - 在 R 語言中，可以對向量中的每一個元素命名，或者是利用函數 names 對向量元素命名，這有助於該向量的理解。
+```{r comment=""}
+y <- c("apple", "book", "cat")
+y
+y1 <- c(A="apple", B="book", C="cat")
+# 等價於 
+# y1 <- y
+# names(y1) <- c("A", "B", "C")
+y1
+names(y1)
+```
+
+- 取值與排序
+    - 利用 `[ ]` (中括號) 與比較運算子(>, <, >=, <=, ==, !=)、邏輯運算子 (&, |) 以及負號 (-) 進行向量的取值。此外，R 也支援利用變數的名稱 (names) 來取值。
+
+```{r comment=""}
+# 1st and 3rd elements of vector
+x <- c(4.39, 2.11, 3.17)
+x[c(1,3)] 
+x[c(2,3,1)]
+order(x) # 依x各元素大小排序 (由小到大)
+x[order(x)]
+
+# remove 1st elements of vector
+y <- c("apple", "book", "cat")
+y[c(-1)]
+
+# using comparison and logical operators
+x > 3
+which(x>3) # which indices are TRUE
+x[which(x>3)]
+x[x > 3] # simplify expression
+
+y[y!="apple"]
+
+y1["A"]
+y1[y1=="apple"]
+names(y1)[y1 == "apple"]
+```
+
+- 向量元素取代與新增
+    - 使用 `[ ]` 進行元素的取代與新增
+    
+```{r comment=""}
+y <- c("apple", "book", "cat")
+y[3] <- "car" # replace 3rd element
+y
+
+x <- c(4.39, 2.11, 3.17)
+x[c(1,3)] <- 0 # replace 1st and 3rd elements to 1
+x[4] <- 1.19 # add 4th element to 1.19
+# 等價於 c(x, 1.19)
+x
+```
+
+
+### 資料框 (data.frame)
+
+- 資料框、資料框架、數據框 (data.frame) 
+    - 為向量 (vector) 的一種推廣，它可以將多個相同長度 (不一定是相同類別) 的向量合併在一起 (combine by column)。
+
+```{r comment=""}
+x <- c(4.39, 2.11, 3.17, 5.43)
+y <- c("apple", "book", "cat", "baby")
+z <- c(TRUE, FALSE, TRUE, FALSE)
+df <- data.frame(v1 = x, v2 = y, v3 = z)
+df
+
+str(df) # 展示物件各欄位的屬性結構 (structure)
+head(df, 3) # 展示物件前 3 筆資料
+colnames(df) # 展示物件的欄位名稱
+rownames(df) # 展示物件的列名稱
+```
+
+- 取值
+    - 如同 vector 使用 `[]` 取值，data.frame 利用 `[row, col]` 提取物件內容。
+    - 表達式為 x[i, j]，表示提取 x 物件中第i列 (ith row)、第j行 (jth column) 的值
+    - 也可單純使用 x[i, ] 表達第i列的向量；x[,j] 表達第j行的向量。
+    - 中括號中可以使用條件算子進行取值。
+    - 另外，可以用 `$` (錢號) 來提取物件的特定欄位 (column)，請試著在 df$ 之後按 tab (自動完成鍵)。
+
+```{r comment=""}
+df[1] # select 1st column variable
+df[, 1] # select the value of 1st column
+df[, "v1"]
+df$v1
+df[c("v2", "v3")]
+df[2, ] # select 2nd row
+df[df$v1 > 3 & z==TRUE, "v2"]
+```
+
+- data.frame 的合併
+    - 利用 rbind (上下合併)、cbind (左右合併) 對 data.frame 進行合併
+    
+```{r comment=""}
+x <- data.frame(Drama=c("我的自由年代", "回到愛以前"), 
+                TV=c("三立", "台視"))
+
+y <- data.frame(Drama=c("我的自由年代", "回到愛以前"),
+                Date=c("2014-02-07", "2014-01-05"),
+                Vol=c(12, NA),
+                Rating=c(2.67, 2.58))
+
+z <- data.frame(Drama=c("16個夏天", "妹妹"), 
+                TV=c("公視", "台視"),
+                Date=c("2014-11-01", "2014-10-10"),
+                Vol=c(16, 7),
+                Rating=c(2.30, 1.30))
+x
+y
+z
+
+xy <- cbind(x, y[,-1])
+rbind(xy, z)
+# 壓縮程式碼 rbind(cbind(x, y[,-1]),z)
+```
+
+
+### 類別物件 (factor)
+
+- factor
+    - 當一向量變數是類別型變數 (categorical data，譬如：性別、教育水準) 時，在 R 語言中以 factor 進行定義。
+    
+```{r comment=""}
+# variable gender with 2 "male" entries and 3 "female" entries 
+gender <- c(rep("male",2), rep("female", 3)) 
+gender
+gender <- factor(gender)
+gender
+levels(gender)
+as.numeric(gender) # 1=female, 2=male internally (alphabetically)
+# change vector of labels for the levels
+factor(gender, levels=c("male", "female"), labels=c("M", "F"))
+```
+
+### 序列 (list)
+
+- list 
+    - 為 R 環境中最廣義的物件，可以將上述所有物件都包含至同一個物件下。
+    - 序列 (list) 的表達形式與向量類似，只是每一個元素可以是各種物件型態(vector, data.frame, list, ... )。
+    - 基本的取值方法是[[ ]] (雙層中括號)，x[[i]] 表示list物件中第i個值。如過list物件的位置有命名，則可以用$ (錢號) 來提取物件。
+```{r comment=""}
+L <- list(x = c(1:5), y = c("a", "b", "c"), z = df)
+L
+# teh dollar operator $ or [[]] can be used to retrieve a single element
+L[[2]]
+L$y 
+L[["z"]]
+L[3]
+L[c(1, 3)]
+L[c("x", "y")]
+
+# 序列轉向量
+unlist(L)
+```
+
+
+### 文字處理
+
+- String Manipulation
+- 正規表達式 (regex) 補充教材：
+    - [正規表示式](https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
+    - [Introduction to String Matching and Modification in R Using Regular Expressions](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/SvetlanaEdenRFiles/regExprTalk.pdf)
+
+```{r comment=""}
+
+r1 <- "Hello"
+class(r1)
+
+# 單字字元個數 nchar(x)
+nchar(r1)
+
+# 單字分割 substr(x, start=n1, stop=n2)
+substr(r1, start = 1, stop = 3)
+
+# 單字變更大小寫 toupper/tolower(x)
+r1 <- toupper(r1)
+r1
+
+r1 <- tolower(r1)
+r1
+
+# 單字結合成字串 paste(…, sep="")
+r2 <- "world"
+paste(r1, r2, sep = ".")
+paste(r1, r2, sep = " ")
+
+# 字串拆解 strsplit(x, split)
+r3 <- paste(r1, r2, sep = " ")
+r3
+
+r4 <- strsplit(r3, split = " ")
+r4
+r4[[1]][2]
+
+# 字串取代 gsub(pattern, replacement, x)
+r3
+gsub(pattern = "ll", replacement = "oo", x = r3)
+
+# 規則運算式 grepl(pattern,x)
+r5 <- list("hello", "world")
+grep("l", r5)
+grepl("ll", r5)
+
+```
+
+
+### 特殊變數介紹
+
+- 保留字
+- NA, not vailable, 通常指遺漏值 (missing value)，可利用 is.na() 函數來判別
+- numeric(0), length(numeric(0) = 0, 長度為0的數值型物件
+- Inf, infinity, 無窮大
+- NaN, not a number, 可利用 is.na() 函數來判別
+
+```{r comment=""}
+NA # NA
+c(1, NA, 4) + 1
+x <- c(4.39, 2.11, 3.17)
+x[x>5] # numeric(0)
+100/0 # Inf
+-pi/0 #-Inf
+0/0 # NaN
+Inf-Inf # NaN
+```
+
+<!--chapter:end:02-basic.Rmd-->
+
