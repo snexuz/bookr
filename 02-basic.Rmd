@@ -1,4 +1,4 @@
-# R_Basic
+# R Basic
 <div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>LastUpdate: 2018-07-10</div>
 
 ```{r include=FALSE, cache=FALSE}
@@ -73,7 +73,9 @@ as.character(a3)
 ```
 
 - 向量物件的簡記
-    - 連續整數向量可以利用 : (冒號) 簡記，譬如數列 1, 2, 3 在 R 語言中可利用 1:3 簡記。R 中的向量具有 recycling properties，便於執行四則運算。
+    - 連續整數向量可以利用 : (冒號) 簡記，譬如數列 1, 2, 3 在 R 語言中可利用 1:3 簡記。
+    - R 中的向量具有 recycling properties，便於執行四則運算。
+    - [Vector Arithmetic and Recycling](https://binf.snipcademy.com/tutorials/r/vectors/recycling-arithmetic)
     
 ```{r comment=""}
 # basic expression of integer vector
@@ -373,7 +375,7 @@ summary(lm(Petal.Width ~ Petal.Length, data=irisDat))
 ### 文字處理
  
 - String Manipulation
-    - 處理 string 型態之方法集合
+    - 處理 "string" 型態之方法集合
     - 正規表達式 (regex) 補充教材：
         - [正規表達式](https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F)
         - [Introduction to String Matching and Modification in R Using Regular Expressions](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/SvetlanaEdenRFiles/regExprTalk.pdf)
@@ -420,3 +422,178 @@ grepl("ll", r5)
 ```
 
 
+
+## 基礎 I/O
+
+
+### 設定 R 環境的工作目錄
+
+- Working Directory
+    - 工作目錄的設定與讀取電腦上檔案位置有關，以**絕對目錄或相對目錄**表示，適當的調整有助於工作流程的順暢
+    - RStudio IDE 的使用者可以發現工作目錄會顯示在 Console 介面的上方
+    - 利用 `getwd` 來查詢目前的工作目錄
+    - 想要更改工作目錄可以用 `setwd(dir)` 這個指令，參數 `dir` 表示想要指向的工作目錄
+    - 目錄表達方式 Windows `'D:\Users\'` 與 Max, Linux `/home/user/...` 不同
+
+```{r eval=FALSE}
+getwd()
+setwd("c:/Users/Johnson/Dropbox/DSP/a1-basic-data-analysis/")
+getwd()
+```
+
+### Input/Output
+- 從 R console中輸入資料：
+    - 利用 `readline` 輸入一行字串 (`"character"`)
+    - 利用 `scan` 輸入一組數值型態的向量 (`"numeric"`)
+        - `scan()` 只能接受數值資料，並以向量方式儲存
+        - 按一次 enter 鍵可以輸入下一筆數字，連按兩次 enter 結束輸入。
+    
+```{r eval=FALSE}
+x <- readline()
+"I am a R user!"
+x
+
+x <- scan()
+1
+2
+class(x)
+x
+```
+
+
+- 輸出至檔案
+    - 先用 `file` 建立檔案連結(file connection)
+    - 再使用 `cat` 函數將資料向量輸出至該檔案
+```{r eval=FALSE}
+output <- file('output.txt')
+cat(1:100,sep='\t',file=output)
+close(output)
+```
+
+- 讀取/輸出多行 text lines 形式的來源
+    - 當資料屬於**非表格形式**或**非結構化**時，可使用 `readLines` 讀取檔案
+    - 利用 `writeLines` 將對應的結果輸出
+    
+```{r eval=FALSE}
+output <- file('output.txt')
+writeLines(as.character(1:12),con=output)
+
+input <- readLines(output)
+print(input)
+```
+
+- 讀取/輸出 表格形式的資料
+    - 利用 `read.table` 讀檔，利用 `write.table` 輸出檔案
+    
+```{r eval=FALSE}
+# a typical table format data
+head(iris)
+
+# write to a file ################################
+write.table(iris, file = 'iris.csv', sep = ',')
+
+# or, more concisely:
+write.csv(iris, file = 'iris.csv')
+
+# read a file ################################
+data <- read.table(file = 'iris.csv', header = TRUE, sep = ',')
+
+# or, more concisely:
+data <- read.csv(file = 'iris.csv')
+
+# if you don't want to type in the path
+data <- read.table(file = file.choose(), sep = ',')
+```
+
+
+### TroubleShooting
+- 讀檔之前，先觀察檔案
+    - 編碼通常都是 `UTF8` 或 `BIG5`
+        - Linux, Darwin: "UTF-8"
+        - Windows: "BIG-5"
+  
+- library function
+    - 依照不同檔案格式選擇，通常會有相對應套件或函式
+    - [Quick-R: Importing Data](https://www.statmethods.net/input/importingdata.html)
+    - `readLines`, `read.csv`....
+  
+- 如果你想在 windows 環境下讀取含有中文字以utf8編碼的檔案，有兩種建議做法
+
+```{r eval=FALSE}
+# Solution A
+dat1 <- read.csv("data/ubike-sample-data-utf8.csv", fileEncoding="utf8")
+
+# Solution B
+f <- file("data/ubike-sample-data-utf8.csv", encoding="utf8" )
+dat1 <- read.csv(f)
+```
+
+- 當已萬念俱灰
+<br><img src='img/importData.PNG' align='center'></img><br>
+
+
+
+## 綜合演練
+
+### First Step to Data Analysis
+
+```{r, eval = FALSE}
+# a typical table format data
+head(iris)
+
+# [TRY] head(iris, 20)
+tail(iris)
+
+# Dimensions
+dim(iris)
+nrow(iris)
+length(iris)
+
+# Column Names
+colnames(iris)
+
+# Data Thinking: 看資料欄位說故事
+str(iris)
+summary(iris)
+
+# slicing
+iris[4,] # 第 4 列
+iris[,2] # 第 2 欄
+iris[4,2] 
+iris[4,"Sepal.Width"]
+```
+
+<br>
+<b> Quiz: </b>
+請嘗試比較兩程式碼者有何不同: <br>
+iris[c(2:4),]　<br>
+iris[c(2,4),]
+
+```{r}
+# WRITE YOUR CODE
+
+```
+
+### Conditional slicing
+```{r, eval = FALSE}
+which(iris$Species == "versicolor")
+head(iris[which(iris$Species == "versicolor"),])
+```
+
+<br>
+<b> Quiz: </b>
+請嘗試找出 "versicolor", Petal.Length > 4 的資料
+```{r}
+# WRITE YOUR CODE
+
+```
+
+### Write/Read file
+```{r eval = FALSE}
+# Write to CSV file
+write.csv(iris, file = 'iris.csv')
+write.csv(iris, file = 'iris.csv', row.names = FALSE)
+
+# Read a CSV file
+data <- read.csv(file = 'iris.csv', header = TRUE, stringsAsFactors = FALSE)
+```

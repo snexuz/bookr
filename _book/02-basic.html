@@ -105,7 +105,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.2</b> Packages</a></li>
 <li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.3</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R_Basic</a><ul>
+<li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
 <li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="02-basic.html"><a href="02-basic.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
 <li class="chapter" data-level="2.1.2" data-path="02-basic.html"><a href="02-basic.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
@@ -118,6 +118,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
 <li class="chapter" data-level="2.2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
 <li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-basic.html"><a href="02-basic.html#-io"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#-r-"><i class="fa fa-check"></i><b>2.3.1</b> 設定 R 環境的工作目錄</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.2</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.3" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.3</b> TroubleShooting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-basic.html"><a href="02-basic.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 綜合演練</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="02-basic.html"><a href="02-basic.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.4.1</b> First Step to Data Analysis</a></li>
+<li class="chapter" data-level="2.4.2" data-path="02-basic.html"><a href="02-basic.html#conditional-slicing"><i class="fa fa-check"></i><b>2.4.2</b> Conditional slicing</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02-basic.html"><a href="02-basic.html#writeread-file"><i class="fa fa-check"></i><b>2.4.3</b> Write/Read file</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -137,8 +147,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r_basic" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> R_Basic</h1>
+<div id="r-basic" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> R Basic</h1>
 <div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
 LastUpdate: 2018-07-10
 </div>
@@ -219,7 +229,9 @@ a3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</s
 <ul>
 <li>向量物件的簡記
 <ul>
-<li>連續整數向量可以利用 : (冒號) 簡記，譬如數列 1, 2, 3 在 R 語言中可利用 1:3 簡記。R 中的向量具有 recycling properties，便於執行四則運算。</li>
+<li>連續整數向量可以利用 : (冒號) 簡記，譬如數列 1, 2, 3 在 R 語言中可利用 1:3 簡記。</li>
+<li>R 中的向量具有 recycling properties，便於執行四則運算。</li>
+<li><a href="https://binf.snipcademy.com/tutorials/r/vectors/recycling-arithmetic">Vector Arithmetic and Recycling</a></li>
 </ul></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># basic expression of integer vector</span>
@@ -713,7 +725,7 @@ F-statistic:  1882 on 1 and 148 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li>String Manipulation
 <ul>
-<li>處理 string 型態之方法集合</li>
+<li>處理 “string” 型態之方法集合</li>
 <li>正規表達式 (regex) 補充教材：
 <ul>
 <li><a href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正規表達式</a></li>
@@ -764,6 +776,169 @@ r5 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&
 <pre><code>[1] 1 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grepl</span>(<span class="st">&quot;ll&quot;</span>, r5)</code></pre></div>
 <pre><code>[1]  TRUE FALSE</code></pre>
+</div>
+</div>
+<div id="-io" class="section level2">
+<h2><span class="header-section-number">2.3</span> 基礎 I/O</h2>
+<div id="-r-" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> 設定 R 環境的工作目錄</h3>
+<ul>
+<li>Working Directory
+<ul>
+<li>工作目錄的設定與讀取電腦上檔案位置有關，以<strong>絕對目錄或相對目錄</strong>表示，適當的調整有助於工作流程的順暢</li>
+<li>RStudio IDE 的使用者可以發現工作目錄會顯示在 Console 介面的上方</li>
+<li>利用 <code>getwd</code> 來查詢目前的工作目錄</li>
+<li>想要更改工作目錄可以用 <code>setwd(dir)</code> 這個指令，參數 <code>dir</code> 表示想要指向的工作目錄</li>
+<li>目錄表達方式 Windows <code>'D:\Users\'</code> 與 Max, Linux <code>/home/user/...</code> 不同</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()
+<span class="kw">setwd</span>(<span class="st">&quot;c:/Users/Johnson/Dropbox/DSP/a1-basic-data-analysis/&quot;</span>)
+<span class="kw">getwd</span>()</code></pre></div>
+</div>
+<div id="inputoutput" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Input/Output</h3>
+<ul>
+<li>從 R console中輸入資料：
+<ul>
+<li>利用 <code>readline</code> 輸入一行字串 (<code>&quot;character&quot;</code>)</li>
+<li>利用 <code>scan</code> 輸入一組數值型態的向量 (<code>&quot;numeric&quot;</code>)
+<ul>
+<li><code>scan()</code> 只能接受數值資料，並以向量方式儲存</li>
+<li>按一次 enter 鍵可以輸入下一筆數字，連按兩次 enter 結束輸入。</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">readline</span>()
+<span class="st">&quot;I am a R user!&quot;</span>
+x
+
+x &lt;-<span class="st"> </span><span class="kw">scan</span>()
+<span class="dv">1</span>
+<span class="dv">2</span>
+<span class="kw">class</span>(x)
+x</code></pre></div>
+<ul>
+<li>輸出至檔案
+<ul>
+<li>先用 <code>file</code> 建立檔案連結(file connection)</li>
+<li>再使用 <code>cat</code> 函數將資料向量輸出至該檔案</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&#39;output.txt&#39;</span>)
+<span class="kw">cat</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dt">sep=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>,<span class="dt">file=</span>output)
+<span class="kw">close</span>(output)</code></pre></div>
+<ul>
+<li>讀取/輸出多行 text lines 形式的來源
+<ul>
+<li>當資料屬於<strong>非表格形式</strong>或<strong>非結構化</strong>時，可使用 <code>readLines</code> 讀取檔案</li>
+<li>利用 <code>writeLines</code> 將對應的結果輸出</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">output &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&#39;output.txt&#39;</span>)
+<span class="kw">writeLines</span>(<span class="kw">as.character</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>),<span class="dt">con=</span>output)
+
+input &lt;-<span class="st"> </span><span class="kw">readLines</span>(output)
+<span class="kw">print</span>(input)</code></pre></div>
+<ul>
+<li>讀取/輸出 表格形式的資料
+<ul>
+<li>利用 <code>read.table</code> 讀檔，利用 <code>write.table</code> 輸出檔案</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a typical table format data</span>
+<span class="kw">head</span>(iris)
+
+<span class="co"># write to a file ################################</span>
+<span class="kw">write.table</span>(iris, <span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>, <span class="dt">sep =</span> <span class="st">&#39;,&#39;</span>)
+
+<span class="co"># or, more concisely:</span>
+<span class="kw">write.csv</span>(iris, <span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>)
+
+<span class="co"># read a file ################################</span>
+data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;,&#39;</span>)
+
+<span class="co"># or, more concisely:</span>
+data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>)
+
+<span class="co"># if you don&#39;t want to type in the path</span>
+data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="kw">file.choose</span>(), <span class="dt">sep =</span> <span class="st">&#39;,&#39;</span>)</code></pre></div>
+</div>
+<div id="troubleshooting" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> TroubleShooting</h3>
+<ul>
+<li>讀檔之前，先觀察檔案
+<ul>
+<li>編碼通常都是 <code>UTF8</code> 或 <code>BIG5</code>
+<ul>
+<li>Linux, Darwin: “UTF-8”</li>
+<li>Windows: “BIG-5”</li>
+</ul></li>
+</ul></li>
+<li>library function
+<ul>
+<li>依照不同檔案格式選擇，通常會有相對應套件或函式</li>
+<li><a href="https://www.statmethods.net/input/importingdata.html">Quick-R: Importing Data</a></li>
+<li><code>readLines</code>, <code>read.csv</code>….</li>
+</ul></li>
+<li>如果你想在 windows 環境下讀取含有中文字以utf8編碼的檔案，有兩種建議做法</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Solution A</span>
+dat1 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ubike-sample-data-utf8.csv&quot;</span>, <span class="dt">fileEncoding=</span><span class="st">&quot;utf8&quot;</span>)
+
+<span class="co"># Solution B</span>
+f &lt;-<span class="st"> </span><span class="kw">file</span>(<span class="st">&quot;data/ubike-sample-data-utf8.csv&quot;</span>, <span class="dt">encoding=</span><span class="st">&quot;utf8&quot;</span> )
+dat1 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(f)</code></pre></div>
+<ul>
+<li>當已萬念俱灰 <br><img src='img/importData.PNG' align='center'></img><br></li>
+</ul>
+</div>
+</div>
+<div id="section-2.4" class="section level2">
+<h2><span class="header-section-number">2.4</span> 綜合演練</h2>
+<div id="first-step-to-data-analysis" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> First Step to Data Analysis</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a typical table format data</span>
+<span class="kw">head</span>(iris)
+
+<span class="co"># [TRY] head(iris, 20)</span>
+<span class="kw">tail</span>(iris)
+
+<span class="co"># Dimensions</span>
+<span class="kw">dim</span>(iris)
+<span class="kw">nrow</span>(iris)
+<span class="kw">length</span>(iris)
+
+<span class="co"># Column Names</span>
+<span class="kw">colnames</span>(iris)
+
+<span class="co"># Data Thinking: 看資料欄位說故事</span>
+<span class="kw">str</span>(iris)
+<span class="kw">summary</span>(iris)
+
+<span class="co"># slicing</span>
+iris[<span class="dv">4</span>,] <span class="co"># 第 4 列</span>
+iris[,<span class="dv">2</span>] <span class="co"># 第 2 欄</span>
+iris[<span class="dv">4</span>,<span class="dv">2</span>] 
+iris[<span class="dv">4</span>,<span class="st">&quot;Sepal.Width&quot;</span>]</code></pre></div>
+<p><br> <b> Quiz: </b> 請嘗試比較兩程式碼者有何不同: <br> iris[c(2:4),]　<br> iris[c(2,4),]</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># WRITE YOUR CODE</span></code></pre></div>
+</div>
+<div id="conditional-slicing" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Conditional slicing</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">which</span>(iris<span class="op">$</span>Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>)
+<span class="kw">head</span>(iris[<span class="kw">which</span>(iris<span class="op">$</span>Species <span class="op">==</span><span class="st"> &quot;versicolor&quot;</span>),])</code></pre></div>
+<p><br> <b> Quiz: </b> 請嘗試找出 “versicolor”, Petal.Length &gt; 4 的資料</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># WRITE YOUR CODE</span></code></pre></div>
+</div>
+<div id="writeread-file" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Write/Read file</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Write to CSV file</span>
+<span class="kw">write.csv</span>(iris, <span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>)
+<span class="kw">write.csv</span>(iris, <span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># Read a CSV file</span>
+data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&#39;iris.csv&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
 
 </div>
 </div>
