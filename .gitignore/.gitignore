@@ -1,0 +1,9 @@
+*.RDA
+*.Rproj
+*.csv
+*.log
+*.db
+*.rds
+.Rproj.user
+.Rhistory
+.RData
