@@ -1,5 +1,5 @@
 # Introduction
-<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>LastUpdate: 2018-07-10</div>
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu, LastUpdate: 2018-07-10</div>
 
 - why use R?
     - R 來自世界上最專業的統計學家
@@ -33,9 +33,10 @@
             - `ctrl+shift+c`
             - `cmd+shift+c`
 - 文學院也能懂得程式『語言』
-    - 語言用來溝通，符號只是簡記，理解而非死記
-    - 以設定工作目錄為例：`getwd()`、`setwd()`
-
+    - 語言用來溝通，符號只是簡記，以設定工作目錄為例：`getwd()`、`setwd()`
+    - 從 `f(x)` 說起，理解而非死記：`sum(1,2,3,4)`
+    - 給統計學家的程式語言
+        - [R Reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
 - Shortcuts! 專業的表現
     - Run current line/selection
         - Ctrl+Enter, Ctrl+r
@@ -55,18 +56,19 @@
 - [The Comprehensive R Archive Network - CRAN](https://cran.r-project.org/)
     - [Packages](https://cloud.r-project.org/web/packages/)
     - [Manuals](https://cloud.r-project.org/)
-- 套件安裝 / `install.packages()`
-    - rmarkdown
-    - dplyr
-    - ggplot2....
-- 載入套件 / `library("package.name")`
-
+- 套件安裝 (僅需安裝一次) / `install.packages("package.name")`
+- 載入套件 / `library(package.name)`
+    - 每次重啟 r session 需重新呼叫
+    - 載入有先後順序，後載入之函數若有同樣命名，則會覆蓋先載入之套件函數
+    - 可使用 `package.name::function.name` 直接取用函數
+  
 
 ## Resources
+
 - 肯定需要
     - [Quick R](http://www.statmethods.net/index.html): [Data Types](http://www.statmethods.net/input/datatypes.html) / [Control Flow](http://www.statmethods.net/management/controlstructures.html)
-    - [R Reference card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
-    - [R Studio](https://www.rstudio.com/)
+    - [R Studio](https://www.rstudio.com/) / [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
+    - [R packages for data science](https://www.tidyverse.org/)
     - [R pubs](https://rpubs.com/) 
     - [Bookdown](https://bookdown.org/)
     - [Azure Machine Learning](https://docs.microsoft.com/zh-tw/azure/machine-learning/studio/r-quickstart)

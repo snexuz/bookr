@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hands-on R Tutorial</title>
+  <meta name="description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Hands-on R Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hands-on R Tutorial" />
+  
+  <meta name="twitter:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
+<link rel="prev" href="02-basic.html">
+
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Perface</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.2</b> Packages</a></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.3</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
+<li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="02-basic.html"><a href="02-basic.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-basic.html"><a href="02-basic.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-basic.html"><a href="02-basic.html#-factor"><i class="fa fa-check"></i><b>2.1.3</b> 類別物件 (factor)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-basic.html"><a href="02-basic.html#-matrix"><i class="fa fa-check"></i><b>2.1.4</b> 陣列或矩陣 (matrix)</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-basic.html"><a href="02-basic.html#-list"><i class="fa fa-check"></i><b>2.1.5</b> 序列 (list)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-basic.html"><a href="02-basic.html#section-2.1.6"><i class="fa fa-check"></i><b>2.1.6</b> 特殊變數介紹</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 基本運算</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-basic.html"><a href="02-basic.html#-io"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#-r-"><i class="fa fa-check"></i><b>2.3.1</b> 設定 R 環境的工作目錄</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.2</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.3" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.3</b> TroubleShooting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-basic.html"><a href="02-basic.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 綜合演練</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="02-basic.html"><a href="02-basic.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.4.1</b> First Step to Data Analysis</a></li>
+<li class="chapter" data-level="2.4.2" data-path="02-basic.html"><a href="02-basic.html#conditional-slicing"><i class="fa fa-check"></i><b>2.4.2</b> Conditional slicing</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02-basic.html"><a href="02-basic.html#writeread-file"><i class="fa fa-check"></i><b>2.4.3</b> Write/Read file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-ETL.html"><a href="03-ETL.html"><i class="fa fa-check"></i><b>3</b> ETL - Using dplyr</a><ul>
+<li class="chapter" data-level="3.1" data-path="03-ETL.html"><a href="03-ETL.html#data-cleaning"><i class="fa fa-check"></i><b>3.1</b> Data Cleaning</a></li>
+<li class="chapter" data-level="3.2" data-path="03-ETL.html"><a href="03-ETL.html#dataset"><i class="fa fa-check"></i><b>3.2</b> Dataset</a></li>
+<li class="chapter" data-level="3.3" data-path="03-ETL.html"><a href="03-ETL.html#pipeline-style"><i class="fa fa-check"></i><b>3.3</b> Pipeline Style</a></li>
+<li class="chapter" data-level="3.4" data-path="03-ETL.html"><a href="03-ETL.html#librarydplyr"><i class="fa fa-check"></i><b>3.4</b> library(dplyr)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03-ETL.html"><a href="03-ETL.html#select"><i class="fa fa-check"></i><b>3.4.1</b> select</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-ETL.html"><a href="03-ETL.html#filter"><i class="fa fa-check"></i><b>3.4.2</b> filter</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03-ETL.html"><a href="03-ETL.html#mutate"><i class="fa fa-check"></i><b>3.4.3</b> mutate</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03-ETL.html"><a href="03-ETL.html#group_by"><i class="fa fa-check"></i><b>3.4.4</b> group_by</a></li>
+<li class="chapter" data-level="3.4.5" data-path="03-ETL.html"><a href="03-ETL.html#summarise"><i class="fa fa-check"></i><b>3.4.5</b> summarise</a></li>
+<li class="chapter" data-level="3.4.6" data-path="03-ETL.html"><a href="03-ETL.html#arrange"><i class="fa fa-check"></i><b>3.4.6</b> arrange</a></li>
+<li class="chapter" data-level="3.4.7" data-path="03-ETL.html"><a href="03-ETL.html#bind"><i class="fa fa-check"></i><b>3.4.7</b> bind</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-ETL.html"><a href="03-ETL.html#libraryreshape2"><i class="fa fa-check"></i><b>3.5</b> library(reshape2)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03-ETL.html"><a href="03-ETL.html#melt"><i class="fa fa-check"></i><b>3.5.1</b> melt</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03-ETL.html"><a href="03-ETL.html#cast"><i class="fa fa-check"></i><b>3.5.2</b> cast</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03-ETL.html"><a href="03-ETL.html#cross-analysis"><i class="fa fa-check"></i><b>3.6</b> Cross Analysis</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hands-on R Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="etl---using-dplyr" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> ETL - Using dplyr</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu / Johnson Hsieh / George Chao, LastUpdate: 2018-07-16
+</div>
+<div id="data-cleaning" class="section level2">
+<h2><span class="header-section-number">3.1</span> Data Cleaning</h2>
+<ul>
+<li>ETL (Extract-Transform-Load)
+<ul>
+<li>用來描述將資料從來源端經過萃取 (extract)、轉置 (transform)、載入 (load)至目的端的過程 <a href="https://zh.wikipedia.org/wiki/ETL">Wiki</a></li>
+<li>進行資料分析/科學之前最重要/<span style="text-decoration:line-through; color:#CCC;">浪費時間</span>的工作 <br><a href='https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#7195feb36f63' target='_blank'><img src='img/dataCleaning.jpg' align='center'></img></a><br><br />
+</li>
+</ul></li>
+<li>常用套件
+<ul>
+<li>reshape2, dplyr, tidyr, data.table</li>
+<li>本文介紹整理 data.frame 資料格式最常用之 ‘dplyr’ 以及用來轉置資料型態的 ‘reshape2’ 兩個套件</li>
+<li><a href="01-intro#packages">Packages</a>
+<ul>
+<li>套件安裝：<code>install.packages(c(&quot;dplyr&quot;, &quot;reshape2&quot;))</code></li>
+<li>套件使用：<code>library(pkg_name)</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="dataset" class="section level2">
+<h2><span class="header-section-number">3.2</span> Dataset</h2>
+<ul>
+<li>ubike x weather 資料檔(右鍵另存新檔)
+<ul>
+<li><a href="https://github.com/snexuz/2016DSP_dplyr/raw/master/data/ubike-weather-big5.csv">big5 (WIN)</a></li>
+<li><a href="https://github.com/snexuz/2016DSP_dplyr/raw/master/data/ubike-weather-utf8.csv">utf8 (MAC, LINUX)</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 必先以 getwd(), setwd() 確認 Working Directory!</span>
+
+<span class="co"># read.csv</span>
+ubike &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;./data/ubike-weather-big5.csv&quot;</span>,
+          <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;factor&quot;</span>,<span class="st">&quot;integer&quot;</span>,<span class="st">&quot;integer&quot;</span>,<span class="st">&quot;factor&quot;</span>,<span class="st">&quot;factor&quot;</span>,
+                         <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;integer&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;integer&quot;</span>,
+                         <span class="st">&quot;integer&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;integer&quot;</span>,<span class="st">&quot;integer&quot;</span>,
+                         <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>,
+                         <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>), 
+          <span class="dt">fileEncoding =</span> <span class="st">&#39;BIG-5&#39;</span>,
+          <span class="dt">stringsAsFactors =</span> F)
+
+<span class="co"># colClasses 控制每個欄位的 class，這可使讀檔加速</span>
+<span class="co"># fileEncoding 定義檔案編碼</span>
+<span class="co"># stringsAsFactors 設定是否自動將文字欄位轉成類別格式</span></code></pre></div>
+<ul>
+<li>中文欄位問題
+<ul>
+<li><strong>CAUTION!: 雖然欄位名稱可以換成中文，但是不建議</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(ubike) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;日期&quot;</span>,<span class="st">&quot;時間&quot;</span>,<span class="st">&quot;場站代號&quot;</span>,<span class="st">&quot;場站區域&quot;</span>,<span class="st">&quot;場站名稱&quot;</span>,
+                     <span class="st">&quot;經度&quot;</span>,<span class="st">&quot;緯度&quot;</span>,<span class="st">&quot;總停車格&quot;</span>,<span class="st">&quot;平均車輛數&quot;</span>,<span class="st">&quot;最大車輛數&quot;</span>,
+                     <span class="st">&quot;最小車輛數&quot;</span>,<span class="st">&quot;車輛數標準差&quot;</span>,<span class="st">&quot;平均空位數&quot;</span>,<span class="st">&quot;最大空位數&quot;</span>,<span class="st">&quot;最小空位數&quot;</span>,
+                     <span class="st">&quot;空位數標準差&quot;</span>,<span class="st">&quot;氣溫&quot;</span>,<span class="st">&quot;最高溫&quot;</span>,<span class="st">&quot;最低溫&quot;</span>,<span class="st">&quot;溼度&quot;</span>,
+                     <span class="st">&quot;氣壓&quot;</span>,<span class="st">&quot;最大風速&quot;</span>,<span class="st">&quot;降雨量&quot;</span>)</code></pre></div>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">欄位名稱</th>
+<th align="left">代號</th>
+<th align="left">欄位名稱</th>
+<th align="left">代號</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">日期</td>
+<td align="left">date</td>
+<td align="left">車輛數標準差</td>
+<td align="left">std.sbi</td>
+</tr>
+<tr class="even">
+<td align="left">時間</td>
+<td align="left">hour</td>
+<td align="left">平均空位數</td>
+<td align="left">avg.bemp</td>
+</tr>
+<tr class="odd">
+<td align="left">場站代號</td>
+<td align="left">sno</td>
+<td align="left">最大空位數</td>
+<td align="left">max.bemp</td>
+</tr>
+<tr class="even">
+<td align="left">場站區域</td>
+<td align="left">sarea</td>
+<td align="left">最小空位數</td>
+<td align="left">min.bemp</td>
+</tr>
+<tr class="odd">
+<td align="left">場站名稱</td>
+<td align="left">sna</td>
+<td align="left">空位數標準差</td>
+<td align="left">std.bemp</td>
+</tr>
+<tr class="even">
+<td align="left">經度</td>
+<td align="left">lat</td>
+<td align="left">氣溫</td>
+<td align="left">temp</td>
+</tr>
+<tr class="odd">
+<td align="left">緯度</td>
+<td align="left">lng</td>
+<td align="left">最高溫</td>
+<td align="left">max.temp</td>
+</tr>
+<tr class="even">
+<td align="left">總停車格</td>
+<td align="left">tot</td>
+<td align="left">最低溫</td>
+<td align="left">min.temp</td>
+</tr>
+<tr class="odd">
+<td align="left">平均車輛數</td>
+<td align="left">avg.sbi</td>
+<td align="left">溼度</td>
+<td align="left">humidity</td>
+</tr>
+<tr class="even">
+<td align="left">最大車輛數</td>
+<td align="left">max.sbi</td>
+<td align="left">氣壓</td>
+<td align="left">pressure</td>
+</tr>
+<tr class="odd">
+<td align="left">最小車輛數</td>
+<td align="left">min.sbi</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Quick Review</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># head可以取出前幾列</span>
+<span class="kw">head</span>(ubike)
+
+<span class="co"># tail可以取最後幾列</span>
+<span class="kw">tail</span>(ubike)
+
+<span class="co"># structure, summary of ubike dataset</span>
+<span class="kw">str</span>(ubike)
+<span class="kw">summary</span>(ubike)
+
+<span class="co"># 選擇單一欄位</span>
+ubike[,<span class="dv">4</span>]
+ubike[,<span class="st">&quot;sna&quot;</span>]
+ubike[[<span class="st">&quot;sna&quot;</span>]]
+ubike<span class="op">$</span>sna
+
+<span class="co"># 利用座標來取值，df[row,col] 第一個數表示列位，第二個數表示欄位</span>
+ubike[<span class="dv">3</span>,<span class="dv">2</span>]
+
+<span class="co"># 可一次選擇多列多欄</span>
+ubike[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>), <span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">7</span>)]
+
+<span class="co"># 加上負號可剔除列位欄位</span>
+ubike[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">21</span>)]</code></pre></div>
+<ul>
+<li>Quiz: Conditional Slicing</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ubike[ubike<span class="op">$</span>sna <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;台北市災害應變中心&quot;</span>, <span class="st">&quot;世貿三館&quot;</span>), ]</code></pre></div>
+</div>
+<div id="pipeline-style" class="section level2">
+<h2><span class="header-section-number">3.3</span> Pipeline Style</h2>
+<ul>
+<li>程式寫作
+<ul>
+<li>壓縮的程式碼不易閱讀，展開的程式碼會產生很多暫存變數</li>
+<li>套件 <code>magrittr</code> (<code>dplyr</code> 相依套件) 定義 <code>%&gt;%</code> 特殊演算子 (Special Operator)，導入 <em>Pipeline</em> 的寫作方式，解決了這個問題</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># OLD school</span>
+ans1 &lt;-<span class="st"> </span>ubike<span class="op">$</span>sna
+ans1.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">unique</span>(ans1) <span class="co"># unique可列出所有不重複的項目</span>
+<span class="kw">print</span>(<span class="kw">head</span>(ans1.<span class="dv">1</span>, <span class="dt">n =</span> <span class="dv">10</span>))
+
+<span class="co"># pipeline style</span>
+<span class="kw">library</span>(magrittr)
+
+ubike<span class="op">$</span>sna <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dt">n =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">print</span>()</code></pre></div>
+<p><br><img src='img/pipeline.jpg' height=645 align='center' style='margin-top: -38px;'></img><br></p>
+</div>
+<div id="librarydplyr" class="section level2">
+<h2><span class="header-section-number">3.4</span> library(dplyr)</h2>
+<ul>
+<li>A Grammar of Data Manipulation
+<ul>
+<li>讓 R 使用者可以用更有彈性的方式來處理資料</li>
+<li>整合 <code>magrittr</code> pipeline</li>
+<li>針對 <code>data.frame</code> 做設計（名稱中的<code>d</code>）</li>
+</ul></li>
+<li><strong>不會寫 Code 也要說的一嘴好 Code</strong>
+<ul>
+<li>將資料整理流程步驟化</li>
+<li>口語化的函式命名：<code>filter</code>, <code>arrange</code>…</li>
+<li>結合資料整理工具優點（ex. Excel, SQL）</li>
+</ul></li>
+<li>官方學習文件：<code>vignette</code>
+<ul>
+<li>更詳細的 dplyr 介紹可以閱讀 dplyr 的小論文</li>
+<li>大部分的 R 套件開發者會針對一個主題撰寫小論文做介紹</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="dt">all =</span> <span class="ot">TRUE</span>, <span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)
+<span class="kw">vignette</span>(<span class="st">&quot;introduction&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dplyr&quot;</span>)</code></pre></div>
+<ul>
+<li>常用指令
+<ul>
+<li><code>filter</code> 對列做篩選</li>
+<li><code>select</code> 對欄做篩選</li>
+<li><code>mutate</code> 更改欄或新增欄</li>
+<li><code>arrange</code> 排列</li>
+<li><code>group_by</code>+<code>summarise</code> 依照類別處理</li>
+<li><code>bind_cols</code>, <code>bind_rows</code> 單一資料源整併</li>
+<li><code>merge</code>, <code>left_join</code> 多資料源合併</li>
+</ul></li>
+<li>實作範例
+<ul>
+<li>小明想在永和找到新房子，希望以後上下班都靠 ubike 通勤，希望早上可以輕鬆租到車，下班後也可以輕鬆還車。
+<ul>
+<li>請幫他找出中和區早上七點腳踏車最多的場站。</li>
+<li>比較 <code>mutate()</code> 與 <code>summarise()</code> 之不同</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+<span class="kw">head</span>(ubike)
+
+<span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">avg.sbi =</span> <span class="kw">floor</span>(avg.sbi)) 
+
+<span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(hour, sarea, sna) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(avg.sbi) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(avg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">desc</span>())</code></pre></div>
+<div id="select" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> select</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) </code></pre></div>
+<p><img src='img/select1.png' align='center' style='width:50% !important;'></img> <img src='img/select2.png' align='center' style='width:30% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>「選擇」時間、場站區域、場站名稱、平均車輛數</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg.sbi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">大安區</td>
+<td align="left">捷運國父紀念館站(2號出口)</td>
+<td align="right">24.000</td>
+</tr>
+<tr class="even">
+<td align="right">15</td>
+<td align="left">信義區</td>
+<td align="left">台北市政府</td>
+<td align="right">10.333</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">信義區</td>
+<td align="left">市民廣場</td>
+<td align="right">39.333</td>
+</tr>
+<tr class="even">
+<td align="right">15</td>
+<td align="left">信義區</td>
+<td align="left">興雅國中</td>
+<td align="right">34.167</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="left">信義區</td>
+<td align="left">世貿二館</td>
+<td align="right">31.333</td>
+</tr>
+<tr class="even">
+<td align="right">15</td>
+<td align="left">信義區</td>
+<td align="left">信義廣場(台北101)</td>
+<td align="right">23.571</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="filter" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> filter</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) </code></pre></div>
+<p><br></p>
+<p><img src='img/filter1.png' align='center' style='width:40% !important;'></img> <img src='img/filter2.png' align='center' style='width:40% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>「篩選」出中和區的資料</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg.sbi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">1.733</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">0.267</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">33.800</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">6.467</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">4.600</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">37.400</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">12.867</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">1.467</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">31.867</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">19.267</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">29.067</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">13.600</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">6.133</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">38.600</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">33.000</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">1.600</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">9.200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> mutate</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">avg.sbi =</span> <span class="kw">floor</span>(avg.sbi)) </code></pre></div>
+<p><br></p>
+<p><img src='img/origin.png' align='center' style='width:40% !important;'></img> <img src='img/mutate.png' align='center' style='width:40% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>「變化」新增欄位以計算有車率</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg.sbi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">33</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">37</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">31</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">29</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">38</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">33</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="group_by" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> group_by</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(hour, sarea, sna)</code></pre></div>
+<p><br></p>
+<p><img src='img/origin.png' align='center' style='width:40% !important;'></img> <img src='img/group_by.png' align='center' style='width:40% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>將資料依照某變數組成「群組」</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg.sbi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">1.733</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">0.267</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">33.800</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">6.467</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">4.600</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">37.400</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">12.867</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">1.467</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">31.867</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">19.267</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">29.067</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">13.600</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">6.133</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">38.600</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">33.000</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">1.600</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">9.200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="summarise" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> summarise</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(hour, sarea, sna) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(avg.sbi) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>())</code></pre></div>
+<p><br></p>
+<p><img src='img/origin.png' align='center' style='width:30% !important;'></img> <img src='img/group_by.png' align='center' style='width:30% !important;'></img> <img src='img/summarise.png' align='center' style='width:30% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>針對各組進行計算</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">29</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="arrange" class="section level3">
+<h3><span class="header-section-number">3.4.6</span> arrange</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(hour, sarea, sna) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(avg.sbi) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(avg <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">desc</span>())</code></pre></div>
+<p><br></p>
+<p><img src='img/arrange.png' align='center' style='width:40% !important;'></img> <img src='img/arranged.png' align='center' style='width:40% !important;'></img></p>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">秀山國小</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">捷運永安市場站</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">中和區</td>
+<td align="left">中和公園</td>
+<td align="right">8</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><b> Quiz: </b> 小明發現住信義區的話，八點騎腳踏車就可以準時上班，還可以順便吃早餐，請幫忙找出信義區各車站八點車子最多的站</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># WRITE YOUR CODE</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">hour</th>
+<th align="left">sarea</th>
+<th align="left">sna</th>
+<th align="right">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">捷運市政府站(3號出口)</td>
+<td align="right">98</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">福德公園</td>
+<td align="right">31</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">興雅國中</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">台北市災害應變中心</td>
+<td align="right">30</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">世貿三館</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">世貿二館</td>
+<td align="right">29</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">吳興公車總站</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">三張犁</td>
+<td align="right">27</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">松山家商</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">市民廣場</td>
+<td align="right">24</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">信義廣場(台北101)</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">捷運象山站</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">松德站</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">松德公園</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">台北市政府</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">五常公園</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">捷運台北101/世貿站</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">臺北醫學大學</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">仁愛逸仙路口</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">中強公園</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">捷運永春站(2號出口)</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">永吉松信路口</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">信義區</td>
+<td align="left">基隆光復路口</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><b> Quiz: </b> 小明喜歡玩遙控飛機，在中和希望找一個下午三點風比較小的地點吧</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># WRITE YOUR CODE</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">sna</th>
+<th align="right">avg_anemo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">白雲國小</td>
+<td align="right">2.094692</td>
+</tr>
+<tr class="even">
+<td align="left">汐止區公所</td>
+<td align="right">2.281363</td>
+</tr>
+<tr class="odd">
+<td align="left">汐科火車站(北)</td>
+<td align="right">2.283358</td>
+</tr>
+<tr class="even">
+<td align="left">汐止火車站</td>
+<td align="right">2.393386</td>
+</tr>
+<tr class="odd">
+<td align="left">國泰綜合醫院</td>
+<td align="right">2.472844</td>
+</tr>
+<tr class="even">
+<td align="left">樟樹國小</td>
+<td align="right">2.509820</td>
+</tr>
+<tr class="odd">
+<td align="left">金龍國小</td>
+<td align="right">2.718062</td>
+</tr>
+<tr class="even">
+<td align="left">文化白雲公園</td>
+<td align="right">NaN</td>
+</tr>
+<tr class="odd">
+<td align="left">金龍公園</td>
+<td align="right">NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bind" class="section level3">
+<h3><span class="header-section-number">3.4.7</span> bind</h3>
+<ul>
+<li><code>bind_rows(a,b)</code></li>
+<li><code>bind_cols(a,b)</code></li>
+</ul>
+<p><br></p>
+<p><img src='img/bind3.png' align='center' style='width:40% !important;'></img> <img src='img/bind_rows.png' align='center' style='width:20% !important;'></img></p>
+<p><br></p>
+<p><img src='img/bind3.png' align='center' style='width:40% !important;'></img> <img src='img/bind_col.png' align='center' style='width:40% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>bind_rows</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">V1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&#39;x1&#39;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="st">&#39;x2&#39;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">stringsAsFactors =</span> F)
+V2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&#39;x1&#39;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>), <span class="st">&#39;x2&#39;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">stringsAsFactors =</span> F)
+
+<span class="co"># rbind(V1, V2)</span>
+<span class="kw">bind_rows</span>(V1, V2)</code></pre></div>
+<pre><code>  x1 x2
+1  a  1
+2  b  2
+3  c  3
+4  d  4</code></pre>
+<ul>
+<li>bind_cols</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cbind(V1, V2)</span>
+<span class="kw">bind_cols</span>(V1, V2)</code></pre></div>
+<pre><code>  x1 x2 x11 x21
+1  a  1   c   3
+2  b  2   d   4</code></pre>
+</div>
+</div>
+<div id="libraryreshape2" class="section level2">
+<h2><span class="header-section-number">3.5</span> library(reshape2)</h2>
+<ul>
+<li>Long &amp; Wide Data</li>
+<li>melt
+<ul>
+<li>wide format -&gt; long format</li>
+</ul></li>
+<li>cast
+<ul>
+<li>long format -&gt; wide format</li>
+<li><code>dcast</code> for data.frame</li>
+<li><code>acast</code> for vector, matrix and array</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;WorldPhones&quot;</span>)
+WP &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(WorldPhones)
+knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(WP))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">N.Amer</th>
+<th align="right">Europe</th>
+<th align="right">Asia</th>
+<th align="right">S.Amer</th>
+<th align="right">Oceania</th>
+<th align="right">Africa</th>
+<th align="right">Mid.Amer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1951</td>
+<td align="right">45939</td>
+<td align="right">21574</td>
+<td align="right">2876</td>
+<td align="right">1815</td>
+<td align="right">1646</td>
+<td align="right">89</td>
+<td align="right">555</td>
+</tr>
+<tr class="even">
+<td>1956</td>
+<td align="right">60423</td>
+<td align="right">29990</td>
+<td align="right">4708</td>
+<td align="right">2568</td>
+<td align="right">2366</td>
+<td align="right">1411</td>
+<td align="right">733</td>
+</tr>
+<tr class="odd">
+<td>1957</td>
+<td align="right">64721</td>
+<td align="right">32510</td>
+<td align="right">5230</td>
+<td align="right">2695</td>
+<td align="right">2526</td>
+<td align="right">1546</td>
+<td align="right">773</td>
+</tr>
+<tr class="even">
+<td>1958</td>
+<td align="right">68484</td>
+<td align="right">35218</td>
+<td align="right">6662</td>
+<td align="right">2845</td>
+<td align="right">2691</td>
+<td align="right">1663</td>
+<td align="right">836</td>
+</tr>
+<tr class="odd">
+<td>1959</td>
+<td align="right">71799</td>
+<td align="right">37598</td>
+<td align="right">6856</td>
+<td align="right">3000</td>
+<td align="right">2868</td>
+<td align="right">1769</td>
+<td align="right">911</td>
+</tr>
+<tr class="even">
+<td>1960</td>
+<td align="right">76036</td>
+<td align="right">40341</td>
+<td align="right">8220</td>
+<td align="right">3145</td>
+<td align="right">3054</td>
+<td align="right">1905</td>
+<td align="right">1008</td>
+</tr>
+</tbody>
+</table>
+<div id="melt" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> melt</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(reshape2)
+WP<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">rownames</span>(WP)  
+WP.melt &lt;-<span class="st"> </span><span class="kw">melt</span>(WP, <span class="dt">id.var =</span> <span class="st">&#39;year&#39;</span>)
+knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(WP.melt))</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="left">variable</th>
+<th align="right">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1951</td>
+<td align="left">N.Amer</td>
+<td align="right">45939</td>
+</tr>
+<tr class="even">
+<td align="left">1956</td>
+<td align="left">N.Amer</td>
+<td align="right">60423</td>
+</tr>
+<tr class="odd">
+<td align="left">1957</td>
+<td align="left">N.Amer</td>
+<td align="right">64721</td>
+</tr>
+<tr class="even">
+<td align="left">1958</td>
+<td align="left">N.Amer</td>
+<td align="right">68484</td>
+</tr>
+<tr class="odd">
+<td align="left">1959</td>
+<td align="left">N.Amer</td>
+<td align="right">71799</td>
+</tr>
+<tr class="even">
+<td align="left">1960</td>
+<td align="left">N.Amer</td>
+<td align="right">76036</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cast" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> cast</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">WP.cast &lt;-<span class="st"> </span><span class="kw">dcast</span>(WP.melt, year <span class="op">~</span><span class="st"> </span>variable, <span class="dt">value.var=</span><span class="st">&quot;value&quot;</span>) </code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="right">N.Amer</th>
+<th align="right">Europe</th>
+<th align="right">Asia</th>
+<th align="right">S.Amer</th>
+<th align="right">Oceania</th>
+<th align="right">Africa</th>
+<th align="right">Mid.Amer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1951</td>
+<td align="right">45939</td>
+<td align="right">21574</td>
+<td align="right">2876</td>
+<td align="right">1815</td>
+<td align="right">1646</td>
+<td align="right">89</td>
+<td align="right">555</td>
+</tr>
+<tr class="even">
+<td align="left">1956</td>
+<td align="right">60423</td>
+<td align="right">29990</td>
+<td align="right">4708</td>
+<td align="right">2568</td>
+<td align="right">2366</td>
+<td align="right">1411</td>
+<td align="right">733</td>
+</tr>
+<tr class="odd">
+<td align="left">1957</td>
+<td align="right">64721</td>
+<td align="right">32510</td>
+<td align="right">5230</td>
+<td align="right">2695</td>
+<td align="right">2526</td>
+<td align="right">1546</td>
+<td align="right">773</td>
+</tr>
+<tr class="even">
+<td align="left">1958</td>
+<td align="right">68484</td>
+<td align="right">35218</td>
+<td align="right">6662</td>
+<td align="right">2845</td>
+<td align="right">2691</td>
+<td align="right">1663</td>
+<td align="right">836</td>
+</tr>
+<tr class="odd">
+<td align="left">1959</td>
+<td align="right">71799</td>
+<td align="right">37598</td>
+<td align="right">6856</td>
+<td align="right">3000</td>
+<td align="right">2868</td>
+<td align="right">1769</td>
+<td align="right">911</td>
+</tr>
+<tr class="even">
+<td align="left">1960</td>
+<td align="right">76036</td>
+<td align="right">40341</td>
+<td align="right">8220</td>
+<td align="right">3145</td>
+<td align="right">3054</td>
+<td align="right">1905</td>
+<td align="right">1008</td>
+</tr>
+<tr class="odd">
+<td align="left">1961</td>
+<td align="right">79831</td>
+<td align="right">43173</td>
+<td align="right">9053</td>
+<td align="right">3338</td>
+<td align="right">3224</td>
+<td align="right">2005</td>
+<td align="right">1076</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cross-analysis" class="section level2">
+<h2><span class="header-section-number">3.6</span> Cross Analysis</h2>
+<ul>
+<li>交叉分析
+<ul>
+<li>組合兩個或兩個以上的變數進行分析，探討變數之間的關聯性</li>
+<li>使用 dplyr + reshape2 / 樞紐分析表 來分析工作表的資料</li>
+</ul></li>
+<li>當已萬念俱灰：EXCEL PIVOT TABLE
+<ul>
+<li><a href="https://support.office.com/en-us/article/Excel-specifications-and-limits-ca36e2dc-1f09-4620-b726-67c00b05040f">Excel specifications and limits</a>: 1,048,576 rows by 16,384 columns</li>
+<li>Excel 樞紐分析表也俗稱『交叉分析表』</li>
+<li>能夠快速合併和比較的互動式表格</li>
+<li>可以旋轉列和欄來檢視不同來源 &gt; GO PIVOT!</li>
+<li>最實用的職場技能</li>
+<li>F1, F1, F1</li>
+</ul></li>
+</ul>
+<p><br><img src="img/pivot.png" align='center' style='width:80% !important;'></img><br></p>
+
+</div>
+</div>
+<br>
+<hr>
+
+<div style="padding: 0 0 0 10px;">
+  <span style="font-size: 1.5em; font-weight: 500;">Rafe C.H. Liu (劉佳欣)</span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Data Thinking, Machine Learning & E-commerce expert </span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　<a href="mailto:snexuz@gmail.com">Contact Info</a> | <a href="http://tw.linkedin.com/in/rafechliu" target="_blank">Linkedin Profile</a></span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Sepcial Thanks To Johnson Hsieh, George Chiao, Alto Li</span><br>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="02-basic.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "linkedin", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

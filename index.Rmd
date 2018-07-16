@@ -1,5 +1,5 @@
 --- 
-title: Book R
+title: Hands-on R Tutorial
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -37,7 +37,7 @@ output:
         all: ['facebook', 'linkedin', 'twitter']
 documentclass: book
 link-citations: yes
-description: 無傷無痛零基礎的 R 程式語言
+description: R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言
 favicon: "img/Blackvariant-Button-Ui-Requests-5-RStudio.ico"
 ---
 

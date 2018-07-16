@@ -1,5 +1,5 @@
 # R Basic
-<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>LastUpdate: 2018-07-10</div>
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu / Johnson Hsieh, LastUpdate: 2018-07-10</div>
 
 ```{r include=FALSE, cache=FALSE}
 library(knitr)      # dynamic report generation, RMarkdown
@@ -517,15 +517,22 @@ data <- read.table(file = file.choose(), sep = ',')
     - [Quick-R: Importing Data](https://www.statmethods.net/input/importingdata.html)
     - `readLines`, `read.csv`....
   
-- 如果你想在 windows 環境下讀取含有中文字以utf8編碼的檔案，有兩種建議做法
+- 如果你想在 windows 環境下讀取/寫入含有中文字以 utf8 編碼的檔案，有幾種建議做法
 
 ```{r eval=FALSE}
-# Solution A
+
+# write to a file ################################
+# Solution A - 先從 big5 轉 utf8 再儲存
+raw2 <- iconv(raw, from = "BIG-5", to = "UTF-8")
+write.csv(file = "ubikeweatherutf8.csv", x = raw2)
+
+# Solution B - 利用函數內建參數進行轉碼
+write.csv(file = "ubikeweatherutf8.csv", x = raw2, fileEncoding = "UTF-8")
+
+
+# read a file ################################
 dat1 <- read.csv("data/ubike-sample-data-utf8.csv", fileEncoding="utf8")
 
-# Solution B
-f <- file("data/ubike-sample-data-utf8.csv", encoding="utf8" )
-dat1 <- read.csv(f)
 ```
 
 - 當已萬念俱灰

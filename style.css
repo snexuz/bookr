@@ -79,6 +79,10 @@ h1, h2, h3{
 }
 
 
+.book .book-body .page-wrapper .page-inner section.normal table{
+  margin-top: 20px
+}
+
 /***************/
 
 .page-inner .section ul li {
