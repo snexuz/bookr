@@ -426,21 +426,6 @@ grepl("ll", r5)
 ## 基礎 I/O
 
 
-### 設定 R 環境的工作目錄
-
-- Working Directory
-    - 工作目錄的設定與讀取電腦上檔案位置有關，以**絕對目錄或相對目錄**表示，適當的調整有助於工作流程的順暢
-    - RStudio IDE 的使用者可以發現工作目錄會顯示在 Console 介面的上方
-    - 利用 `getwd` 來查詢目前的工作目錄
-    - 想要更改工作目錄可以用 `setwd(dir)` 這個指令，參數 `dir` 表示想要指向的工作目錄
-    - 目錄表達方式 Windows `'D:\Users\'` 與 Max, Linux `/home/user/...` 不同
-
-```{r eval=FALSE}
-getwd()
-setwd("c:/Users/Johnson/Dropbox/DSP/a1-basic-data-analysis/")
-getwd()
-```
-
 ### Input/Output
 - 從 R console中輸入資料：
     - 利用 `readline` 輸入一行字串 (`"character"`)
@@ -462,6 +447,7 @@ x
 
 
 - 輸出至檔案
+    - 必先確認工作目錄：`getwd()`, `setwd()`
     - 先用 `file` 建立檔案連結(file connection)
     - 再使用 `cat` 函數將資料向量輸出至該檔案
 ```{r eval=FALSE}

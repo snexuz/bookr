@@ -22,8 +22,17 @@
     - Alternative IDE 
         - [Jupyter IRkernel](https://github.com/IRkernel/IRkernel)
         - [Microsoft R Application Network](https://mran.microsoft.com/)
-    - R-Studio 使用界面介紹    
+    - R-Studio 使用界面介紹
+    - Global Options 
+        - > Code > Saving > Default text encoding
+        - > Apperence
+        - > Panel layout
 - 如何『自學』R 語言
+    - 善用教學文件
+        * help()　是很棒的學習資源
+        * ? 　　　一個問號讓我們更謙卑
+        * ??　　　兩個問號讓我們探索世界
+        * apropos()　指令部分關鍵字搜尋
     - 『視窗編排法』
     - 『作中學筆記法』
         - COPY & PASTE: 
@@ -44,12 +53,31 @@
         - [Keyboard Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
     - IDE 的重要性！什麼都可以忘，就是不能忘記 **[TAB]** 鍵
 <br><img src='img/tabs.jpg' align='center'></img><br>
-- 善用教學文件
-    * help()　是很棒的學習資源
-    * ? 　　　一個問號讓我們更謙卑
-    * ??　　　兩個問號讓我們探索世界
-    * apropos()　指令部分關鍵字搜尋
-      
+
+
+
+## Working Directory
+
+- 設定 R 環境的工作目錄
+    - 工作目錄的設定與讀取電腦上檔案位置有關，以**絕對目錄或相對目錄**表示，適當的調整有助於工作流程的順暢
+    - RStudio IDE 的使用者可以發現工作目錄會顯示在 Console 介面的上方
+    - 利用 `getwd` 來查詢目前的工作目錄
+    - 想要更改工作目錄可以用 `setwd(dir)` 這個指令，參數 `dir` 表示想要指向的工作目錄
+    - 目錄表達方式 Windows `'D:\Users\'` 與 Max, Linux `/home/user/...` 不同
+<br><img src='img/wd.PNG' align='center'></img><br>
+
+```{r eval=FALSE}
+getwd()
+setwd("/home/user/hand_on_r")
+getwd()
+```
+
+### R project
+- 工作環境
+    - 重啟 IDE 之後，工作環境會回到初始設定
+    - 使用 google drive / Dropbox 面臨不同作業系統目錄轉換問題
+- [Using Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+<br><img src='img/rprj.PNG' align='center' alt='setting r project'></img><br>
 
 ## Packages
 
@@ -61,7 +89,7 @@
     - 每次重啟 r session 需重新呼叫
     - 載入有先後順序，後載入之函數若有同樣命名，則會覆蓋先載入之套件函數
     - 可使用 `package.name::function.name` 直接取用函數
-  
+<br><img src='img/pkg.PNG' align='center' alt='r packages'></img><br>
 
 ## Resources
 

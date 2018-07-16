@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
 <link rel="prev" href="02-basic.html">
-
+<link rel="next" href="04-EDA.html">
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -45,6 +45,10 @@
 
 
 
+<script src="assets/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="assets/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="assets/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="assets/plotly-binding-4.5.6/plotly.js"></script>
 
 
 
@@ -102,8 +106,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Perface</a></li>
 <li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.2</b> Packages</a></li>
-<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.3</b> Resources</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#working-directory"><i class="fa fa-check"></i><b>1.2</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="01-intro.html"><a href="01-intro.html#r-project"><i class="fa fa-check"></i><b>1.2.1</b> R project</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.3</b> Packages</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.4</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
 <li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
@@ -120,9 +127,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="02-basic.html"><a href="02-basic.html#-io"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#-r-"><i class="fa fa-check"></i><b>2.3.1</b> 設定 R 環境的工作目錄</a></li>
-<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.2</b> Input/Output</a></li>
-<li class="chapter" data-level="2.3.3" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.3</b> TroubleShooting</a></li>
+<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.1</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.2</b> TroubleShooting</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="02-basic.html"><a href="02-basic.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 綜合演練</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="02-basic.html"><a href="02-basic.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.4.1</b> First Step to Data Analysis</a></li>
@@ -147,7 +153,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5.1" data-path="03-ETL.html"><a href="03-ETL.html#melt"><i class="fa fa-check"></i><b>3.5.1</b> melt</a></li>
 <li class="chapter" data-level="3.5.2" data-path="03-ETL.html"><a href="03-ETL.html#cast"><i class="fa fa-check"></i><b>3.5.2</b> cast</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="03-ETL.html"><a href="03-ETL.html#cross-analysis"><i class="fa fa-check"></i><b>3.6</b> Cross Analysis</a></li>
+<li class="chapter" data-level="3.6" data-path="03-ETL.html"><a href="03-ETL.html#-1"><i class="fa fa-check"></i><b>3.6</b> 綜合演練</a></li>
+<li class="chapter" data-level="3.7" data-path="03-ETL.html"><a href="03-ETL.html#cross-analysis"><i class="fa fa-check"></i><b>3.7</b> Cross Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-EDA.html"><a href="04-EDA.html"><i class="fa fa-check"></i><b>4</b> EDA - Using ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="04-EDA.html"><a href="04-EDA.html#eda"><i class="fa fa-check"></i><b>4.1</b> EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="04-EDA.html"><a href="04-EDA.html#libraryggplot2"><i class="fa fa-check"></i><b>4.2</b> library(ggplot2)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="04-EDA.html"><a href="04-EDA.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="04-EDA.html"><a href="04-EDA.html#line-chart"><i class="fa fa-check"></i><b>4.2.2</b> Line Chart</a></li>
+<li class="chapter" data-level="4.2.3" data-path="04-EDA.html"><a href="04-EDA.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="4.2.4" data-path="04-EDA.html"><a href="04-EDA.html#bar-chart"><i class="fa fa-check"></i><b>4.2.4</b> Bar Chart</a></li>
+<li class="chapter" data-level="4.2.5" data-path="04-EDA.html"><a href="04-EDA.html#pie-chart"><i class="fa fa-check"></i><b>4.2.5</b> Pie Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="04-EDA.html"><a href="04-EDA.html#facet_"><i class="fa fa-check"></i><b>4.3</b> facet_</a></li>
+<li class="chapter" data-level="4.4" data-path="04-EDA.html"><a href="04-EDA.html#librarygridextra"><i class="fa fa-check"></i><b>4.4</b> library(gridExtra)</a></li>
+<li class="chapter" data-level="4.5" data-path="04-EDA.html"><a href="04-EDA.html#libraryplotly"><i class="fa fa-check"></i><b>4.5</b> library(plotly)</a></li>
 </ul></li>
 </ul>
 
@@ -184,7 +204,7 @@ Rafe C. H. Liu / Johnson Hsieh / George Chao, LastUpdate: 2018-07-16
 <ul>
 <li>reshape2, dplyr, tidyr, data.table</li>
 <li>本文介紹整理 data.frame 資料格式最常用之 ‘dplyr’ 以及用來轉置資料型態的 ‘reshape2’ 兩個套件</li>
-<li><a href="01-intro#packages">Packages</a>
+<li><a href="01-intro.html#packages">Packages</a>
 <ul>
 <li>套件安裝：<code>install.packages(c(&quot;dplyr&quot;, &quot;reshape2&quot;))</code></li>
 <li>套件使用：<code>library(pkg_name)</code></li>
@@ -334,7 +354,7 @@ ubike[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</spa
 <span class="co"># 加上負號可剔除列位欄位</span>
 ubike[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">21</span>)]</code></pre></div>
 <ul>
-<li>Quiz: Conditional Slicing</li>
+<li>Quiz: Conditional Slicing，<code>%in%</code> 特殊演算子 (Special Operator) 表示？</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ubike[ubike<span class="op">$</span>sna <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;台北市災害應變中心&quot;</span>, <span class="st">&quot;世貿三館&quot;</span>), ]</code></pre></div>
 </div>
@@ -344,7 +364,7 @@ ubike[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</spa
 <li>程式寫作
 <ul>
 <li>壓縮的程式碼不易閱讀，展開的程式碼會產生很多暫存變數</li>
-<li>套件 <code>magrittr</code> (<code>dplyr</code> 相依套件) 定義 <code>%&gt;%</code> 特殊演算子 (Special Operator)，導入 <em>Pipeline</em> 的寫作方式，解決了這個問題</li>
+<li>套件 <code>magrittr</code> (<code>dplyr</code> 相依套件) 定義 <code>%&gt;%</code> 特殊演算子，導入 <em>Pipeline</em> 的寫作方式，解決了這個問題</li>
 </ul></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># OLD school</span>
@@ -369,7 +389,7 @@ ubike<span class="op">$</span>sna <span class="op">%&gt;%</span>
 <li>整合 <code>magrittr</code> pipeline</li>
 <li>針對 <code>data.frame</code> 做設計（名稱中的<code>d</code>）</li>
 </ul></li>
-<li><strong>不會寫 Code 也要說的一嘴好 Code</strong>
+<li><strong>講的一嘴好扣</strong>
 <ul>
 <li>將資料整理流程步驟化</li>
 <li>口語化的函式命名：<code>filter</code>, <code>arrange</code>…</li>
@@ -405,13 +425,25 @@ ubike<span class="op">$</span>sna <span class="op">%&gt;%</span>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 
+<span class="co"># reload the dataset</span>
+ubike &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;./data/ubike-weather-big5.csv&quot;</span>,
+          <span class="dt">colClasses =</span> <span class="kw">c</span>(<span class="st">&quot;factor&quot;</span>,<span class="st">&quot;integer&quot;</span>,<span class="st">&quot;integer&quot;</span>,<span class="st">&quot;factor&quot;</span>,<span class="st">&quot;factor&quot;</span>,
+                         <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;integer&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;integer&quot;</span>,
+                         <span class="st">&quot;integer&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;integer&quot;</span>,<span class="st">&quot;integer&quot;</span>,
+                         <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>,
+                         <span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;numeric&quot;</span>,<span class="st">&quot;numeric&quot;</span>), 
+          <span class="dt">fileEncoding =</span> <span class="st">&#39;BIG-5&#39;</span>,
+          <span class="dt">stringsAsFactors =</span> F)
+
 <span class="kw">head</span>(ubike)
 
-<span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+ubike <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">avg.sbi =</span> <span class="kw">floor</span>(avg.sbi)) 
 
-<span class="kw">select</span>(ubike, hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
+ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(hour, sarea, sna, avg.sbi) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;中和區&#39;</span> <span class="op">&amp;</span><span class="st"> </span>hour <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(hour, sarea, sna) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg =</span> <span class="kw">mean</span>(avg.sbi) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>()) <span class="op">%&gt;%</span>
@@ -1421,8 +1453,81 @@ knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">he
 </table>
 </div>
 </div>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">3.6</span> 綜合演練</h2>
+<ul>
+<li>小明想知道信義區的腳踏車站晴天和雨天的使用率有何差別，提示：
+<ul>
+<li><code>filter</code>、<code>mutate</code>、<code>select</code>、<code>group_by</code>、<code>summarise</code></li>
+<li><code>dcast</code></li>
+<li><code>arrange</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># WRITE YOUR CODE</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">sna</th>
+<th align="center">晴天</th>
+<th align="center">雨天</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">永吉松信路口</td>
+<td align="center">0.8720583</td>
+<td align="center">0.4744500</td>
+</tr>
+<tr class="even">
+<td align="left">信義廣場(台北101)</td>
+<td align="center">0.7952094</td>
+<td align="center">0.5329188</td>
+</tr>
+<tr class="odd">
+<td align="left">捷運永春站(2號出口)</td>
+<td align="center">0.7888917</td>
+<td align="center">0.4466667</td>
+</tr>
+<tr class="even">
+<td align="left">市民廣場</td>
+<td align="center">0.7369417</td>
+<td align="center">0.3238917</td>
+</tr>
+<tr class="odd">
+<td align="left">捷運台北101/世貿站</td>
+<td align="center">0.7294856</td>
+<td align="center">0.6448654</td>
+</tr>
+<tr class="even">
+<td align="left">基隆光復路口</td>
+<td align="center">0.7277750</td>
+<td align="center">0.7589000</td>
+</tr>
+<tr class="odd">
+<td align="left">仁愛逸仙路口</td>
+<td align="center">0.6532895</td>
+<td align="center">0.5921053</td>
+</tr>
+<tr class="even">
+<td align="left">三張犁</td>
+<td align="center">0.6409129</td>
+<td align="center">0.4242424</td>
+</tr>
+<tr class="odd">
+<td align="left">五常公園</td>
+<td align="center">0.6233278</td>
+<td align="center">0.3536944</td>
+</tr>
+<tr class="even">
+<td align="left">中強公園</td>
+<td align="center">0.6216667</td>
+<td align="center">0.7833333</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="cross-analysis" class="section level2">
-<h2><span class="header-section-number">3.6</span> Cross Analysis</h2>
+<h2><span class="header-section-number">3.7</span> Cross Analysis</h2>
 <ul>
 <li>交叉分析
 <ul>
@@ -1457,8 +1562,8 @@ knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">he
           </div>
         </div>
       </div>
-<a href="02-basic.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="02-basic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="04-EDA.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

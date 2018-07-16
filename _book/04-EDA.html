@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hands-on R Tutorial</title>
+  <meta name="description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Hands-on R Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hands-on R Tutorial" />
+  
+  <meta name="twitter:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
+<link rel="prev" href="03-ETL.html">
+
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="assets/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="assets/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="assets/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="assets/plotly-binding-4.5.6/plotly.js"></script>
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Perface</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#working-directory"><i class="fa fa-check"></i><b>1.2</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="01-intro.html"><a href="01-intro.html#r-project"><i class="fa fa-check"></i><b>1.2.1</b> R project</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.3</b> Packages</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
+<li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="02-basic.html"><a href="02-basic.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-basic.html"><a href="02-basic.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-basic.html"><a href="02-basic.html#-factor"><i class="fa fa-check"></i><b>2.1.3</b> 類別物件 (factor)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-basic.html"><a href="02-basic.html#-matrix"><i class="fa fa-check"></i><b>2.1.4</b> 陣列或矩陣 (matrix)</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-basic.html"><a href="02-basic.html#-list"><i class="fa fa-check"></i><b>2.1.5</b> 序列 (list)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-basic.html"><a href="02-basic.html#section-2.1.6"><i class="fa fa-check"></i><b>2.1.6</b> 特殊變數介紹</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 基本運算</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-basic.html"><a href="02-basic.html#-io"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.1</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.2</b> TroubleShooting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-basic.html"><a href="02-basic.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 綜合演練</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="02-basic.html"><a href="02-basic.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.4.1</b> First Step to Data Analysis</a></li>
+<li class="chapter" data-level="2.4.2" data-path="02-basic.html"><a href="02-basic.html#conditional-slicing"><i class="fa fa-check"></i><b>2.4.2</b> Conditional slicing</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02-basic.html"><a href="02-basic.html#writeread-file"><i class="fa fa-check"></i><b>2.4.3</b> Write/Read file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-ETL.html"><a href="03-ETL.html"><i class="fa fa-check"></i><b>3</b> ETL - Using dplyr</a><ul>
+<li class="chapter" data-level="3.1" data-path="03-ETL.html"><a href="03-ETL.html#data-cleaning"><i class="fa fa-check"></i><b>3.1</b> Data Cleaning</a></li>
+<li class="chapter" data-level="3.2" data-path="03-ETL.html"><a href="03-ETL.html#dataset"><i class="fa fa-check"></i><b>3.2</b> Dataset</a></li>
+<li class="chapter" data-level="3.3" data-path="03-ETL.html"><a href="03-ETL.html#pipeline-style"><i class="fa fa-check"></i><b>3.3</b> Pipeline Style</a></li>
+<li class="chapter" data-level="3.4" data-path="03-ETL.html"><a href="03-ETL.html#librarydplyr"><i class="fa fa-check"></i><b>3.4</b> library(dplyr)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03-ETL.html"><a href="03-ETL.html#select"><i class="fa fa-check"></i><b>3.4.1</b> select</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-ETL.html"><a href="03-ETL.html#filter"><i class="fa fa-check"></i><b>3.4.2</b> filter</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03-ETL.html"><a href="03-ETL.html#mutate"><i class="fa fa-check"></i><b>3.4.3</b> mutate</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03-ETL.html"><a href="03-ETL.html#group_by"><i class="fa fa-check"></i><b>3.4.4</b> group_by</a></li>
+<li class="chapter" data-level="3.4.5" data-path="03-ETL.html"><a href="03-ETL.html#summarise"><i class="fa fa-check"></i><b>3.4.5</b> summarise</a></li>
+<li class="chapter" data-level="3.4.6" data-path="03-ETL.html"><a href="03-ETL.html#arrange"><i class="fa fa-check"></i><b>3.4.6</b> arrange</a></li>
+<li class="chapter" data-level="3.4.7" data-path="03-ETL.html"><a href="03-ETL.html#bind"><i class="fa fa-check"></i><b>3.4.7</b> bind</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-ETL.html"><a href="03-ETL.html#libraryreshape2"><i class="fa fa-check"></i><b>3.5</b> library(reshape2)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03-ETL.html"><a href="03-ETL.html#melt"><i class="fa fa-check"></i><b>3.5.1</b> melt</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03-ETL.html"><a href="03-ETL.html#cast"><i class="fa fa-check"></i><b>3.5.2</b> cast</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03-ETL.html"><a href="03-ETL.html#-1"><i class="fa fa-check"></i><b>3.6</b> 綜合演練</a></li>
+<li class="chapter" data-level="3.7" data-path="03-ETL.html"><a href="03-ETL.html#cross-analysis"><i class="fa fa-check"></i><b>3.7</b> Cross Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-EDA.html"><a href="04-EDA.html"><i class="fa fa-check"></i><b>4</b> EDA - Using ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="04-EDA.html"><a href="04-EDA.html#eda"><i class="fa fa-check"></i><b>4.1</b> EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="04-EDA.html"><a href="04-EDA.html#libraryggplot2"><i class="fa fa-check"></i><b>4.2</b> library(ggplot2)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="04-EDA.html"><a href="04-EDA.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="04-EDA.html"><a href="04-EDA.html#line-chart"><i class="fa fa-check"></i><b>4.2.2</b> Line Chart</a></li>
+<li class="chapter" data-level="4.2.3" data-path="04-EDA.html"><a href="04-EDA.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="4.2.4" data-path="04-EDA.html"><a href="04-EDA.html#bar-chart"><i class="fa fa-check"></i><b>4.2.4</b> Bar Chart</a></li>
+<li class="chapter" data-level="4.2.5" data-path="04-EDA.html"><a href="04-EDA.html#pie-chart"><i class="fa fa-check"></i><b>4.2.5</b> Pie Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="04-EDA.html"><a href="04-EDA.html#facet_"><i class="fa fa-check"></i><b>4.3</b> facet_</a></li>
+<li class="chapter" data-level="4.4" data-path="04-EDA.html"><a href="04-EDA.html#librarygridextra"><i class="fa fa-check"></i><b>4.4</b> library(gridExtra)</a></li>
+<li class="chapter" data-level="4.5" data-path="04-EDA.html"><a href="04-EDA.html#libraryplotly"><i class="fa fa-check"></i><b>4.5</b> library(plotly)</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hands-on R Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda---using-ggplot2" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> EDA - Using ggplot2</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu / Johnson Hsieh, LastUpdate: 2018-07-16
+</div>
+<div id="eda" class="section level2">
+<h2><span class="header-section-number">4.1</span> EDA</h2>
+<ul>
+<li>Let the data reveal itself.
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">EDA (Exploratory Data Analysis)</a></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>It is important to understand what you can do <br> before you learn to measure how well you seem to have done it. <br> (John Tukey, 1977)</p>
+</blockquote>
+<ul>
+<li>Data Visualization
+<ul>
+<li>清晰有效地傳達與溝通訊息</li>
+<li>教學、研究、宣傳、美學、功能兼顧</li>
+<li>統計圖形、訊息可視化</li>
+</ul></li>
+<li><a href="https://c4.staticflickr.com/4/3077/3196386402_01d8d12017_b.jpg">Chart suggestion</a></li>
+</ul>
+<p><br></p>
+<p><img src='img/plot.jpg' align='center' style='width:80% !important;'></img></p>
+<p><br></p>
+</div>
+<div id="libraryggplot2" class="section level2">
+<h2><span class="header-section-number">4.2</span> library(ggplot2)</h2>
+<ul>
+<li>The grammar of graphics:
+<ul>
+<li>由 <a href="http://hadley.nz/">Hadley Wickham</a> 於 2005 年發表 (Chief Scientist in RStudio)</li>
+<li>當前最多人使用的視覺化 R 套件</li>
+<li>取自 “The Grammar of Graphics” (Leland Wilkinson, 2005)</li>
+</ul></li>
+<li>設計理念
+<ul>
+<li>採用圖層系統 (layer)</li>
+<li>用抽象的概念來控制圖形，避免細節繁瑣</li>
+<li>圖形美觀</li>
+</ul></li>
+<li>基礎語法</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># old school</span>
+<span class="kw">plot</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>))
+
+<span class="co"># ggplot2</span>
+<span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(<span class="dt">data =</span> df, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>()</code></pre></div>
+<ul>
+<li>ggplot() - for fine, granular control of everything
+<ul>
+<li>data layer:
+<ul>
+<li>data = data.frame</li>
+<li>long-format (<code>library(&quot;reshape2&quot;</code>)</li>
+<li>aes(x = x, y = y)</li>
+</ul></li>
+<li>geom layer: geom_xxx():
+<ul>
+<li>multi-layers: <code>+</code></li>
+<li>Geometric objects that define the basic “shape” of the elements on the plot</li>
+</ul></li>
+</ul></li>
+<li>必備的參考資料
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2 cheatsheet</a></li>
+<li><a href="http://docs.ggplot2.org/current/">ggplot2 online help topics</a></li>
+<li><a href="http://www.cookbook-r.com/Graphs/">Cookbook for R</a></li>
+<li><a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Top 50 ggplot2 Visualizations</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># list all geom</span>
+<span class="kw">ls</span>(<span class="dt">pattern =</span> <span class="st">&#39;^geom_&#39;</span>, <span class="dt">env =</span> <span class="kw">as.environment</span>(<span class="st">&#39;package:ggplot2&#39;</span>))</code></pre></div>
+<pre><code> [1] &quot;geom_abline&quot;     &quot;geom_area&quot;       &quot;geom_bar&quot;        &quot;geom_bin2d&quot;      &quot;geom_blank&quot;     
+ [6] &quot;geom_boxplot&quot;    &quot;geom_col&quot;        &quot;geom_contour&quot;    &quot;geom_count&quot;      &quot;geom_crossbar&quot;  
+[11] &quot;geom_curve&quot;      &quot;geom_density&quot;    &quot;geom_density_2d&quot; &quot;geom_density2d&quot;  &quot;geom_dotplot&quot;   
+[16] &quot;geom_errorbar&quot;   &quot;geom_errorbarh&quot;  &quot;geom_freqpoly&quot;   &quot;geom_hex&quot;        &quot;geom_histogram&quot; 
+[21] &quot;geom_hline&quot;      &quot;geom_jitter&quot;     &quot;geom_label&quot;      &quot;geom_line&quot;       &quot;geom_linerange&quot; 
+[26] &quot;geom_map&quot;        &quot;geom_path&quot;       &quot;geom_point&quot;      &quot;geom_pointrange&quot; &quot;geom_polygon&quot;   
+[31] &quot;geom_qq&quot;         &quot;geom_quantile&quot;   &quot;geom_raster&quot;     &quot;geom_rect&quot;       &quot;geom_ribbon&quot;    
+[36] &quot;geom_rug&quot;        &quot;geom_segment&quot;    &quot;geom_smooth&quot;     &quot;geom_spoke&quot;      &quot;geom_step&quot;      
+[41] &quot;geom_text&quot;       &quot;geom_tile&quot;       &quot;geom_violin&quot;     &quot;geom_vline&quot;     </code></pre>
+<div id="scatterplot" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Scatterplot</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+
+<span class="co"># iris dataset</span>
+iris <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width, <span class="dt">color =</span> Species, <span class="dt">group =</span> Species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<ul>
+<li>Advanced Scatterplot</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># help(mtcars)</span>
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>wt, <span class="dt">y=</span>mpg)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add stat_xxx layer</span>
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>wt, <span class="dt">y=</span>mpg)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_smooth</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-69-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add scale_xxx layer</span>
+<span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>wt, <span class="dt">y=</span>mpg, <span class="dt">colour=</span>gear)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_continuous</span>(<span class="dt">low=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">high=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-69-3.png" width="672" /></p>
+</div>
+<div id="line-chart" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Line Chart</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(economics)</code></pre></div>
+<pre><code># A tibble: 6 x 6
+  date         pce    pop psavert uempmed unemploy
+  &lt;date&gt;     &lt;dbl&gt;  &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;
+1 1967-07-01   507 198712    12.5    4.50     2944
+2 1967-08-01   510 198911    12.5    4.70     2945
+3 1967-09-01   516 199113    11.7    4.60     2958
+4 1967-10-01   513 199311    12.5    4.90     3143
+5 1967-11-01   518 199498    12.5    4.70     3066
+6 1967-12-01   526 199657    12.1    4.80     3018</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">econ &lt;-<span class="st"> </span>economics <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">strftime</span>(date, <span class="dt">format =</span> <span class="st">&quot;%Y&quot;</span>),
+                 <span class="dt">month =</span> <span class="kw">strftime</span>(date, <span class="dt">format =</span> <span class="st">&quot;%m&quot;</span>))
+
+<span class="kw">ggplot</span>(econ, <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">econ <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2010&quot;</span>, <span class="st">&quot;2011&quot;</span>,<span class="st">&quot;2012&quot;</span>, <span class="st">&quot;2013&quot;</span>, <span class="st">&quot;2014&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> unemploy, <span class="dt">group =</span> year, <span class="dt">colour =</span> year)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-70-2.png" width="672" /></p>
+</div>
+<div id="histogram" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Histogram</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># hist(diamonds$price)</span>
+<span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1000</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># with density function</span>
+<span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>price)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">binwidth=</span><span class="dv">1000</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
+</div>
+<div id="bar-chart" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Bar Chart</h3>
+<ul>
+<li>Plot by counting (default)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># counts &lt;- table(diamonds$clarity)</span>
+<span class="co"># barplot(counts, main=&quot;Car Distribution&quot;, </span>
+<span class="co">#       xlab=&quot;Number of Gears&quot;)</span>
+
+<span class="co"># by default, stat = &quot;bin&quot;</span>
+<span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>clarity)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<ul>
+<li>Use stat = “identity” argument</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">table</span>(diamonds<span class="op">$</span>clarity))
+<span class="kw">ggplot</span>(tab, <span class="kw">aes</span>(<span class="dt">x=</span>Var1, <span class="dt">y=</span>Freq)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<ul>
+<li>Add fill layer</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># change legend position</span>
+<span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>clarity, <span class="dt">fill=</span>cut)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;stack&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>clarity, <span class="dt">fill=</span>cut)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;NULL&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-74-2.png" width="672" /></p>
+<ul>
+<li>Change coord layer</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>clarity, <span class="dt">fill=</span>cut)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;NULL&quot;</span>) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<ul>
+<li>Set theme layer</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>clarity, <span class="dt">fill=</span>cut))
+g <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;NULL&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+</div>
+<div id="pie-chart" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Pie Chart</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span>clarity, <span class="dt">fill=</span>clarity)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">fill=</span>clarity)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_polar</span>(<span class="dt">theta =</span> <span class="st">&quot;y&quot;</span>) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-77-2.png" width="672" /></p>
+</div>
+</div>
+<div id="facet_" class="section level2">
+<h2><span class="header-section-number">4.3</span> facet_</h2>
+<ul>
+<li>using ggplot2 for cross analysis</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>mpg, <span class="dt">y=</span>disp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>qsec, <span class="dt">size=</span>cyl, <span class="dt">shape=</span><span class="kw">as.factor</span>(am))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>gear) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_size</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">6</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+</div>
+<div id="librarygridextra" class="section level2">
+<h2><span class="header-section-number">4.4</span> library(gridExtra)</h2>
+<ul>
+<li>arrange multiple charts by <code>gridExtra</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>wt, <span class="dt">y=</span>mpg, <span class="dt">colour=</span>cyl)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>wt, <span class="dt">y=</span>mpg, <span class="dt">colour=</span><span class="kw">factor</span>(cyl))) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(g1, g2, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+</div>
+<div id="libraryplotly" class="section level2">
+<h2><span class="header-section-number">4.5</span> library(plotly)</h2>
+<ul>
+<li>create interactive plots by <code>ployly</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>wt, <span class="dt">y=</span>mpg, <span class="dt">colour=</span>cyl)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+plotly<span class="op">::</span><span class="kw">ggplotly</span>(g1)</code></pre></div>
+<div id="htmlwidget-b74eaa719f0c9a4b3380" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b74eaa719f0c9a4b3380">{"x":{"data":[{"x":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"text":["wt: 2.62<br>mpg: 21<br>cyl: 6","wt: 2.88<br>mpg: 21<br>cyl: 6","wt: 2.32<br>mpg: 22.8<br>cyl: 4","wt: 3.21<br>mpg: 21.4<br>cyl: 6","wt: 3.44<br>mpg: 18.7<br>cyl: 8","wt: 3.46<br>mpg: 18.1<br>cyl: 6","wt: 3.57<br>mpg: 14.3<br>cyl: 8","wt: 3.19<br>mpg: 24.4<br>cyl: 4","wt: 3.15<br>mpg: 22.8<br>cyl: 4","wt: 3.44<br>mpg: 19.2<br>cyl: 6","wt: 3.44<br>mpg: 17.8<br>cyl: 6","wt: 4.07<br>mpg: 16.4<br>cyl: 8","wt: 3.73<br>mpg: 17.3<br>cyl: 8","wt: 3.78<br>mpg: 15.2<br>cyl: 8","wt: 5.25<br>mpg: 10.4<br>cyl: 8","wt: 5.42<br>mpg: 10.4<br>cyl: 8","wt: 5.34<br>mpg: 14.7<br>cyl: 8","wt: 2.2<br>mpg: 32.4<br>cyl: 4","wt: 1.62<br>mpg: 30.4<br>cyl: 4","wt: 1.84<br>mpg: 33.9<br>cyl: 4","wt: 2.46<br>mpg: 21.5<br>cyl: 4","wt: 3.52<br>mpg: 15.5<br>cyl: 8","wt: 3.44<br>mpg: 15.2<br>cyl: 8","wt: 3.84<br>mpg: 13.3<br>cyl: 8","wt: 3.85<br>mpg: 19.2<br>cyl: 8","wt: 1.94<br>mpg: 27.3<br>cyl: 4","wt: 2.14<br>mpg: 26<br>cyl: 4","wt: 1.51<br>mpg: 30.4<br>cyl: 4","wt: 3.17<br>mpg: 15.8<br>cyl: 8","wt: 2.77<br>mpg: 19.7<br>cyl: 6","wt: 3.57<br>mpg: 15<br>cyl: 8","wt: 2.78<br>mpg: 21.4<br>cyl: 4"],"key":null,"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(51,106,152,1)","rgba(51,106,152,1)","rgba(19,43,67,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(51,106,152,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(86,177,247,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(19,43,67,1)"],"opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":["rgba(51,106,152,1)","rgba(51,106,152,1)","rgba(19,43,67,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(51,106,152,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(86,177,247,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(19,43,67,1)","rgba(86,177,247,1)","rgba(51,106,152,1)","rgba(86,177,247,1)","rgba(19,43,67,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","name":""},{"x":[1.31745,5.61955],"y":[9.225,35.075],"name":"99_d9dc1d8e218a3a6bb9dbd6fc7032b72e","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"none","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#132B43"],[0.05,"#16314B"],[0.1,"#193753"],[0.15,"#1C3D5B"],[0.2,"#1F4364"],[0.25,"#22496C"],[0.3,"#265075"],[0.35,"#29567D"],[0.4,"#2C5D86"],[0.45,"#2F638F"],[0.5,"#336A98"],[0.55,"#3671A1"],[0.6,"#3A78AA"],[0.65,"#3D7FB4"],[0.7,"#4186BD"],[0.75,"#448DC6"],[0.8,"#4894D0"],[0.85,"#4B9BDA"],[0.9,"#4FA2E3"],[0.95,"#52AAED"],[1,"#56B1F7"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"thickness":23.04,"title":"cyl","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"tickmode":"array","ticktext":["4","5","6","7","8"],"tickvals":[0,0.25,0.5,0.75,1],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y"}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[1.31745,5.61955],"ticktext":["2","3","4","5"],"tickvals":[2,3,4,5],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"wt","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[9.225,35.075],"ticktext":["10","15","20","25","30","35"],"tickvals":[10,15,20,25,30,35],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"mpg","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"modeBarButtonsToRemove":["sendDataToCloud"]},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+
+</div>
+</div>
+<br>
+<hr>
+
+<div style="padding: 0 0 0 10px;">
+  <span style="font-size: 1.5em; font-weight: 500;">Rafe C.H. Liu (劉佳欣)</span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Data Thinking, Machine Learning & E-commerce expert </span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　<a href="mailto:snexuz@gmail.com">Contact Info</a> | <a href="http://tw.linkedin.com/in/rafechliu" target="_blank">Linkedin Profile</a></span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Sepcial Thanks To Johnson Hsieh, George Chiao, Alto Li</span><br>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="03-ETL.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "linkedin", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

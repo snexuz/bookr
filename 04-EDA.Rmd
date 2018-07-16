@@ -1,0 +1,214 @@
+# EDA - Using ggplot2
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu / Johnson Hsieh, LastUpdate: 2018-07-16</div>
+
+```{r include=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+## EDA
+
+- Let the data reveal itself.
+    - [EDA (Exploratory Data Analysis)](https://en.wikipedia.org/wiki/Exploratory_data_analysis)
+
+> It is important to understand what you can do  <br>
+> before you learn to measure how well you seem to have done it. <br>
+> (John Tukey, 1977)
+
+- Data Visualization
+    - 清晰有效地傳達與溝通訊息
+    - 教學、研究、宣傳、美學、功能兼顧
+    - 統計圖形、訊息可視化
+- [Chart suggestion](https://c4.staticflickr.com/4/3077/3196386402_01d8d12017_b.jpg)
+
+<br>
+
+<img src='img/plot.jpg' align='center' style='width:80% !important;'></img>
+
+<br>
+
+## library(ggplot2)
+
+- The grammar of graphics: 
+    - 由 [Hadley Wickham](http://hadley.nz/) 於 2005 年發表 (Chief Scientist in RStudio)
+    - 當前最多人使用的視覺化 R 套件
+    - 取自 “The Grammar of Graphics” (Leland Wilkinson, 2005)
+- 設計理念
+    - 採用圖層系統 (layer)
+    - 用抽象的概念來控制圖形，避免細節繁瑣
+    - 圖形美觀
+- 基礎語法
+```{r eval=FALSE}
+# old school
+plot(x = 1:10, y = seq(2, 20, 2))
+
+# ggplot2
+library(ggplot2)
+ggplot(data = df, aes(x = x, y = y)) +
+   geom_point()
+
+```
+- ggplot() - for fine, granular control of everything
+    - data layer:
+        - data = data.frame
+        - long-format (`library("reshape2"`)
+        - aes(x = x, y = y)
+    - geom layer: geom_xxx(): 
+        - multi-layers: `+`
+        - Geometric objects that define the basic “shape” of the elements on the plot
+- 必備的參考資料
+    - [ggplot2 cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+    - [ggplot2 online help topics](http://docs.ggplot2.org/current/)
+    - [Cookbook for R](http://www.cookbook-r.com/Graphs/)
+    - [Top 50 ggplot2 Visualizations](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+
+```{r}
+# list all geom
+ls(pattern = '^geom_', env = as.environment('package:ggplot2'))
+```
+
+
+### Scatterplot
+```{r}
+library(dplyr)
+library(ggplot2)
+
+# iris dataset
+iris %>%
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Species)) +
+  geom_point()
+```
+
+- Advanced Scatterplot
+```{r}
+# help(mtcars)
+ggplot(mtcars, aes(x=wt, y=mpg)) + 
+  geom_point(color="red", size=5, alpha=0.5) 
+
+# Add stat_xxx layer
+ggplot(mtcars, aes(x=wt, y=mpg)) + 
+  geom_point(color="red", size=5, alpha=0.5) +
+  stat_smooth()
+
+# Add scale_xxx layer
+ggplot(mtcars, aes(x=wt, y=mpg, colour=gear)) + 
+  geom_point(size=5) +
+  scale_color_continuous(low="yellow", high="red")
+```
+
+### Line Chart
+```{r}
+head(economics)
+
+econ <- economics %>% 
+          mutate(year = strftime(date, format = "%Y"),
+                 month = strftime(date, format = "%m"))
+
+ggplot(econ, aes(x = date, y = unemploy)) +
+  geom_line()
+
+econ %>% filter(year %in% c("2010", "2011","2012", "2013", "2014")) %>%
+  group_by(year) %>%
+  ggplot(aes(x = month, y = unemploy, group = year, colour = year)) +
+  geom_line()
+
+```
+
+### Histogram
+```{r}
+# hist(diamonds$price)
+ggplot(diamonds, aes(x=price)) + 
+  geom_histogram(binwidth=1000)
+
+# with density function
+ggplot(diamonds, aes(x=price)) + 
+  geom_histogram(aes(y=..density..), binwidth=1000) +
+  geom_density(color="red")
+```
+
+### Bar Chart
+
+- Plot by counting (default)
+
+```{r}
+# counts <- table(diamonds$clarity)
+# barplot(counts, main="Car Distribution", 
+#   	xlab="Number of Gears")
+
+# by default, stat = "bin"
+ggplot(diamonds, aes(x=clarity)) + 
+  geom_bar()
+```
+
+- Use stat = "identity" argument
+
+```{r}
+tab <- data.frame(table(diamonds$clarity))
+ggplot(tab, aes(x=Var1, y=Freq)) + 
+  geom_bar(stat="identity")
+```
+
+- Add fill layer
+
+```{r}
+# change legend position
+ggplot(diamonds, aes(x=clarity, fill=cut)) + 
+  geom_bar(position="stack") + 
+  theme(legend.position="bottom")
+
+ggplot(diamonds, aes(x=clarity, fill=cut)) + 
+  geom_bar(position="dodge") + 
+  theme(legend.position="NULL")
+```
+
+- Change coord layer
+
+```{r}
+ggplot(diamonds, aes(x=clarity, fill=cut)) + 
+  geom_bar() + coord_flip() +
+  theme(legend.position="NULL") 
+```
+
+- Set theme layer
+
+```{r}
+g <- ggplot(diamonds, aes(x=clarity, fill=cut))
+g + geom_bar() + coord_flip() + theme_bw() +
+  theme(legend.position="NULL")
+```
+
+### Pie Chart
+```{r}
+ggplot(diamonds, aes(x=clarity, fill=clarity)) + 
+  geom_bar() 
+
+ggplot(diamonds, aes(x="", fill=clarity)) + 
+  geom_bar() + 
+  coord_polar(theta = "y") 
+```
+
+
+## facet_
+- using ggplot2 for cross analysis
+
+```{r}
+ggplot(mtcars, aes(x=mpg, y=disp)) + 
+  geom_point(aes(colour=qsec, size=cyl, shape=as.factor(am))) + 
+  facet_wrap(~gear) +
+  scale_size(range=c(3,6))
+```
+
+## library(gridExtra)
+-  arrange multiple charts by `gridExtra`
+```{r}
+g1 <- ggplot(mtcars, aes(x=wt, y=mpg, colour=cyl)) + geom_point()
+g2 <- ggplot(mtcars, aes(x=wt, y=mpg, colour=factor(cyl))) + geom_point()
+gridExtra::grid.arrange(g1, g2, ncol=2)
+```
+
+## library(plotly)
+- create interactive plots by `ployly`
+```{r}
+g1 <- ggplot(mtcars, aes(x=wt, y=mpg, colour=cyl)) + geom_point()
+plotly::ggplotly(g1)
+```
