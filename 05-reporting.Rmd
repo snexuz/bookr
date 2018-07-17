@@ -1,0 +1,76 @@
+# Reporting - Using rmarkdown
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu, LastUpdate: 2018-07-17</div>
+
+## Markdown (*.md)
+
+- [Markdown Language](https://zh.wikipedia.org/wiki/Markdown)
+    - 易於閱讀、易於撰寫的純文字格式
+    - 「易讀易寫」只要符合規則，自動轉換成有效的 XHTML 文件 (ex. HTML)
+    - [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+- 常用符號
+    - 斜體 *asterisks*，使用 `*asterisks*` 或 `_underscores_`。
+    - 粗體 **asterisks**，可以用 `**asterisks**` 或 `__underscores__`。
+    - 標題與清單
+```{md, eval=FALSE}
+# Header 1 ==> <h1>Header 1</h1>
+## Header 2
+### Header 3
+
+# Lists
+- AAA
+    - aaa
+    - bbb
+    - ccc
+- BBB
+- CCC
+
+<ul>
+  <li>AAA
+    <ul>
+      <li>aaa</li>
+      <li>bbb</li>
+      <li>ccc</li>
+    </ul>
+  </li>
+  <li>BBB</li>
+  <li>CCC</li>
+</ul>
+```
+
+## R Markdown (*.Rmd)
+
+- Why R Markdown
+    - save and execute code
+    - generate high quality reports: doc, PDF, Slides, html
+    - updatable analysis reports 
+    - interactive: `library(plotly)`
+- `install.packages("rmarkdown")`
+    - [R markdown from RStudio](http://rmarkdown.rstudio.com/index.html)
+    - [http://dspim.github.io/DataCampRmd/index.html](https://github.com/dspim/DataCampRmd/blob/master/index.md)
+    - [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+
+<br>
+
+<img src='img/rmd.PNG' align='center' style='width:80% !important;'></img>
+
+<br>
+
+- Code Chunks `{r}`
+    - 告知編譯器需以 R 執行
+    - 編譯時以 R 規則進行程式碼上色
+    - [Chunk options](https://rmarkdown.rstudio.com/lesson-3.html)
+
+![](http://rmarkdown.rstudio.com/lesson-images/code-1-options.png)<br>
+
+- 編譯 (render)
+    - 需先存檔 (*.Rmd)
+    - 編譯時為全新 R Session
+        - 工作目錄即為存檔目錄 => 使用相對路徑或絕對路徑取用其他資料夾資訊
+        - library 需在 rmd 檔中引用
+        
+- [Yihui Xie 谢益辉](https://yihui.name/)
+    - [Presentations](https://rmarkdown.rstudio.com/lesson-11.html): 
+    - [Shiny](http://shiny.rstudio.com/): Interact. Analyze. Communicate
+    - [bookdown](https://bookdown.org/yihui/bookdown/): Authoring Books and Technical Documents with R Markdown
+    - [blogdown](https://bookdown.org/yihui/blogdown/): Creating Websites with R Markdown
+

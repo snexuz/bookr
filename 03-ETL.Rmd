@@ -1,7 +1,7 @@
 # ETL - Using dplyr
 <div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu / Johnson Hsieh / George Chao, LastUpdate: 2018-07-16</div>
 
-## Data Cleaning
+## Data Wrangling
 
 - ETL (Extract-Transform-Load)
     - 用來描述將資料從來源端經過萃取 (extract)、轉置 (transform)、載入 (load)至目的端的過程 [Wiki](https://zh.wikipedia.org/wiki/ETL)
@@ -105,9 +105,9 @@ ubike[c(3:4), -c(6:21)]
 
 ```
 
--  Quiz: Conditional Slicing，`%in%` 特殊演算子 (Special Operator) 表示？
+- Quiz: Conditional Slicing，`%in%` 特殊演算子 (Special Operator) 表示？
 
-```{r echo=TRUE,eval=FALSE}
+```{r echo=TRUE, eval=FALSE}
 ubike[ubike$sna %in% c("台北市災害應變中心", "世貿三館"), ]
 
 ```
@@ -334,10 +334,7 @@ select(ubike, hour, sarea, sna, avg.sbi) %>%
 ```
 
 
-<hr>
-
-<b> Quiz: </b>
-小明發現住信義區的話，八點騎腳踏車就可以準時上班，還可以順便吃早餐，請幫忙找出信義區各車站八點車子最多的站
+- Quiz: 小明發現住信義區的話，八點騎腳踏車就可以準時上班，還可以順便吃早餐，請幫忙找出信義區各車站八點車子最多的站
 
 ```{r}
 # WRITE YOUR CODE
@@ -353,10 +350,7 @@ select(ubike, hour, sarea, sna, avg.sbi) %>%
   knitr::kable()
 ```
 
-<br>
-
-<b> Quiz: </b>
-小明喜歡玩遙控飛機，在中和希望找一個下午三點風比較小的地點吧
+- Quiz: 小明喜歡玩遙控飛機，在中和希望找一個下午三點風比較小的地點吧
 
 ```{r}
 # WRITE YOUR CODE

@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
-
-<link rel="next" href="01-intro.html">
+<link rel="prev" href="04-EDA.html">
+<link rel="next" href="06-groceries.html">
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -201,20 +201,100 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Data Thinking with R</h1>
+<div id="reporting---using-rmarkdown" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Reporting - Using rmarkdown</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu, LastUpdate: 2018-07-17
 </div>
-<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: 20px;">
-無傷痛零基礎也能懂的 R 程式語言<br> Chia-Hsin Liu
-</div>
-<div id="perface" class="section level1 unnumbered">
-<h1>Perface</h1>
+<div id="markdown-.md" class="section level2">
+<h2><span class="header-section-number">5.1</span> Markdown (*.md)</h2>
 <ul>
-<li>介紹</li>
-<li>內容索引</li>
-<li>更新記錄</li>
+<li><a href="https://zh.wikipedia.org/wiki/Markdown">Markdown Language</a>
+<ul>
+<li>易於閱讀、易於撰寫的純文字格式</li>
+<li>「易讀易寫」只要符合規則，自動轉換成有效的 XHTML 文件 (ex. HTML)</li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">Cheatsheet</a></li>
+</ul></li>
+<li>常用符號
+<ul>
+<li>斜體 <em>asterisks</em>，使用 <code>*asterisks*</code> 或 <code>_underscores_</code>。</li>
+<li>粗體 <strong>asterisks</strong>，可以用 <code>**asterisks**</code> 或 <code>__underscores__</code>。</li>
+<li>標題與清單</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="fu"># Header 1 ==&gt; &lt;h1&gt;Header 1&lt;/h1&gt;</span>
+<span class="fu">## Header 2</span>
+<span class="fu">### Header 3</span>
+
+<span class="fu"># Lists</span>
+- <span class="fl">AAA</span>
+<span class="fl">    - aaa</span>
+<span class="fl">    - bbb</span>
+<span class="fl">    - ccc</span>
+<span class="fl">- BBB</span>
+<span class="fl">- CCC</span>
+
+&lt;ul&gt;
+  &lt;li&gt;AAA
+<span class="bn">    &lt;ul&gt;</span>
+<span class="bn">      &lt;li&gt;aaa&lt;/li&gt;</span>
+<span class="bn">      &lt;li&gt;bbb&lt;/li&gt;</span>
+<span class="bn">      &lt;li&gt;ccc&lt;/li&gt;</span>
+<span class="bn">    &lt;/ul&gt;</span>
+  &lt;/li&gt;
+  &lt;li&gt;BBB&lt;/li&gt;
+  &lt;li&gt;CCC&lt;/li&gt;
+&lt;/ul&gt;</code></pre></div>
+</div>
+<div id="r-markdown-.rmd" class="section level2">
+<h2><span class="header-section-number">5.2</span> R Markdown (*.Rmd)</h2>
+<ul>
+<li>Why R Markdown
+<ul>
+<li>save and execute code</li>
+<li>generate high quality reports: doc, PDF, Slides, html</li>
+<li>updatable analysis reports</li>
+<li>interactive: <code>library(plotly)</code></li>
+</ul></li>
+<li><code>install.packages(&quot;rmarkdown&quot;)</code>
+<ul>
+<li><a href="http://rmarkdown.rstudio.com/index.html">R markdown from RStudio</a></li>
+<li><a href="https://github.com/dspim/DataCampRmd/blob/master/index.md">http://dspim.github.io/DataCampRmd/index.html</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a></li>
+</ul></li>
+</ul>
+<p><br></p>
+<p><img src='img/rmd.PNG' align='center' style='width:80% !important;'></img></p>
+<p><br></p>
+<ul>
+<li>Code Chunks <code>{r}</code>
+<ul>
+<li>告知編譯器需以 R 執行</li>
+<li>編譯時以 R 規則進行程式碼上色</li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-3.html">Chunk options</a></li>
+</ul></li>
+</ul>
+<p><img src="http://rmarkdown.rstudio.com/lesson-images/code-1-options.png" /><br></p>
+<ul>
+<li>編譯 (render)
+<ul>
+<li>需先存檔 (*.Rmd)</li>
+<li>編譯時為全新 R Session
+<ul>
+<li>工作目錄即為存檔目錄 =&gt; 使用相對路徑或絕對路徑取用其他資料夾資訊</li>
+<li>library 需在 rmd 檔中引用</li>
+</ul></li>
+</ul></li>
+<li><a href="https://yihui.name/">Yihui Xie 谢益辉</a>
+<ul>
+<li><a href="https://rmarkdown.rstudio.com/lesson-11.html">Presentations</a>:</li>
+<li><a href="http://shiny.rstudio.com/">Shiny</a>: Interact. Analyze. Communicate</li>
+<li><a href="https://bookdown.org/yihui/bookdown/">bookdown</a>: Authoring Books and Technical Documents with R Markdown</li>
+<li><a href="https://bookdown.org/yihui/blogdown/">blogdown</a>: Creating Websites with R Markdown</li>
+</ul></li>
 </ul>
 
+</div>
 </div>
 <br>
 <hr>
@@ -230,8 +310,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="01-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="04-EDA.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="06-groceries.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
-
-<link rel="next" href="01-intro.html">
+<link rel="prev" href="05-reporting.html">
+<link rel="next" href="07-DBI.html">
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -201,20 +201,252 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Data Thinking with R</h1>
+<div id="data-acquisition" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Data Acquisition</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu, LastUpdate: 2018-07-17
 </div>
-<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: 20px;">
-無傷痛零基礎也能懂的 R 程式語言<br> Chia-Hsin Liu
-</div>
-<div id="perface" class="section level1 unnumbered">
-<h1>Perface</h1>
 <ul>
-<li>介紹</li>
-<li>內容索引</li>
-<li>更新記錄</li>
+<li>Data acquisition:
+<ul>
+<li>Combine data from local files and different formats (txt, csv, xls, xlsx)</li>
+<li>Download files from website</li>
+<li>Accessing an API</li>
+<li>Scraping a web page (not included in this session, yet)</li>
+</ul></li>
 </ul>
+<div id="opendata" class="section level2">
+<h2><span class="header-section-number">6.1</span> OpenData</h2>
+<ul>
+<li>OpenData in Taiwan
+<ul>
+<li><a href="http://data.taipei/">data.taipei</a></li>
+<li><a href="http://data.gov.tw/">政府資料開放平台</a>
+<ul>
+<li>CSV(43.77%)、JSON(18.49)、XML(16.53%)，佔全部開放資料 78.79%（2018/07 統計）</li>
+</ul></li>
+</ul></li>
+<li>OData
+<ul>
+<li>Open Data Protocol(OData)，它是一個開源的協定，藉由簡單的 URL 參數傳遞，來識別並查詢資料庫資料，此協定支援 XML 及 JSON 格式。
+<ul>
+<li><a href="https://ptx.transportdata.tw/PTX">公共運輸整合資訊流通服務平台</a></li>
+<li><a href="https://developers.google.com/maps/?hl=zh-tw">Google MAP API</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br> <img src='img/gov01.jpg' align='center' style='width:80% !important;'></img> <br><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">STR</th>
+<th align="left">CLASS</th>
+<th align="left">TYPE.MAIN</th>
+<th align="right">COUNT</th>
+<th align="right">PERC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">YES</td>
+<td align="left">Sheets</td>
+<td align="left">CSV</td>
+<td align="right">22322</td>
+<td align="right">43.77</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">JSON</td>
+<td align="right">9429</td>
+<td align="right">18.49</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">XML</td>
+<td align="right">8430</td>
+<td align="right">16.53</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">XLS</td>
+<td align="right">929</td>
+<td align="right">1.82</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">ODS</td>
+<td align="right">683</td>
+<td align="right">1.34</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">XLSX</td>
+<td align="right">670</td>
+<td align="right">1.31</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left">MAPs</td>
+<td align="left">KML</td>
+<td align="right">771</td>
+<td align="right">1.51</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">RSS</td>
+<td align="right">669</td>
+<td align="right">1.31</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">KMZ</td>
+<td align="right">179</td>
+<td align="right">0.35</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">SHP</td>
+<td align="right">133</td>
+<td align="right">0.26</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">GEOJSON</td>
+<td align="right">12</td>
+<td align="right">0.02</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left">API</td>
+<td align="left">WEBSERVICES</td>
+<td align="right">517</td>
+<td align="right">1.01</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">API</td>
+<td align="right">299</td>
+<td align="right">0.59</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="from-local-files" class="section level2">
+<h2><span class="header-section-number">6.2</span> From Local Files</h2>
+<ul>
+<li>text format
+<ul>
+<li><code>readline()</code>, <code>readLines()</code></li>
+</ul></li>
+<li>table format
+<ul>
+<li><a href="02-basic.html#-io">read.csv</a>
+<ul>
+<li><code>read.csv(file, header = TRUE, sep = &quot;,&quot;, fileEncoding = &quot;&quot;, stringsAsFactors = FALSE)</code></li>
+</ul></li>
+<li><code>readr::read_csv()</code>, <code>readxl::read_xls()</code>, <code>readxl::read_xlsx()</code></li>
+</ul></li>
+<li>import from IDE
+<ul>
+<li>當已萬念俱灰 <br><img src='img/importData.PNG' align='center'></img><br></li>
+</ul></li>
+</ul>
+</div>
+<div id="batch-download-import" class="section level2">
+<h2><span class="header-section-number">6.3</span> Batch Download &amp; import</h2>
+<ul>
+<li>as the local files
+<ul>
+<li>read.csv(file = <code>URL</code>)</li>
+</ul></li>
+<li>Quiz：請從網站上批次下載檔案，並整理成一個 data.frame 以供分析使用
+<ul>
+<li>DataSource
+<ul>
+<li><a href="http://cit-etc.net1.tw/download.html">交通部臺灣區國道高速公路局「交通資料庫」</a></li>
+<li><a href="http://tisvcloud.freeway.gov.tw/history/TDCS/M03A/">各類車種通行量統計 - 歷史資料</a></li>
+</ul></li>
+<li>Write your codes
+<ul>
+<li>URL 有規則 =&gt; 依照規則產生不同 URL : <code>url &lt;- paste()</code>, <code>as.Date(x = &quot;2016/12/08&quot;) %&gt;% format(format=&quot;%Y%m%d&quot;)</code></li>
+<li>批次自動下載: <code>download.file()</code></li>
+<li>批次讀取子資料夾內檔案: <code>list.files()</code>, <code>read.csv</code></li>
+<li>整理到一個 data.frame: <code>dplyr::bind_rows</code></li>
+<li>存成 csv 或資料庫中: <code>write.csv()</code>, <code>library(DBI)</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &#39;http://tisvcloud.freeway.gov.tw/history/TDCS/M03A/M03A_20161113.tar.gz&#39;</span>
 
+<span class="kw">download.file</span>(url, <span class="dt">destfile =</span> <span class="st">&quot;20180701.tar.gz&quot;</span>)
+<span class="kw">untar</span>(<span class="st">&quot;20180701.tar.gz&quot;</span>)
+
+all.files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;./var&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+
+dat &lt;-<span class="st"> </span>csvDat &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(all.files)){
+  
+  <span class="co"># Your CODE here</span>
+  <span class="co"># csvDat &lt;- read.csv(...)</span>
+  <span class="co"># dat &lt;- bind_rows(dat, csvDat)</span>
+  <span class="co"># csvDat &lt;- NULL</span>
+  
+  <span class="kw">print</span>(all.files[i])
+}</code></pre></div>
+</div>
+<div id="accessing-an-api" class="section level2">
+<h2><span class="header-section-number">6.4</span> Accessing an API</h2>
+<ul>
+<li>XML vs JSON
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/XML">Extensible Markup Language (XML)</a> - 重量級的標記式語言</li>
+<li><a href="https://zh.wikipedia.org/wiki/JSON">JSON: The Fat-Free Alternative to XML</a> - 輕量級的資料交換語言</li>
+<li><a href="https://www.w3schools.com/js/js_json_xml.asp">JSON vs XML</a></li>
+</ul></li>
+<li><a href="https://chrome.google.com/webstore/detail/json-viewer/aimiinbnnkboelefkjlenlgimcabobli">Chrome extension: JSONView</a>
+<ul>
+<li>Ex. <a href="https://data.gov.tw/dataset/40448">空氣品質指標(AQI)</a></li>
+</ul></li>
+</ul>
+<p><br> <img src='img/gov02_JSON.jpg' align='center' style='width:80% !important;'></img> <img src='img/gov03_XML.jpg' align='center' style='width:80% !important;'></img> <br></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># (1) .csv</span>
+url &lt;-<span class="st"> &#39;https://quality.data.gov.tw/dq_download_csv.php?nid=40448&amp;md5_url=7294c8570f28a759cc3a76a7e696e793&#39;</span>
+y &lt;-<span class="st"> </span><span class="kw">read.csv</span>(url, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">stringsAsFactors =</span> F, <span class="dt">header =</span> T)
+
+## for https SSL peer verification 
+url &lt;-<span class="st"> &quot;https://opendata.epa.gov.tw/ws/Data/AQI/?$format=csv&quot;</span>
+<span class="kw">library</span>(httr)
+dat &lt;-<span class="st"> </span><span class="kw">GET</span>(url, <span class="dt">config =</span> <span class="kw">config</span>(<span class="dt">ssl_verifypeer =</span> 0L))
+dat &lt;-<span class="st"> </span><span class="kw">content</span>(dat, <span class="dt">encoding =</span> <span class="st">&#39;UTF8&#39;</span>, <span class="dt">type =</span> <span class="st">&quot;text/csv&quot;</span>)
+
+<span class="co"># (2) json files</span>
+<span class="kw">library</span>(jsonlite)
+url &lt;-<span class="st"> &#39;http://opendata2.epa.gov.tw/AQI.json&#39;</span>
+y &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(url, <span class="dt">flatten =</span> <span class="ot">TRUE</span>)
+y &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(y<span class="op">$</span>Records)
+
+<span class="co"># (3) XML </span>
+<span class="kw">library</span>(XML)
+url &lt;-<span class="st"> &#39;http://opendata2.epa.gov.tw/AQI.xml&#39;</span>
+x &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(url) <span class="co"># 以 xmlParse 解析 XML 檔案</span>
+xmlfiles &lt;-<span class="st"> </span><span class="kw">xmlRoot</span>(x) <span class="co"># 將 root 設定到 content 層級（一個偷吃步的做法）</span>
+y &lt;-<span class="st"> </span><span class="kw">xmlToDataFrame</span>(xmlfiles) <span class="co"># 轉換成 dataframe</span>
+
+<span class="co"># 將整理完成的檔案存成 CSV</span>
+<span class="kw">write.csv</span>(<span class="dt">file =</span> <span class="st">&#39;open.csv&#39;</span>, y, <span class="dt">fileEncoding =</span> <span class="st">&#39;big5&#39;</span>)</code></pre></div>
+
+</div>
 </div>
 <br>
 <hr>
@@ -230,8 +462,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="01-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="05-reporting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="07-DBI.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

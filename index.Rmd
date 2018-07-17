@@ -1,5 +1,5 @@
 --- 
-title: Hands-on R Tutorial
+title: Data Thinking with R
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:

@@ -1,0 +1,103 @@
+# Using Database
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu, LastUpdate: 2018-07-17</div>
+  
+## R Database Interface (DBI)
+
+- DBI
+    - 提供一個簡便的資料庫介面讓 R User 可以處理超過記憶體容量的資料
+    - 常見資料庫套件
+        - [RSQLite](https://www.r-project.org/nosvn/pandoc/RSQLite.html)
+        - [RJDBC: Oracle Database, MySql](https://cran.r-project.org/web/packages/RJDBC/index.html)
+        - [RPostgreSQL: Postgres](https://cran.r-project.org/web/packages/RPostgreSQL/index.html)
+- Issues:
+    - Performance Tuning SQL Queries
+    - [SQL injections: 隱碼攻擊](https://zh.wikipedia.org/wiki/SQL%E8%B3%87%E6%96%99%E9%9A%B1%E7%A2%BC%E6%94%BB%E6%93%8A)
+        - [Parameterized SQL queries](https://cran.r-project.org/web/packages/RODBCext/vignettes/Parameterized_SQL_queries.html)
+
+<br><a href='https://www.explainxkcd.com/wiki/index.php/327:_Exploits_of_a_Mom' target='_blank'><img src = 'https://www.explainxkcd.com/wiki/images/5/5f/exploits_of_a_mom.png'></img></a></br>
+  
+## Sqlite
+  
+- SQL (Structured Query Language)
+    - CRUD (Create, Read, Update and Delete)
+    - 資料分析師必備 (老闆，DBA 都沒空理我......)
+
+```{sql, eval=FALSE}
+SELECT DISTINCT column_list
+FROM table_list
+JOIN table ON join_condition
+WHERE row_filter
+ORDER BY column
+LIMIT count OFFSET offset
+GROUP BY column
+HAVING group_filter;
+
+--This is the comment
+/*Multiline comments*/
+```
+
+- SQLite
+    - 是一個免費開源小型關聯式資料庫系統
+    - 用時不需事先架設資料庫系統
+    - 資料庫僅為單一個檔案，不論備份或搬移都很簡單，要跨平台也很方便
+    
+- SQL Tutorials
+    - [SQL As Understood By SQLite](https://sqlite.org/lang_select.html)
+    - [SQLite Tutorial](https://www.tutorialspoint.com/sqlite/index.htm)
+    - [DB Browser for SQLite Portable](https://portableapps.com/apps/development/sqlite_database_browser_portable)
+
+- `library(RSQLite)`    
+    - `install.packages(c("DBI", "RSQLite"))`
+    - `vignette("RSQLite")`
+    - 選擇對應資料庫驅動 -> 連線 -> 查詢 -> 離線
+
+```{r eval=FALSE, include=FALSE}
+library(DBI)
+library(RSQLite)
+
+# 與資料庫建立連線，使用 RSQLite
+mydb <- dbConnect(drv = SQLite(), "iris.db")
+
+# 將某個 dataframe 寫入 db table
+dbWriteTable(conn = mydb, name = "mtcars", value = mtcars)
+dbWriteTable(conn = mydb, name = "iris", value = iris)
+
+# 列出資料庫中有幾個 table
+dbListTables(conn = mydb)
+
+# 讀取資料庫 table 資料
+iris.db <- dbReadTable(conn = mydb, name = "iris")
+
+# 進行資料庫查詢
+## 查詢資料表欄位名稱
+dbListFields(conn = mydb, name = 'iris')
+
+## 單次進行查詢
+dbGetQuery(mydb, 'SELECT * FROM iris WHERE "Sepal.Length" < :x', params = list(x = 4.6))
+
+res1 <- dbGetQuery(conn = mydb, statement = "SELECT * FROM iris where Species == 'setosa' limit 10")
+res1
+
+## 批次查詢，可以對查詢結果先下判斷
+res2 <- dbSendQuery(conn = mydb, statement = "SELECT COUNT(*) FROM iris where Species == 'setosa'")
+fetch(res2)
+
+# 資料庫離線
+dbDisconnect(mydb)
+
+```
+
+- Quiz: 寫個自訂函式自動完成資料庫連接與查詢吧！
+    - qstr: `gsub('\n|\t', '', qstr)`
+    - Prevent SQL injection(https://shiny.rstudio.com/articles/sql-injections.html)
+
+```{r eval=FALSE}
+
+qrySqlite <- function(qstr){
+  
+  # your Code here
+  
+  return(dat)
+}
+
+```

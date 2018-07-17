@@ -68,7 +68,7 @@
 
 ```{r eval=FALSE}
 getwd()
-setwd("/home/user/hand_on_r")
+setwd("/home/user/data_thinking_with_r")
 getwd()
 ```
 

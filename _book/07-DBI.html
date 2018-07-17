@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
+<link rel="prev" href="06-groceries.html">
 
-<link rel="next" href="01-intro.html">
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -201,20 +201,88 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Data Thinking with R</h1>
+<div id="using-database" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Using Database</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu, LastUpdate: 2018-07-17
 </div>
-<div style="text-align: left; font-size: 1em; font-weight: 300; color: #3b3f54; font-style: italic; margin-top: 20px;">
-無傷痛零基礎也能懂的 R 程式語言<br> Chia-Hsin Liu
-</div>
-<div id="perface" class="section level1 unnumbered">
-<h1>Perface</h1>
+<div id="r-database-interface-dbi" class="section level2">
+<h2><span class="header-section-number">7.1</span> R Database Interface (DBI)</h2>
 <ul>
-<li>介紹</li>
-<li>內容索引</li>
-<li>更新記錄</li>
+<li>DBI
+<ul>
+<li>提供一個簡便的資料庫介面讓 R User 可以處理超過記憶體容量的資料</li>
+<li>常見資料庫套件
+<ul>
+<li><a href="https://www.r-project.org/nosvn/pandoc/RSQLite.html">RSQLite</a></li>
+<li><a href="https://cran.r-project.org/web/packages/RJDBC/index.html">RJDBC: Oracle Database, MySql</a></li>
+<li><a href="https://cran.r-project.org/web/packages/RPostgreSQL/index.html">RPostgreSQL: Postgres</a></li>
+</ul></li>
+</ul></li>
+<li>Issues:
+<ul>
+<li>Performance Tuning SQL Queries</li>
+<li><a href="https://zh.wikipedia.org/wiki/SQL%E8%B3%87%E6%96%99%E9%9A%B1%E7%A2%BC%E6%94%BB%E6%93%8A">SQL injections: 隱碼攻擊</a>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/RODBCext/vignettes/Parameterized_SQL_queries.html">Parameterized SQL queries</a></li>
+</ul></li>
+</ul></li>
 </ul>
+<p><br><a href='https://www.explainxkcd.com/wiki/index.php/327:_Exploits_of_a_Mom' target='_blank'><img src = 'https://www.explainxkcd.com/wiki/images/5/5f/exploits_of_a_mom.png'></img></a></br></p>
+</div>
+<div id="sqlite" class="section level2">
+<h2><span class="header-section-number">7.2</span> Sqlite</h2>
+<ul>
+<li>SQL (Structured Query Language)
+<ul>
+<li>CRUD (Create, Read, Update and Delete)</li>
+<li>資料分析師必備 (老闆，DBA 都沒空理我……)</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> column_list
+<span class="kw">FROM</span> table_list
+<span class="kw">JOIN</span> <span class="kw">table</span> <span class="kw">ON</span> join_condition
+<span class="kw">WHERE</span> row_filter
+<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="kw">column</span>
+<span class="kw">LIMIT</span> <span class="fu">count</span> OFFSET offset
+<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">column</span>
+<span class="kw">HAVING</span> group_filter;
 
+<span class="co">--This is the comment</span>
+<span class="co">/*Multiline comments*/</span></code></pre></div>
+<ul>
+<li>SQLite
+<ul>
+<li>是一個免費開源小型關聯式資料庫系統</li>
+<li>用時不需事先架設資料庫系統</li>
+<li>資料庫僅為單一個檔案，不論備份或搬移都很簡單，要跨平台也很方便</li>
+</ul></li>
+<li>SQL Tutorials
+<ul>
+<li><a href="https://sqlite.org/lang_select.html">SQL As Understood By SQLite</a></li>
+<li><a href="https://www.tutorialspoint.com/sqlite/index.htm">SQLite Tutorial</a></li>
+<li><a href="https://portableapps.com/apps/development/sqlite_database_browser_portable">DB Browser for SQLite Portable</a></li>
+</ul></li>
+<li><code>library(RSQLite)</code>
+<ul>
+<li><code>install.packages(c(&quot;DBI&quot;, &quot;RSQLite&quot;))</code></li>
+<li><code>vignette(&quot;RSQLite&quot;)</code></li>
+<li>選擇對應資料庫驅動 -&gt; 連線 -&gt; 查詢 -&gt; 離線</li>
+</ul></li>
+<li>Quiz: 寫個自訂函式自動完成資料庫連接與查詢吧！
+<ul>
+<li>qstr: <code>gsub('\n|\t', '', qstr)</code></li>
+<li>Prevent SQL injection(<a href="https://shiny.rstudio.com/articles/sql-injections.html" class="uri">https://shiny.rstudio.com/articles/sql-injections.html</a>)</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qrySqlite &lt;-<span class="st"> </span><span class="cf">function</span>(qstr){
+  
+  <span class="co"># your Code here</span>
+  
+  <span class="kw">return</span>(dat)
+}</code></pre></div>
+
+</div>
 </div>
 <br>
 <hr>
@@ -230,8 +298,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
+<a href="06-groceries.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="01-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

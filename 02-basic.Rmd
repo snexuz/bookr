@@ -525,6 +525,76 @@ dat1 <- read.csv("data/ubike-sample-data-utf8.csv", fileEncoding="utf8")
 <br><img src='img/importData.PNG' align='center'></img><br>
 
 
+## 控制流程與自訂函數
+
+R 語言的程式控制流程與其他程式語言並無不同，僅有書寫上的些許差異。
+
+- 控制流程學習提示
+    - 避免死記，儘量以口語、翻譯的方式理解較容易上手
+    - 善用註解適時加以註記
+    - 排版很重要，縮排雖無意義 (python 4-space indention rules)，但看起來舒服，IDE 會自動縮排
+    - 迴圈 -> 條件控制 -> 自訂函數，逐層分解
+- 常用控制流程包含
+    - 迴圈：`for (var in seq) expr`
+        - seq: ex. `1:10`, `1:nrow(x)`, `c(4,5,6,7)`(會從第一個位置開始取值)
+        - expr: 使用 `{}` 標記程式執行範圍
+    - 條件控制： `if (cond) expr1 else expr2 else .....`
+        - cond: 判斷條件一定須返回 TRUE/FALSE，ex. `a == b`, `a %in% b`, `is.na(a)`
+        - 精簡版函式：`ifelse(cond, TRUE, FALSE)`
+    - 其餘控制流程：[Quick-R: Control Flow](http://www.statmethods.net/management/controlstructures.html)
+- 自訂函數 (`f(x)`)
+    - 可視為一個物件 `myfun <- function(args)`，取用直接呼叫函式名 `myfun(args)`
+    - 取名儘量口語，可增加程式可讀性，若有相同命名，則*後*引用函數則會覆蓋前函數
+    - arguments 即為函式內變數預設名稱 (local variable)
+    - `return(obj)`，僅能返回單一物件，多物件可使用 `list` 串接
+
+```{r, eval = FALSE}
+
+# 指定 i (為一個計數器)，i 從 1 跑到 10
+for (i in 1:10){
+  print(i)
+}
+
+
+# 加入控制流程
+for (i in 1:10){
+  
+  if (i %% 2 == 0){
+    print('even')
+  } else {
+    print('odds')
+  }
+  
+}
+
+# 改寫為自訂函數
+# 翻譯： print "OddsEven of a given seqEnd" num that defined...
+OddsEven <- function(seqEnd){
+  
+  for (i in 1:seqEnd){
+  
+    if (i %% 2 == 0){
+      print(paste(i, 'Even', sep = ' - '))
+    } else {
+      print(paste(i, 'Odds', sep = ' - '))
+    }
+    
+  }
+  
+}
+
+OddsEven(20)
+
+```
+
+<br>
+<b> Quiz: </b>
+請嘗試撰寫一函式，判斷輸入數值之餘數 `%%`: <br>
+
+```{r}
+# WRITE YOUR CODE
+
+```
 
 ## 綜合演練
 
