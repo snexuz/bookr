@@ -196,6 +196,9 @@ ubike %>%
 
 
 ### select
+```{r, echo=FALSE}
+library(dplyr)
+```
 ```{r, echo = TRUE, eval = FALSE}
 select(ubike, hour, sarea, sna, avg.sbi) 
 ```

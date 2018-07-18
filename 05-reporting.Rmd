@@ -56,9 +56,10 @@
 <br>
 
 - Code Chunks `{r}`
-    - 告知編譯器需以 R 執行
+    - 告知編譯器需以 R Engine 執行
     - 編譯時以 R 規則進行程式碼上色
     - [Chunk options](https://rmarkdown.rstudio.com/lesson-3.html)
+    - [Other language engines](https://bookdown.org/yihui/rmarkdown/language-engines.html)
 
 ![](http://rmarkdown.rstudio.com/lesson-images/code-1-options.png)<br>
 

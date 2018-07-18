@@ -13,7 +13,7 @@ output:
       after_body: after_body.html
     config:
       toc:
-        collapse: section
+        collapse: subsection
         scroll_highlight: yes
         before: null
         after: null
@@ -39,6 +39,7 @@ documentclass: book
 link-citations: yes
 description: R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言
 favicon: "img/Blackvariant-Button-Ui-Requests-5-RStudio.ico"
+cover-image: null
 ---
 
 ```{r setup, include=FALSE, cache=FALSE}
