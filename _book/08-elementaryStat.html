@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Data Thinking with R</title>
+  <meta name="description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Data Thinking with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Thinking with R" />
+  
+  <meta name="twitter:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
+<link rel="prev" href="07-DBI.html">
+<link rel="next" href="09-multivariate.html">
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="assets/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="assets/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="assets/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="assets/plotly-binding-4.5.6/plotly.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5QK7CK4');</script>
+<!-- End Google Tag Manager -->
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Perface</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#working-directory"><i class="fa fa-check"></i><b>1.2</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="01-intro.html"><a href="01-intro.html#r-project"><i class="fa fa-check"></i><b>1.2.1</b> R project</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.3</b> Packages</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
+<li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="02-basic.html"><a href="02-basic.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-basic.html"><a href="02-basic.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-basic.html"><a href="02-basic.html#-factor"><i class="fa fa-check"></i><b>2.1.3</b> 類別物件 (factor)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-basic.html"><a href="02-basic.html#-matrix"><i class="fa fa-check"></i><b>2.1.4</b> 陣列或矩陣 (matrix)</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-basic.html"><a href="02-basic.html#-list"><i class="fa fa-check"></i><b>2.1.5</b> 序列 (list)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-basic.html"><a href="02-basic.html#section-2.1.6"><i class="fa fa-check"></i><b>2.1.6</b> 特殊變數介紹</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 基本運算</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-basic.html"><a href="02-basic.html#-io"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.1</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.2</b> TroubleShooting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-basic.html"><a href="02-basic.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 控制流程與自訂函數</a></li>
+<li class="chapter" data-level="2.5" data-path="02-basic.html"><a href="02-basic.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 綜合演練</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="02-basic.html"><a href="02-basic.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.5.1</b> First Step to Data Analysis</a></li>
+<li class="chapter" data-level="2.5.2" data-path="02-basic.html"><a href="02-basic.html#conditional-slicing"><i class="fa fa-check"></i><b>2.5.2</b> Conditional slicing</a></li>
+<li class="chapter" data-level="2.5.3" data-path="02-basic.html"><a href="02-basic.html#writeread-file"><i class="fa fa-check"></i><b>2.5.3</b> Write/Read file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-ETL.html"><a href="03-ETL.html"><i class="fa fa-check"></i><b>3</b> ETL - Using dplyr</a><ul>
+<li class="chapter" data-level="3.1" data-path="03-ETL.html"><a href="03-ETL.html#data-wrangling"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="03-ETL.html"><a href="03-ETL.html#dataset"><i class="fa fa-check"></i><b>3.2</b> Dataset</a></li>
+<li class="chapter" data-level="3.3" data-path="03-ETL.html"><a href="03-ETL.html#pipeline-style"><i class="fa fa-check"></i><b>3.3</b> Pipeline Style</a></li>
+<li class="chapter" data-level="3.4" data-path="03-ETL.html"><a href="03-ETL.html#librarydplyr"><i class="fa fa-check"></i><b>3.4</b> library(dplyr)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03-ETL.html"><a href="03-ETL.html#select"><i class="fa fa-check"></i><b>3.4.1</b> select</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-ETL.html"><a href="03-ETL.html#filter"><i class="fa fa-check"></i><b>3.4.2</b> filter</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03-ETL.html"><a href="03-ETL.html#mutate"><i class="fa fa-check"></i><b>3.4.3</b> mutate</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03-ETL.html"><a href="03-ETL.html#group_by"><i class="fa fa-check"></i><b>3.4.4</b> group_by</a></li>
+<li class="chapter" data-level="3.4.5" data-path="03-ETL.html"><a href="03-ETL.html#summarise"><i class="fa fa-check"></i><b>3.4.5</b> summarise</a></li>
+<li class="chapter" data-level="3.4.6" data-path="03-ETL.html"><a href="03-ETL.html#arrange"><i class="fa fa-check"></i><b>3.4.6</b> arrange</a></li>
+<li class="chapter" data-level="3.4.7" data-path="03-ETL.html"><a href="03-ETL.html#bind"><i class="fa fa-check"></i><b>3.4.7</b> bind</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-ETL.html"><a href="03-ETL.html#libraryreshape2"><i class="fa fa-check"></i><b>3.5</b> library(reshape2)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03-ETL.html"><a href="03-ETL.html#melt"><i class="fa fa-check"></i><b>3.5.1</b> melt</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03-ETL.html"><a href="03-ETL.html#cast"><i class="fa fa-check"></i><b>3.5.2</b> cast</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03-ETL.html"><a href="03-ETL.html#-1"><i class="fa fa-check"></i><b>3.6</b> 綜合演練</a></li>
+<li class="chapter" data-level="3.7" data-path="03-ETL.html"><a href="03-ETL.html#cross-analysis"><i class="fa fa-check"></i><b>3.7</b> Cross Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-EDA.html"><a href="04-EDA.html"><i class="fa fa-check"></i><b>4</b> EDA - Using ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="04-EDA.html"><a href="04-EDA.html#eda"><i class="fa fa-check"></i><b>4.1</b> EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="04-EDA.html"><a href="04-EDA.html#libraryggplot2"><i class="fa fa-check"></i><b>4.2</b> library(ggplot2)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="04-EDA.html"><a href="04-EDA.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="04-EDA.html"><a href="04-EDA.html#line-chart"><i class="fa fa-check"></i><b>4.2.2</b> Line Chart</a></li>
+<li class="chapter" data-level="4.2.3" data-path="04-EDA.html"><a href="04-EDA.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="4.2.4" data-path="04-EDA.html"><a href="04-EDA.html#bar-chart"><i class="fa fa-check"></i><b>4.2.4</b> Bar Chart</a></li>
+<li class="chapter" data-level="4.2.5" data-path="04-EDA.html"><a href="04-EDA.html#pie-chart"><i class="fa fa-check"></i><b>4.2.5</b> Pie Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="04-EDA.html"><a href="04-EDA.html#facet_"><i class="fa fa-check"></i><b>4.3</b> facet_</a></li>
+<li class="chapter" data-level="4.4" data-path="04-EDA.html"><a href="04-EDA.html#librarygridextra"><i class="fa fa-check"></i><b>4.4</b> library(gridExtra)</a></li>
+<li class="chapter" data-level="4.5" data-path="04-EDA.html"><a href="04-EDA.html#libraryplotly"><i class="fa fa-check"></i><b>4.5</b> library(plotly)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-reporting.html"><a href="05-reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting - Using rmarkdown</a><ul>
+<li class="chapter" data-level="5.1" data-path="05-reporting.html"><a href="05-reporting.html#markdown-.md"><i class="fa fa-check"></i><b>5.1</b> Markdown (*.md)</a></li>
+<li class="chapter" data-level="5.2" data-path="05-reporting.html"><a href="05-reporting.html#r-markdown-.rmd"><i class="fa fa-check"></i><b>5.2</b> R Markdown (*.Rmd)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-groceries.html"><a href="06-groceries.html"><i class="fa fa-check"></i><b>6</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="6.1" data-path="06-groceries.html"><a href="06-groceries.html#opendata"><i class="fa fa-check"></i><b>6.1</b> OpenData</a></li>
+<li class="chapter" data-level="6.2" data-path="06-groceries.html"><a href="06-groceries.html#from-local-files"><i class="fa fa-check"></i><b>6.2</b> From Local Files</a></li>
+<li class="chapter" data-level="6.3" data-path="06-groceries.html"><a href="06-groceries.html#batch-download-import"><i class="fa fa-check"></i><b>6.3</b> Batch Download &amp; import</a></li>
+<li class="chapter" data-level="6.4" data-path="06-groceries.html"><a href="06-groceries.html#accessing-an-api"><i class="fa fa-check"></i><b>6.4</b> Accessing an API</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="07-DBI.html"><a href="07-DBI.html"><i class="fa fa-check"></i><b>7</b> Using Database</a><ul>
+<li class="chapter" data-level="7.1" data-path="07-DBI.html"><a href="07-DBI.html#r-database-interface-dbi"><i class="fa fa-check"></i><b>7.1</b> R Database Interface (DBI)</a></li>
+<li class="chapter" data-level="7.2" data-path="07-DBI.html"><a href="07-DBI.html#sqlite"><i class="fa fa-check"></i><b>7.2</b> Sqlite</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html"><i class="fa fa-check"></i><b>8</b> Elementary Statistics - Quick Review</a><ul>
+<li class="chapter" data-level="8.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#preliminaries"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="8.2" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#descriptive-statistics"><i class="fa fa-check"></i><b>8.2</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#cross-analysis-1"><i class="fa fa-check"></i><b>8.2.1</b> Cross-Analysis</a></li>
+<li class="chapter" data-level="8.2.2" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#correlation"><i class="fa fa-check"></i><b>8.2.2</b> Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>8.3</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#hypothesis-testing"><i class="fa fa-check"></i><b>8.4</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#t-tests"><i class="fa fa-check"></i><b>8.4.1</b> t-tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#anova"><i class="fa fa-check"></i><b>8.4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="8.4.3" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#manova"><i class="fa fa-check"></i><b>8.4.3</b> MANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#linear-model"><i class="fa fa-check"></i><b>8.5</b> Linear Model</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#simple-linear-model"><i class="fa fa-check"></i><b>8.5.1</b> Simple Linear Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#generalized-linear-models"><i class="fa fa-check"></i><b>8.6</b> Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="09-multivariate.html"><a href="09-multivariate.html"><i class="fa fa-check"></i><b>9</b> Multivariate Statistics - Quick Review</a><ul>
+<li class="chapter" data-level="9.1" data-path="09-multivariate.html"><a href="09-multivariate.html#preliminaries-1"><i class="fa fa-check"></i><b>9.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="9.2" data-path="09-multivariate.html"><a href="09-multivariate.html#principal-components-analysis"><i class="fa fa-check"></i><b>9.2</b> Principal Components Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="09-multivariate.html"><a href="09-multivariate.html#factor-analysis"><i class="fa fa-check"></i><b>9.3</b> Factor Analysis</a></li>
+<li class="chapter" data-level="9.4" data-path="09-multivariate.html"><a href="09-multivariate.html#clustering---kmeans"><i class="fa fa-check"></i><b>9.4</b> Clustering - kmeans</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Thinking with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="elementary-statistics---quick-review" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Elementary Statistics - Quick Review</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu, LastUpdate: 2018-07-18
+</div>
+<div id="preliminaries" class="section level2">
+<h2><span class="header-section-number">8.1</span> Preliminaries</h2>
+<ul>
+<li>Necessaries
+<ul>
+<li><a href="http://www.statmethods.net/index.html">Quick R</a></li>
+<li><a href="http://www.r-tutor.com/elementary-statistics">Elementary Statistics with R</a></li>
+<li><a href="https://stats.idre.ucla.edu/r/">idre - R</a></li>
+</ul></li>
+<li>Dataset for this tutorial
+<ul>
+<li><strong>aggregate</strong> vs disaggregate data</li>
+<li>aggregate level</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># import dataset from file</span>
+ubike &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;./data/ubike-weather-big5.csv&quot;</span>, 
+                  <span class="dt">fileEncoding =</span> <span class="st">&#39;BIG-5&#39;</span>,
+                  <span class="dt">stringsAsFactors =</span> F)
+
+<span class="co"># A galance of dataset</span>
+<span class="kw">head</span>(ubike)
+<span class="kw">tail</span>(ubike)
+<span class="kw">str</span>(ubike)
+<span class="kw">summary</span>(ubike)
+
+<span class="co"># basic Extract-Transform-Load process using dplyr</span>
+<span class="kw">library</span>(dplyr)
+
+ubike &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(
+  date, hour, sno, sarea, sna, lat, lng, tot, 
+  <span class="dt">sbi =</span> avg.sbi, <span class="dt">bemp =</span> avg.bemp,
+  temp, humidity, pressure
+) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(
+  <span class="dt">sbi =</span> <span class="kw">ceiling</span>(sbi), 
+  <span class="dt">bemp =</span> <span class="kw">ceiling</span>(bemp),
+  <span class="dt">temp =</span> temp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">2</span>), 
+  <span class="dt">humidity =</span> humidity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">2</span>), 
+  <span class="dt">pressure =</span> pressure <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">2</span>)
+)
+
+<span class="co"># check again ==&gt; correct variable types</span>
+<span class="co"># str(ubike)</span>
+ubike &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date),
+         <span class="dt">sarea =</span> <span class="kw">as.factor</span>(sarea))</code></pre></div>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">欄位名稱</th>
+<th align="left">代號</th>
+<th align="left">欄位名稱</th>
+<th align="left">代號</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">日期</td>
+<td align="left">date</td>
+<td align="left">總停車格</td>
+<td align="left">tot</td>
+</tr>
+<tr class="even">
+<td align="left">時間</td>
+<td align="left">hour</td>
+<td align="left">車輛數</td>
+<td align="left">sbi</td>
+</tr>
+<tr class="odd">
+<td align="left">場站代號</td>
+<td align="left">sno</td>
+<td align="left">空位數</td>
+<td align="left">bemp</td>
+</tr>
+<tr class="even">
+<td align="left">場站區域</td>
+<td align="left">sarea</td>
+<td align="left">氣溫</td>
+<td align="left">temp</td>
+</tr>
+<tr class="odd">
+<td align="left">場站名稱</td>
+<td align="left">sna</td>
+<td align="left">溼度</td>
+<td align="left">humidity</td>
+</tr>
+<tr class="even">
+<td align="left">經度</td>
+<td align="left">lat</td>
+<td align="left">氣壓</td>
+<td align="left">pressure</td>
+</tr>
+<tr class="odd">
+<td align="left">緯度</td>
+<td align="left">lng</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="descriptive-statistics" class="section level2">
+<h2><span class="header-section-number">8.2</span> Descriptive Statistics</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ubike)</code></pre></div>
+<pre><code>      date                 hour            sno             sarea                       sna             lat             lng             tot        
+ Min.   :2014-12-08   Min.   : 0.00   Min.   :   1.0   大安區 : 4276   Y-17青少年育樂中心:  153   Min.   :24.97   Min.   :121.4   Min.   : 24.00  
+ 1st Qu.:2014-12-10   1st Qu.: 6.00   1st Qu.:  56.0   信義區 : 3518   三張犁            :  153   1st Qu.:25.03   1st Qu.:121.5   1st Qu.: 36.00  
+ Median :2014-12-11   Median :12.00   Median : 112.0   中山區 : 2902   三民公園          :  153   Median :25.04   Median :121.5   Median : 44.00  
+ Mean   :2014-12-11   Mean   :11.93   Mean   : 266.8   中正區 : 2601   三重商工          :  153   Mean   :25.05   Mean   :121.5   Mean   : 46.29  
+ 3rd Qu.:2014-12-13   3rd Qu.:18.00   3rd Qu.: 168.0   松山區 : 2295   三重國民運動中心  :  153   3rd Qu.:25.06   3rd Qu.:121.6   3rd Qu.: 52.00  
+ Max.   :2014-12-14   Max.   :23.00   Max.   :1056.0   北投區 : 1836   (Other)           :33443   Max.   :25.14   Max.   :121.7   Max.   :180.00  
+                                                       (Other):16828   NA&#39;s              :   48                                                   
+      sbi              bemp             temp          humidity        pressure   
+ Min.   :  0.00   Min.   :  0.00   Min.   :11.57   Min.   :56.62   Min.   :1002  
+ 1st Qu.:  6.00   1st Qu.: 20.00   1st Qu.:14.51   1st Qu.:72.26   1st Qu.:1018  
+ Median : 14.00   Median : 28.00   Median :16.78   Median :83.82   Median :1021  
+ Mean   : 16.14   Mean   : 30.31   Mean   :16.84   Mean   :81.42   Mean   :1021  
+ 3rd Qu.: 23.00   3rd Qu.: 38.00   3rd Qu.:18.64   3rd Qu.:90.23   3rd Qu.:1024  
+ Max.   :160.00   Max.   :179.00   Max.   :25.34   Max.   :97.39   Max.   :1033  
+                                   NA&#39;s   :4278    NA&#39;s   :4278    NA&#39;s   :4278  </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sarea, sna) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(bemp), <span class="kw">median</span>(bemp), <span class="kw">max</span>(bemp), <span class="kw">min</span>(bemp), <span class="kw">sd</span>(bemp))</code></pre></div>
+<pre><code># A tibble: 231 x 7
+# Groups:   sarea [?]
+   sarea  sna                 `mean(bemp)` `median(bemp)` `max(bemp)` `min(bemp)` `sd(bemp)`
+   &lt;fct&gt;  &lt;fct&gt;                      &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+ 1 三重區 三重商工                    47.6           51.0        62.0       25.0       10.7 
+ 2 三重區 三重國民運動中心            31.2           32.0        51.0        0         11.4 
+ 3 三重區 捷運三重站(3號出口)         24.8           26.0        33.0        9.00       6.15
+ 4 三重區 明志國中                    29.6           29.0        40.0       20.0        5.88
+ 5 三重區 興華公園                    26.5           27.0        38.0       10.0        5.79
+ 6 三重區 重陽國小                    23.5           23.0        38.0       10.0        5.69
+ 7 中和區 中和公園                    31.4           32.0        44.0       10.0        9.48
+ 8 中和區 捷運永安市場站              52.9           53.0        72.0       18.0       13.3 
+ 9 中和區 秀山國小                    28.5           27.0        59.0        0         13.3 
+10 中山區 中山行政中心                20.2           20.0        30.0        7.00       6.63
+# ... with 221 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Combine plots</span>
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co"># plot parameter mfrow: number of Multiple Figures (use ROW-wise).</span>
+<span class="kw">hist</span>(ubike<span class="op">$</span>bemp) <span class="co"># hist plot</span>
+<span class="kw">boxplot</span>(ubike<span class="op">$</span>bemp, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>) <span class="co"># boxplot</span>
+<span class="kw">plot</span>(<span class="kw">density</span>(ubike<span class="op">$</span>bemp)) <span class="co"># kernel density plots</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-88-1.png" width="1152" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># reset</span></code></pre></div>
+<div id="cross-analysis-1" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Cross-Analysis</h3>
+<ul>
+<li>Summary Statistics by Groups</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+## how many stations by districts 
+ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(date <span class="op">==</span><span class="st"> &#39;2014-12-08&#39;</span>, hour <span class="op">==</span><span class="st"> &#39;20&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sarea) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">stations =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">head</span>()</code></pre></div>
+<pre><code># A tibble: 6 x 2
+  sarea  stations
+  &lt;fct&gt;     &lt;int&gt;
+1 三重區        5
+2 中和區        3
+3 中山區       19
+4 中正區       17
+5 信義區       23
+6 內湖區       11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## how many rented bikes by station per hour
+<span class="co"># Long-data format to Wide-data</span>
+<span class="kw">library</span>(reshape2)
+
+ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">==</span><span class="st"> &#39;世貿二館&#39;</span> <span class="op">|</span><span class="st"> </span>sna <span class="op">==</span><span class="st"> &#39;信義廣場(台北101)&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># filter(sna %in% c(&#39;世貿二館&#39;, &#39;信義廣場(台北101)&#39;)) %&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sna, sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">dcast</span>(<span class="dt">formula =</span> date <span class="op">+</span><span class="st"> </span>hour <span class="op">~</span><span class="st"> </span>sna, <span class="dt">value.var =</span> <span class="st">&#39;sbi&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>        date hour 世貿二館 信義廣場(台北101)
+1 2014-12-08   15       32                24
+2 2014-12-08   16       32                27
+3 2014-12-08   17       28                24
+4 2014-12-08   18       31                22
+5 2014-12-08   19       25                42
+6 2014-12-08   20       15                40</code></pre>
+</div>
+<div id="correlation" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Correlation</h3>
+<ul>
+<li>References
+<ul>
+<li><a href="http://www.statmethods.net/stats/correlations.html" class="uri">http://www.statmethods.net/stats/correlations.html</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">==</span><span class="st"> &#39;世貿二館&#39;</span> <span class="op">|</span><span class="st"> </span>sna <span class="op">==</span><span class="st"> &#39;信義廣場(台北101)&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># filter(sna %in% c(&#39;世貿二館&#39;, &#39;信義廣場(台北101)&#39;)) %&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sna, sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">dcast</span>(<span class="dt">formula =</span> date <span class="op">+</span><span class="st"> </span>hour <span class="op">~</span><span class="st"> </span>sna, <span class="dt">value.var =</span> <span class="st">&#39;sbi&#39;</span>)
+
+<span class="kw">cov</span>(dat[,<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>])</code></pre></div>
+<pre><code>                  世貿二館 信義廣場(台北101)
+世貿二館          557.1198          208.5020
+信義廣場(台北101) 208.5020          296.5932</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(dat[,<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">method =</span> <span class="st">&#39;pearson&#39;</span>)</code></pre></div>
+<pre><code>                   世貿二館 信義廣場(台北101)
+世貿二館          1.0000000         0.5129268
+信義廣場(台北101) 0.5129268         1.0000000</code></pre>
+</div>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2><span class="header-section-number">8.3</span> Exploratory Data Analysis</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">==</span><span class="st"> &#39;世貿二館&#39;</span> <span class="op">|</span><span class="st"> </span>sna <span class="op">==</span><span class="st"> &#39;信義廣場(台北101)&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># filter(sna %in% c(&#39;世貿二館&#39;, &#39;信義廣場(台北101)&#39;)) %&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sarea, sna, sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>         date hour  sarea               sna sbi
+1  2014-12-08   15 信義區          世貿二館  32
+2  2014-12-08   15 信義區 信義廣場(台北101)  24
+3  2014-12-08   16 信義區          世貿二館  32
+4  2014-12-08   16 信義區 信義廣場(台北101)  27
+5  2014-12-08   17 信義區          世貿二館  28
+6  2014-12-08   17 信義區 信義廣場(台北101)  24
+7  2014-12-08   18 信義區          世貿二館  31
+8  2014-12-08   18 信義區 信義廣場(台北101)  22
+9  2014-12-08   19 信義區          世貿二館  25
+10 2014-12-08   19 信義區 信義廣場(台北101)  42</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## plots
+<span class="kw">library</span>(ggplot2)
+
+ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">==</span><span class="st"> &#39;世貿二館&#39;</span> <span class="op">|</span><span class="st"> </span>sna <span class="op">==</span><span class="st"> &#39;信義廣場(台北101)&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sarea, sna, sbi) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">y =</span> sbi, <span class="dt">group =</span> sna, <span class="dt">color =</span> sna)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(date<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) <span class="co"># for MAC user</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+<div id="hypothesis-testing" class="section level2">
+<h2><span class="header-section-number">8.4</span> Hypothesis Testing</h2>
+<ul>
+<li>References
+<ul>
+<li><a href="https://stats.idre.ucla.edu/other/mult-pkg/whatstat/">Which Statistical Test?</a></li>
+<li><a href="http://www.statmethods.net/stats/anova.html">Quick-R: ANOVA &amp; MANOVA</a></li>
+<li><a href="http://programmermagazine.github.io/201311/htm/article3.html">變異數分析 ANOVA (作者：陳鍾誠)</a></li>
+</ul></li>
+</ul>
+<div id="t-tests" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> t-tests</h3>
+<ul>
+<li>Quiz: 檢定兩區域平均租借數是否相等 (Independent 2-group sample t-test)
+<ul>
+<li>H0: u1 = u2 vs H1: u1 != u2</li>
+<li>p is small, reject H0, u1 != u2</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dataset</span>
+dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">==</span><span class="st"> &#39;世貿二館&#39;</span> <span class="op">|</span><span class="st"> </span>sna <span class="op">==</span><span class="st"> &#39;信義廣場(台北101)&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># filter(sna %in% c(&#39;世貿二館&#39;, &#39;信義廣場(台北101)&#39;)) %&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sna, sbi) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">dcast</span>(<span class="dt">formula =</span> date <span class="op">+</span><span class="st"> </span>hour <span class="op">~</span><span class="st"> </span>sna, <span class="dt">value.var =</span> <span class="st">&#39;sbi&#39;</span>)
+
+<span class="co"># t-test</span>
+<span class="kw">t.test</span>(dat<span class="op">$</span>世貿二館, dat<span class="op">$</span><span class="st">`</span><span class="dt">信義廣場(台北101)</span><span class="st">`</span>) </code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  dat$世貿二館 and dat$`信義廣場(台北101)`
+t = 3.4033, df = 278.1, p-value = 0.0007636
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  3.389221 12.689210
+sample estimates:
+mean of x mean of y 
+ 31.51634  23.47712 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## results are stored in the list
+rt &lt;-<span class="st"> </span><span class="kw">t.test</span>(dat<span class="op">$</span>世貿二館, dat<span class="op">$</span><span class="st">`</span><span class="dt">信義廣場(台北101)</span><span class="st">`</span>) 
+rt<span class="op">$</span>p.value</code></pre></div>
+<pre><code>[1] 0.0007636354</code></pre>
+</div>
+<div id="anova" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> ANOVA</h3>
+<ul>
+<li>Quiz: 探討四車站(sna)的平均租借數(sbi)租借數趨勢**</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dataset</span>
+dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;世貿二館&#39;</span>, <span class="st">&#39;世貿三館&#39;</span>, <span class="st">&#39;信義廣場(台北101)&#39;</span>, <span class="st">&#39;市民廣場&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sna, sbi) 
+
+<span class="kw">head</span>(dat)</code></pre></div>
+<pre><code>        date hour               sna sbi
+1 2014-12-08   15          市民廣場  40
+2 2014-12-08   15          世貿二館  32
+3 2014-12-08   15 信義廣場(台北101)  24
+4 2014-12-08   15          世貿三館  20
+5 2014-12-08   16          市民廣場  41
+6 2014-12-08   16          世貿二館  32</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<pre><code>      date                 hour                       sna           sbi       
+ Min.   :2014-12-08   Min.   : 0.00   世貿三館          :153   Min.   : 0.00  
+ 1st Qu.:2014-12-10   1st Qu.: 6.00   世貿二館          :153   1st Qu.:10.00  
+ Median :2014-12-11   Median :12.00   信義廣場(台北101) :153   Median :26.00  
+ Mean   :2014-12-11   Mean   :11.94   市民廣場          :153   Mean   :26.93  
+ 3rd Qu.:2014-12-13   3rd Qu.:18.00   Y-17青少年育樂中心:  0   3rd Qu.:41.00  
+ Max.   :2014-12-14   Max.   :23.00   三張犁            :  0   Max.   :74.00  
+                                      (Other)           :  0                  </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># EDA</span>
+dat <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">y =</span> sbi, <span class="dt">group =</span> sna, <span class="dt">colour =</span> sna)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(hour, sna) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(sbi)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">y =</span> <span class="st">`</span><span class="dt">mean(sbi)</span><span class="st">`</span>, <span class="dt">group =</span> sna, <span class="dt">colour =</span> sna)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 檢定四車站(sna)的平均租借數(sbi)是否相等
+dat <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> sna, <span class="dt">y =</span> sbi)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Ho: u1 = u2 = u3 = u4, H1: 全不相等
+## results
+fit &lt;-<span class="st"> </span><span class="kw">aov</span>(sbi <span class="op">~</span><span class="st"> </span>sna, <span class="dt">data =</span> dat) 
+fit</code></pre></div>
+<pre><code>Call:
+   aov(formula = sbi ~ sna, data = dat)
+
+Terms:
+                      sna Residuals
+Sum of Squares    5146.45 201235.80
+Deg. of Freedom         3       608
+
+Residual standard error: 18.19285
+Estimated effects may be unbalanced</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## summary table: 
+<span class="co"># </span><span class="al">WARNING</span><span class="co">: R provides Type I sequential SS, not the default Type III marginal SS reported by SAS and SPSS. </span>
+<span class="co"># Rej Ho, </span>
+<span class="kw">summary</span>(fit)</code></pre></div>
+<pre><code>             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+sna           3   5146    1716   5.183 0.00153 **
+Residuals   608 201236     331                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(fit)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># post-hoc test: Multiple Comparisons</span>
+<span class="kw">TukeyHSD</span>(fit)</code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = sbi ~ sna, data = dat)
+
+$sna
+                                 diff         lwr         upr     p adj
+世貿二館-世貿三館           4.9869281  -0.3715476 10.34540380 0.0786081
+信義廣場(台北101)-世貿三館 -3.0522876  -8.4107633  2.30618811 0.4579288
+市民廣場-世貿三館          -0.3202614  -5.6787371  5.03821425 0.9986990
+信義廣場(台北101)-世貿二館 -8.0392157 -13.3976914 -2.68073999 0.0007091
+市民廣場-世貿二館          -5.3071895 -10.6656652  0.05128615 0.0533339
+市民廣場-信義廣場(台北101)  2.7320261  -2.6264495  8.09050184 0.5546709</code></pre>
+</div>
+<div id="manova" class="section level3">
+<h3><span class="header-section-number">8.4.3</span> MANOVA</h3>
+<ul>
+<li>Quiz: 同時對四車站(sna)的平均租借數(sbi)及空位數(bemp)進行檢定**</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sna <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;世貿二館&#39;</span>, <span class="st">&#39;世貿三館&#39;</span>, <span class="st">&#39;信義廣場(台北101)&#39;</span>, <span class="st">&#39;市民廣場&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(date, hour, sna, sbi, bemp) 
+
+<span class="kw">head</span>(dat)</code></pre></div>
+<pre><code>        date hour               sna sbi bemp
+1 2014-12-08   15          市民廣場  40   21
+2 2014-12-08   15          世貿二館  32   48
+3 2014-12-08   15 信義廣場(台北101)  24   57
+4 2014-12-08   15          世貿三館  20   41
+5 2014-12-08   16          市民廣場  41   19
+6 2014-12-08   16          世貿二館  32   48</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<pre><code>      date                 hour                       sna           sbi             bemp      
+ Min.   :2014-12-08   Min.   : 0.00   世貿三館          :153   Min.   : 0.00   Min.   : 0.00  
+ 1st Qu.:2014-12-10   1st Qu.: 6.00   世貿二館          :153   1st Qu.:10.00   1st Qu.:25.00  
+ Median :2014-12-11   Median :12.00   信義廣場(台北101) :153   Median :26.00   Median :40.50  
+ Mean   :2014-12-11   Mean   :11.94   市民廣場          :153   Mean   :26.93   Mean   :43.02  
+ 3rd Qu.:2014-12-13   3rd Qu.:18.00   Y-17青少年育樂中心:  0   3rd Qu.:41.00   3rd Qu.:59.00  
+ Max.   :2014-12-14   Max.   :23.00   三張犁            :  0   Max.   :74.00   Max.   :80.00  
+                                      (Other)           :  0                                  </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># manova</span>
+fit &lt;-<span class="st"> </span><span class="kw">manova</span>(<span class="kw">cbind</span>(sbi,bemp) <span class="op">~</span><span class="st"> </span>sna, <span class="dt">data =</span> dat) 
+
+<span class="kw">summary</span>(fit) </code></pre></div>
+<pre><code>           Df  Pillai approx F num Df den Df    Pr(&gt;F)    
+sna         3 0.85249   150.56      6   1216 &lt; 2.2e-16 ***
+Residuals 608                                             
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 等同做兩次 anova</span>
+<span class="kw">summary.aov</span>(fit) <span class="co"># univariate ANOVA tables</span></code></pre></div>
+<pre><code> Response sbi :
+             Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+sna           3   5146 1715.48   5.183 0.001529 **
+Residuals   608 201236  330.98                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+ Response bemp :
+             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+sna           3  63452   21150   63.89 &lt; 2.2e-16 ***
+Residuals   608 201276     331                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit, <span class="dt">test =</span> <span class="st">&quot;Wilks&quot;</span>) <span class="co"># ANOVA table of Wilks&#39; lambda</span></code></pre></div>
+<pre><code>           Df   Wilks approx F num Df den Df    Pr(&gt;F)    
+sna         3 0.16738   292.23      6   1214 &lt; 2.2e-16 ***
+Residuals 608                                             
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="linear-model" class="section level2">
+<h2><span class="header-section-number">8.5</span> Linear Model</h2>
+<div id="simple-linear-model" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> Simple Linear Model</h3>
+<ul>
+<li>簡單線性迴歸 (Linear Regression)
+<ul>
+<li><code>y = ax + b</code>, <code>y = f(x) + e</code></li>
+<li>Assumptions:
+<ul>
+<li>Linear relationship.</li>
+<li>Multivariate normality.</li>
+<li>No or little multicollinearity.</li>
+<li>No auto-correlation.</li>
+<li>Homoscedasticity.</li>
+</ul></li>
+<li>References
+<ul>
+<li><a href="https://www.statmethods.net/stats/regression.html">Quick-R: Multiple (Linear) Regression</a></li>
+</ul></li>
+</ul></li>
+<li>Issues:
+<ul>
+<li>Data Transformation
+<ul>
+<li><code>log(x)</code>, <code>x^2</code></li>
+<li><a href="https://www.quora.com/Why-do-we-log-variables-in-regression-model">Why do we log variables in regression model?</a>
+<ul>
+<li>skewness</li>
+<li>transform a non-linear model into a linear model</li>
+<li>economics interpretation</li>
+</ul></li>
+</ul></li>
+<li>Missing Data
+<ul>
+<li><code>na.omit</code></li>
+<li>replace with <code>mean()</code></li>
+<li><a href="https://datascienceplus.com/imputing-missing-data-with-r-mice-package/">Imputing Missing Data with R; MICE package</a></li>
+</ul></li>
+<li>Variable Selection
+<ul>
+<li>stepwise selection (forward, backward, both)</li>
+</ul></li>
+<li>Cross Validation
+<ul>
+<li>Bootstraping</li>
+</ul></li>
+</ul></li>
+<li>Quiz: 試探討各站平均租借數(sbi)影響因素</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sna <span class="op">==</span><span class="st"> &#39;世貿二館&#39;</span>) 
+
+<span class="kw">head</span>(dat)</code></pre></div>
+<pre><code>        date hour sno  sarea      sna      lat      lng tot sbi bemp  temp humidity pressure
+1 2014-12-08   15   6 信義區 世貿二館 25.03474 121.5657  80  32   48 16.25    92.32  1020.33
+2 2014-12-08   16   6 信義區 世貿二館 25.03474 121.5657  80  32   48 15.95    91.82  1020.88
+3 2014-12-08   17   6 信義區 世貿二館 25.03474 121.5657  80  28   52 15.88    92.35  1021.48
+4 2014-12-08   18   6 信義區 世貿二館 25.03474 121.5657  80  31   49 15.79    92.08  1022.03
+5 2014-12-08   19   6 信義區 世貿二館 25.03474 121.5657  80  25   55 15.81    92.29  1021.96
+6 2014-12-08   20   6 信義區 世貿二館 25.03474 121.5657  80  15   65 15.96    92.28  1022.09</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<pre><code>      date                 hour            sno        sarea                     sna           lat             lng             tot          sbi       
+ Min.   :2014-12-08   Min.   : 0.00   Min.   :6   信義區 :153   世貿二館          :153   Min.   :25.03   Min.   :121.6   Min.   :80   Min.   : 0.00  
+ 1st Qu.:2014-12-10   1st Qu.: 6.00   1st Qu.:6   三重區 :  0   Y-17青少年育樂中心:  0   1st Qu.:25.03   1st Qu.:121.6   1st Qu.:80   1st Qu.: 6.00  
+ Median :2014-12-11   Median :12.00   Median :6   中和區 :  0   三張犁            :  0   Median :25.03   Median :121.6   Median :80   Median :32.00  
+ Mean   :2014-12-11   Mean   :11.94   Mean   :6   中山區 :  0   三民公園          :  0   Mean   :25.03   Mean   :121.6   Mean   :80   Mean   :31.52  
+ 3rd Qu.:2014-12-13   3rd Qu.:18.00   3rd Qu.:6   中正區 :  0   三重商工          :  0   3rd Qu.:25.03   3rd Qu.:121.6   3rd Qu.:80   3rd Qu.:54.00  
+ Max.   :2014-12-14   Max.   :23.00   Max.   :6   內湖區 :  0   三重國民運動中心  :  0   Max.   :25.03   Max.   :121.6   Max.   :80   Max.   :74.00  
+                                                  (Other):  0   (Other)           :  0                                                               
+      bemp            temp          humidity        pressure   
+ Min.   : 7.00   Min.   :12.96   Min.   :60.20   Min.   :1014  
+ 1st Qu.:27.00   1st Qu.:14.48   1st Qu.:71.29   1st Qu.:1019  
+ Median :48.00   Median :16.49   Median :88.30   Median :1021  
+ Mean   :49.04   Mean   :16.70   Mean   :82.80   Mean   :1021  
+ 3rd Qu.:75.00   3rd Qu.:18.35   3rd Qu.:91.42   3rd Qu.:1024  
+ Max.   :80.00   Max.   :24.71   Max.   :95.84   Max.   :1027  
+                                                               </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## correlation
+dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sbi, temp, humidity, pressure) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cor</span>() <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">sbi</th>
+<th align="right">temp</th>
+<th align="right">humidity</th>
+<th align="right">pressure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sbi</td>
+<td align="right">1.0000000</td>
+<td align="right">0.1624705</td>
+<td align="right">0.1044929</td>
+<td align="right">-0.2248368</td>
+</tr>
+<tr class="even">
+<td>temp</td>
+<td align="right">0.1624705</td>
+<td align="right">1.0000000</td>
+<td align="right">0.4723313</td>
+<td align="right">-0.9111633</td>
+</tr>
+<tr class="odd">
+<td>humidity</td>
+<td align="right">0.1044929</td>
+<td align="right">0.4723313</td>
+<td align="right">1.0000000</td>
+<td align="right">-0.6561133</td>
+</tr>
+<tr class="even">
+<td>pressure</td>
+<td align="right">-0.2248368</td>
+<td align="right">-0.9111633</td>
+<td align="right">-0.6561133</td>
+<td align="right">1.0000000</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html</span>
+<span class="co"># install.packages(&#39;corrplot&#39;)</span>
+<span class="kw">library</span>(corrplot)
+dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sbi, temp, humidity, pressure) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">corrplot</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Model #####</span>
+fit &lt;-<span class="st"> </span><span class="kw">lm</span>(sbi <span class="op">~</span><span class="st"> </span>humidity, <span class="dt">data =</span> dat)
+<span class="kw">summary</span>(fit)</code></pre></div>
+<pre><code>
+Call:
+lm(formula = sbi ~ humidity, data = dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-32.362 -25.122  -1.564  20.945  44.067 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  12.7279    14.6764   0.867    0.387
+humidity      0.2269     0.1758   1.291    0.199
+
+Residual standard error: 23.55 on 151 degrees of freedom
+Multiple R-squared:  0.01092,   Adjusted R-squared:  0.004369 
+F-statistic: 1.667 on 1 and 151 DF,  p-value: 0.1986</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># useful functions for the fitted model #####</span>
+<span class="kw">influence</span>(fit) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str</span>()  <span class="co"># influence values</span></code></pre></div>
+<pre><code>List of 4
+ $ hat         : Named num [1:153] 0.0116 0.0111 0.0116 0.0113 0.0116 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:153] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+ $ coefficients: num [1:153, 1:2] 0.0634 0.0555 0.2157 0.0962 0.3266 ...
+  ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. ..$ : chr [1:153] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+  .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;humidity&quot;
+ $ sigma       : Named num [1:153] 23.6 23.6 23.6 23.6 23.6 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:153] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+ $ wt.res      : Named num [1:153] -1.68 -1.56 -5.68 -2.62 -8.67 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:153] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coefficients</span>(fit) <span class="co"># model coefficients</span></code></pre></div>
+<pre><code>(Intercept)    humidity 
+ 12.7278676   0.2269214 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(fit, <span class="dt">level=</span><span class="fl">0.95</span>) <span class="co"># CIs for model parameters </span></code></pre></div>
+<pre><code>                 2.5 %     97.5 %
+(Intercept) -16.269665 41.7254004
+humidity     -0.120342  0.5741849</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fitted values &amp; residuals</span>
+<span class="kw">fitted</span>(fit)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>] <span class="co"># predicted values</span></code></pre></div>
+<pre><code>       1        2        3        4        5        6        7        8        9       10 
+33.67725 33.56379 33.68406 33.62279 33.67045 33.66818 33.62052 33.33460 32.95564 32.15461 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">residuals</span>(fit)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>] <span class="co"># residuals</span></code></pre></div>
+<pre><code>         1          2          3          4          5          6          7          8          9         10 
+ -1.677255  -1.563794  -5.684063  -2.622794  -8.670447 -18.668178 -29.620525 -31.334604 -29.955645 -29.154612 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## diagnostic plots  #####
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(fit)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-2.png" width="672" /></p>
+<ul>
+<li>迴歸診斷 (Regression Diagnostics)
+<ul>
+<li><a href="https://socialsciences.mcmaster.ca/jfox/Courses/Brazil-2009/index.html">REGRESSION DIAGNOSTICS - John Fox</a>
+<ul>
+<li>Data craft: examining and <strong>transforming</strong> variables.</li>
+<li>Unusual data in linear models: <strong>outliers</strong>, leverage points, and influential observations, and what to do about them.</li>
+<li><strong>Non-normality</strong>, non-constant error variance, and nonlinearity in linear models: methods of detection, transformation, and other strategies.</li>
+<li>Diagnostics for unusual data and nonlinearity in generalized linear models.</li>
+</ul></li>
+<li>References
+<ul>
+<li><a href="https://data.library.virginia.edu/diagnostic-plots/">Understanding Diagnostic Plots for Linear Regression Analysis</a></li>
+<li><a href="https://www.andrew.cmu.edu/user/achoulde/94842/homework/regression_diagnostics.html#the-ideal-case-2">Regression diagnostic plots - Prof. Chouldechova</a></li>
+<li><a href="https://www.statmethods.net/stats/rdiagnostics.html">Quick-R: Regression Diagnostics</a></li>
+<li><a href="http://www.hmwu.idv.tw/web/R/B05-hmwu_R-Regression.pdf">統計模型與迴歸分析 - 吳漢銘</a></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## compare results with aov function  #####
+<span class="kw">anova</span>(fit) <span class="co"># anova table </span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: sbi
+           Df Sum Sq Mean Sq F value Pr(&gt;F)
+humidity    1    925  924.62  1.6669 0.1986
+Residuals 151  83758  554.69               </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aov</span>(sbi <span class="op">~</span><span class="st"> </span>humidity, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)
+humidity      1    925   924.6   1.667  0.199
+Residuals   151  83758   554.7               </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## discussions #####
+<span class="kw">lm</span>(temp <span class="op">~</span><span class="st"> </span>pressure, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>
+Call:
+lm(formula = temp ~ pressure, data = dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.5676 -0.4395  0.1141  0.5357  3.1227 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 733.26902   26.37064   27.81   &lt;2e-16 ***
+pressure     -0.70169    0.02582  -27.17   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.05 on 151 degrees of freedom
+Multiple R-squared:  0.8302,    Adjusted R-squared:  0.8291 
+F-statistic: 738.4 on 1 and 151 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(temp <span class="op">~</span><span class="st"> </span>pressure <span class="op">+</span><span class="st"> </span>humidity, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>
+Call:
+lm(formula = temp ~ pressure + humidity, data = dat)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.51362 -0.58447  0.02554  0.63272  1.98581 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 851.232500  32.601005  26.111  &lt; 2e-16 ***
+pressure     -0.813029   0.031412 -25.883  &lt; 2e-16 ***
+humidity     -0.051489   0.009531  -5.402 2.53e-07 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.9638 on 150 degrees of freedom
+Multiple R-squared:  0.8579,    Adjusted R-squared:  0.856 
+F-statistic: 452.7 on 2 and 150 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(sbi <span class="op">~</span><span class="st"> </span>temp <span class="op">+</span><span class="st"> </span>pressure <span class="op">+</span><span class="st"> </span>humidity, <span class="dt">data =</span> dat) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>
+Call:
+lm(formula = sbi ~ temp + pressure + humidity, data = dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-39.228 -23.288   0.634  19.695  51.375 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) 4938.1733  1828.5184   2.701  0.00772 **
+temp          -3.3921     1.9448  -1.744  0.08319 . 
+pressure      -4.7218     1.7492  -2.699  0.00775 **
+humidity      -0.3387     0.2481  -1.365  0.17426   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 22.96 on 149 degrees of freedom
+Multiple R-squared:  0.07273,   Adjusted R-squared:  0.05406 
+F-statistic: 3.896 on 3 and 149 DF,  p-value: 0.01026</code></pre>
+</div>
+</div>
+<div id="generalized-linear-models" class="section level2">
+<h2><span class="header-section-number">8.6</span> Generalized Linear Models</h2>
+<ul>
+<li>廣義線性模型
+<ul>
+<li>是傳統線性模型的延伸，可使用非常態分布的資料(例如視為離散的計數或測量比例) 建立模型。</li>
+<li><code>?glm</code>
+<ul>
+<li><a href="http://www.theanalysisfactor.com/r-tutorial-glm1/" class="uri">http://www.theanalysisfactor.com/r-tutorial-glm1/</a></li>
+<li><a href="http://stats.idre.ucla.edu/r/" class="uri">http://stats.idre.ucla.edu/r/</a></li>
+<li><a href="http://www.r-tutor.com/elementary-statistics/logistic-regression/estimated-logistic-regression-equation" class="uri">http://www.r-tutor.com/elementary-statistics/logistic-regression/estimated-logistic-regression-equation</a></li>
+</ul></li>
+</ul></li>
+<li>羅吉斯迴歸 (Logistic regression)
+<ul>
+<li>主要用於依變數 (y) 為二類 (0, 1) 的類別變項之情形 (即 y 符合二項分配 binomial distribution)</li>
+<li>實務常用於建立<strong>是否選擇</strong>之模型</li>
+<li>Generalized Linear Models using binomial family</li>
+</ul></li>
+<li>Quiz: 試探討市民到站借車時，有車機率之影響因素</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### building analyse dataset 
+
+<span class="co"># determine threshold value using histograme</span>
+ubike <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sarea, sna, tot, bemp) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hv_cars =</span> <span class="kw">round</span>(bemp<span class="op">/</span>tot, <span class="dt">digits =</span> <span class="dv">4</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hv_cars)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.05</span>) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># hv_cars rate &gt;60%，hv_cars_yn is 1 (TRUE)</span>
+dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">mutate</span>(<span class="dt">hv_cars =</span> <span class="kw">round</span>(bemp<span class="op">/</span>tot, <span class="dt">digits =</span> <span class="dv">4</span>),
+              <span class="dt">hv_cars_yn =</span> <span class="kw">ifelse</span>(hv_cars <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.6</span>, <span class="dv">1</span>, <span class="dv">0</span>))
+
+dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;信義區&#39;</span>)
+
+<span class="kw">head</span>(dat)</code></pre></div>
+<pre><code>        date hour sno  sarea               sna      lat      lng tot sbi bemp  temp humidity pressure hv_cars hv_cars_yn
+1 2014-12-08   15   3 信義區        台北市政府 25.03780 121.5652  40  11   30 16.24    91.76  1020.15  0.7500          1
+2 2014-12-08   15   4 信義區          市民廣場 25.03604 121.5623  60  40   21 16.31    91.62  1020.36  0.3500          0
+3 2014-12-08   15   5 信義區          興雅國中 25.03656 121.5687  60  35   26 16.16    92.38  1020.11  0.4333          0
+4 2014-12-08   15   6 信義區          世貿二館 25.03474 121.5657  80  32   48 16.25    92.32  1020.33  0.6000          0
+5 2014-12-08   15   7 信義區 信義廣場(台北101) 25.03304 121.5656  80  24   57 16.27    92.58  1020.43  0.7125          1
+6 2014-12-08   15   8 信義區          世貿三館 25.03521 121.5637  60  20   41 16.29    91.97  1020.35  0.6833          1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dat)</code></pre></div>
+<pre><code>      date                 hour            sno             sarea                sna            lat             lng             tot        
+ Min.   :2014-12-08   Min.   : 0.00   Min.   :  1.00   信義區 :3518   三張犁      : 153   Min.   :25.02   Min.   :121.6   Min.   : 30.00  
+ 1st Qu.:2014-12-10   1st Qu.: 6.00   1st Qu.:  7.00   三重區 :   0   世貿三館    : 153   1st Qu.:25.03   1st Qu.:121.6   1st Qu.: 36.00  
+ Median :2014-12-11   Median :12.00   Median : 13.00   中和區 :   0   世貿二館    : 153   Median :25.04   Median :121.6   Median : 52.00  
+ Mean   :2014-12-11   Mean   :11.94   Mean   : 39.32   中山區 :   0   中強公園    : 153   Mean   :25.04   Mean   :121.6   Mean   : 55.01  
+ 3rd Qu.:2014-12-13   3rd Qu.:18.00   3rd Qu.: 75.00   中正區 :   0   五常公園    : 153   3rd Qu.:25.04   3rd Qu.:121.6   3rd Qu.: 60.00  
+ Max.   :2014-12-14   Max.   :23.00   Max.   :150.00   內湖區 :   0   仁愛逸仙路口: 153   Max.   :25.05   Max.   :121.6   Max.   :180.00  
+                                                       (Other):   0   (Other)     :2600                                                   
+      sbi              bemp             temp          humidity        pressure       hv_cars         hv_cars_yn    
+ Min.   :  0.00   Min.   :  0.00   Min.   :12.64   Min.   :59.47   Min.   :1013   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:  8.00   1st Qu.: 18.00   1st Qu.:14.48   1st Qu.:72.62   1st Qu.:1019   1st Qu.:0.3939   1st Qu.:0.0000  
+ Median : 19.00   Median : 26.00   Median :16.52   Median :88.30   Median :1021   Median :0.5833   Median :0.0000  
+ Mean   : 23.36   Mean   : 31.74   Mean   :16.70   Mean   :82.99   Mean   :1021   Mean   :0.5929   Mean   :0.4761  
+ 3rd Qu.: 31.00   3rd Qu.: 40.00   3rd Qu.:18.42   3rd Qu.:91.55   3rd Qu.:1024   3rd Qu.:0.8030   3rd Qu.:1.0000  
+ Max.   :160.00   Max.   :179.00   Max.   :24.96   Max.   :96.07   Max.   :1028   Max.   :1.0000   Max.   :1.0000  
+                                   NA&#39;s   :152     NA&#39;s   :152     NA&#39;s   :152                                     </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Cross-Analysis
+reshape2<span class="op">::</span><span class="kw">dcast</span>(<span class="dt">formula =</span> sna <span class="op">~</span><span class="st"> </span>hv_cars_yn, dat)</code></pre></div>
+<pre><code>                     sna   0   1
+1                 三張犁  73  80
+2               世貿三館  90  63
+3               世貿二館  78  75
+4               中強公園  50 103
+5               五常公園  63  90
+6           仁愛逸仙路口  54  99
+7      信義廣場(台北101)  45 108
+8             台北市政府  68  85
+9     台北市災害應變中心 102  51
+10          吳興公車總站 114  39
+11          基隆光復路口  83  70
+12              市民廣場  93  60
+13    捷運台北101/世貿站  64  89
+14 捷運市政府站(3號出口) 117  35
+15   捷運永春站(2號出口)  79  74
+16            捷運象山站  65  88
+17              松山家商  90  63
+18              松德公園  90  63
+19                松德站  97  56
+20          永吉松信路口  80  73
+21              福德公園  98  55
+22          臺北醫學大學  95  58
+23              興雅國中  55  98</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reshape2<span class="op">::</span><span class="kw">dcast</span>(<span class="dt">formula =</span> sna <span class="op">~</span><span class="st"> </span>hv_cars_yn, dat, 
+      <span class="dt">fun.aggregate =</span> <span class="cf">function</span>(x) <span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dt">digit =</span> <span class="dv">4</span>), 
+      <span class="dt">value.var =</span> <span class="st">&#39;hv_cars&#39;</span>)</code></pre></div>
+<pre><code>                     sna      0      1
+1                 三張犁 0.4218 0.8074
+2               世貿三館 0.3422 0.8061
+3               世貿二館 0.3579 0.8783
+4               中強公園 0.4240 0.8139
+5               五常公園 0.4422 0.7960
+6           仁愛逸仙路口 0.4561 0.8099
+7      信義廣場(台北101) 0.4303 0.8227
+8             台北市政府 0.4257 0.8550
+9     台北市災害應變中心 0.3598 0.7596
+10          吳興公車總站 0.3717 0.7253
+11          基隆光復路口 0.4209 0.7805
+12              市民廣場 0.4090 0.8314
+13    捷運台北101/世貿站 0.4114 0.8729
+14 捷運市政府站(3號出口) 0.3141 0.8354
+15   捷運永春站(2號出口) 0.3624 0.7459
+16            捷運象山站 0.3865 0.8166
+17              松山家商 0.4211 0.7976
+18              松德公園 0.4152 0.7765
+19                松德站 0.4041 0.7906
+20          永吉松信路口 0.4433 0.8201
+21              福德公園 0.3615 0.8124
+22          臺北醫學大學 0.4124 0.7698
+23              興雅國中 0.3648 0.8611</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Modeling: Logistic Regression
+logitreg &lt;-<span class="st"> </span><span class="kw">glm</span>(hv_cars_yn <span class="op">~</span><span class="st"> </span>temp <span class="op">+</span><span class="st"> </span>humidity <span class="op">+</span><span class="st"> </span>pressure, <span class="dt">data =</span> dat, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)
+<span class="kw">summary</span>(logitreg)</code></pre></div>
+<pre><code>
+Call:
+glm(formula = hv_cars_yn ~ temp + humidity + pressure, family = &quot;binomial&quot;, 
+    data = dat)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6240  -1.0706  -0.8962   1.1465   1.5309  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) 85.566274  33.496504   2.554   0.0106 *  
+temp        -0.026190   0.035847  -0.731   0.4650    
+humidity    -0.054758   0.004805 -11.395   &lt;2e-16 ***
+pressure    -0.078966   0.032041  -2.465   0.0137 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4664.1  on 3365  degrees of freedom
+Residual deviance: 4487.3  on 3362  degrees of freedom
+  (152 observations deleted due to missingness)
+AIC: 4495.3
+
+Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## CIs using profiled log-likelihood
+<span class="kw">confint</span>(logitreg)</code></pre></div>
+<pre><code>                  2.5 %       97.5 %
+(Intercept) 19.97702439 151.31740423
+temp        -0.09646083   0.04409649
+humidity    -0.06422340  -0.04538232
+pressure    -0.14185714  -0.01622426</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## CIs using standard errors
+<span class="kw">confint.default</span>(logitreg)</code></pre></div>
+<pre><code>                  2.5 %       97.5 %
+(Intercept) 19.91433313 151.21821533
+temp        -0.09644784   0.04406801
+humidity    -0.06417632  -0.04533937
+pressure    -0.14176496  -0.01616698</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## odds ratios 
+<span class="kw">exp</span>(<span class="kw">coef</span>(logitreg))</code></pre></div>
+<pre><code> (Intercept)         temp     humidity     pressure 
+1.448641e+37 9.741501e-01 9.467144e-01 9.240714e-01 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Likelihood
+<span class="kw">logLik</span>(logitreg)</code></pre></div>
+<pre><code>&#39;log Lik.&#39; -2243.664 (df=4)</code></pre>
+
+</div>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QK7CK4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<br>
+<hr>
+
+<div style="padding: 0 0 0 10px;">
+  <span style="font-size: 1.5em; font-weight: 500;">Rafe C.H. Liu (劉佳欣)</span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Data Thinking, Machine Learning & E-commerce expert </span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　<a href="mailto:snexuz@gmail.com">Contact Info</a> | <a href="http://tw.linkedin.com/in/rafechliu" target="_blank">Linkedin Profile</a></span>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="07-DBI.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="09-multivariate.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "linkedin", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+# Multivariate Statistics - Quick Review
+<div style='float: right; font-size:10px; margin-top: -20px; color: #ccc;'>Rafe C. H. Liu, LastUpdate: 2018-07-18</div>
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(dplyr)
+
+ubike <- read.csv(file = "./data/ubike-weather-big5.csv", 
+                  fileEncoding = 'BIG-5',
+                  stringsAsFactors = F)
+
+ubike <- ubike %>% select(
+  date, hour, sno, sarea, sna, lat, lng, tot, 
+  sbi = avg.sbi, bemp = avg.bemp,
+  temp, humidity, pressure
+) %>% mutate(
+  sbi = ceiling(sbi), bemp = ceiling(bemp),
+  temp = temp %>% round(digits = 2), 
+  humidity = humidity %>% round(digits = 2), 
+  pressure = pressure %>% round(digits = 2)
+)
+
+par(mfrow=c(1,1)) # reset
+
+```
+
+## Preliminaries
+  
+- Necessaries
+    - [Using R for Multivariate Analysis](http://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/src/multivariateanalysis.html)
+    - [Multivariate Statistical Analysis using the R package chemometrics](https://cran.r-project.org/web/packages/chemometrics/vignettes/chemometrics-vignette.pdf)
+    - [Multivariate Analysis with R](https://richardlent.github.io/post/multivariate-analysis-with-r/)
+    - [Applications of Multivariate Analysis in Business](https://bookdown.org/twoshotamericano/dissertation2/AAAA.html)
+    
+## Principal Components Analysis
+
+- 主成份分析
+    - 一種提取變數特徵的演算法，以達到縮減變數維度 (Dimension reduction) 的目的
+    - [When and where do we use PCA?](https://www.quora.com/When-and-where-do-we-use-PCA)
+- References
+    - [2012美國職棒MLB](https://rpubs.com/skydome20/R-Note7-PCA)
+    - [Principal Components Analysis: A How-To Manual for R](http://psych.colorado.edu/wiki/lib/exe/fetch.php?media=labs:learnr:emily_-_principal_components_analysis_in_r:pca_how_to.pdf)
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+head(ubike)
+
+# 製作資料集，並將含有 NA 值的觀察過濾掉
+dat <- ubike %>% filter(sarea == '信義區') %>%
+  select(sbi, temp, humidity, pressure) %>% na.omit()
+
+# PCA
+pr <- prcomp(~ temp + humidity + pressure, 
+             data = dat,
+             scale = TRUE)  # 正規化
+pr
+
+summary(pr)
+
+str(pr)
+
+# 特徵向量(原變數的線性組合)
+# loadings: 依照係數組成判斷
+pr$rotation
+
+# score
+head(pr$x)
+
+# 陡坡圖(Scree plot): 選擇成分
+plot(pr, type="line")
+
+# 主成分分析會將特徵值最大的因素先萃取出來，一般而言特徵值大於1，就是需選擇的因子。
+# 用藍線標示出特徵值=1的地方
+abline(h=1, col="blue")
+
+# 經過主成份分析後，會轉換成新的以主成份代替的資料集
+head(pr$x)
+
+# https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html
+library(ggfortify)
+autoplot(pr, loadings = TRUE, loadings.label = TRUE)
+
+pr$sdev^2 #因子的標準差平方就是特徵值
+
+```
+
+## Factor Analysis
+
+- 因素分析
+    - 與 PCA 相同，都是變數維度縮減的技術
+    - 探索性因素分析 (Exploratory factor analysis, EFA) 及驗證性因素分析 (Confirmatory factor analysis, CFA)
+    - 因素分析則更著重於變數間的潛在關係
+- [主成分分析(PRINCIPAL COMPONENT ANALYSIS)與因素分析(FACTOR ANALYSIS)](https://molecular-service-science.com/2013/06/15/principal-component-analysis-and-factor-analysis/)
+    - PCA 為「 Variance Oriented 」方法，因為它可以得到最大的解釋變異
+    - FA 則稱為「 Correlation Oriented 」方法，因為考慮誤差之後可以更清楚看出抽取出因素與問項之間的真實相關性。
+    - 數學解的角度來說， PCA 也可看成是 FA 的特例。
+- 結構方程式 (Structural Equation Modeling, SEM)
+    - 驗證性因素分析 (Confirmatory factor analysis, CFA)
+    - 因素結構已經確定 (透過文獻回顧) 情況下，檢驗觀察變數和潛在變數之關係
+- References
+    - [Quick-R: Principal Components and Factor Analysis](http://www.statmethods.net/advstats/factor.html)
+    - [共同因素分析與主成份分析之比較](http://agc.ncue.edu.tw/text25-3.pdf)
+    - [Structural Equation Modeling in R with the sem Package](https://socserv.socsci.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-SEMs.pdf)
+
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+fa <- factanal(dat[,2:4], factors = 1)
+fa
+summary(fa)
+```
+
+## Clustering - kmeans
+
+- 聚類分析，「物以類聚」
+- Kmeans    
+    - 距離法，離組中點越近越好
+    - 組內差異小，組間差異大
+    - [K-Means 分群演算法](http://ccckmit.wikidot.com/ai:kmeans)
+- References
+    - [R 資料分群 kmeans 與 cluster](http://kanchengzxdfgcv.blogspot.com/2016/05/r-kmeans-cluster.html)
+
+- Quiz: 使用分群演算法對台北市腳踏車站進行分群
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+# Spatial dataset
+dat <- ubike %>% select(sna, sarea, lat, lng) %>%
+  distinct(sna, .keep_all = T)
+
+# 經度(longitude, x)，緯度(latitude, y)
+library(ggplot2)
+dat %>% ggplot(aes(x = lng, y = lat)) + 
+  geom_point(aes(colour = sarea)) + 
+  theme(text = element_text(family = 'STHeiti')) 
+
+# 繪製地圖
+# https://blog.gtwang.org/r/r-ggmap-package-spatial-data-visualization/
+library(ggmap)
+basemap <- get_map("Taipei, Taiwan", zoom = 12, maptype = "toner-lite", messaging = TRUE)
+ggmap(basemap)
+
+p <- ggmap(basemap, darken = c(0.5, "white"))
+p1 <- p + geom_point(data = dat, aes(x = lng, y = lat, colour = sarea)) +
+  theme(legend.position="none")
+p1
+
+# K-Means 
+myCluster <- kmeans(dat[, 3:4], centers = 5, nstart = 20)
+myCluster
+myCluster$cluster <- as.factor(myCluster$cluster)
+ggplot(data = dat, aes(x = lng, y = lat, color = myCluster$cluster)) + geom_point()
+
+# 繪製分群後地圖
+p2 <- p + geom_point(data = dat, aes(x = lng, y = lat, color = myCluster$cluster)) +
+  theme(legend.position="none")
+p2
+
+# 前後比較
+#install.packages('gridExtra')
+gridExtra::grid.arrange(p1, p2, nrow = 1)
+```
+
+    

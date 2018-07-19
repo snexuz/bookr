@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Data Thinking with R</title>
+  <meta name="description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Data Thinking with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Thinking with R" />
+  
+  <meta name="twitter:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
+<link rel="prev" href="08-elementaryStat.html">
+
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="assets/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="assets/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="assets/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="assets/plotly-binding-4.5.6/plotly.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5QK7CK4');</script>
+<!-- End Google Tag Manager -->
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Perface</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#working-directory"><i class="fa fa-check"></i><b>1.2</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="01-intro.html"><a href="01-intro.html#r-project"><i class="fa fa-check"></i><b>1.2.1</b> R project</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#packages"><i class="fa fa-check"></i><b>1.3</b> Packages</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#resources"><i class="fa fa-check"></i><b>1.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-basic.html"><a href="02-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
+<li class="chapter" data-level="2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="02-basic.html"><a href="02-basic.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-basic.html"><a href="02-basic.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-basic.html"><a href="02-basic.html#-factor"><i class="fa fa-check"></i><b>2.1.3</b> 類別物件 (factor)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-basic.html"><a href="02-basic.html#-matrix"><i class="fa fa-check"></i><b>2.1.4</b> 陣列或矩陣 (matrix)</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-basic.html"><a href="02-basic.html#-list"><i class="fa fa-check"></i><b>2.1.5</b> 序列 (list)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-basic.html"><a href="02-basic.html#section-2.1.6"><i class="fa fa-check"></i><b>2.1.6</b> 特殊變數介紹</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 基本運算</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="02-basic.html"><a href="02-basic.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-basic.html"><a href="02-basic.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-basic.html"><a href="02-basic.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-basic.html"><a href="02-basic.html#-io"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="02-basic.html"><a href="02-basic.html#inputoutput"><i class="fa fa-check"></i><b>2.3.1</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-basic.html"><a href="02-basic.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.2</b> TroubleShooting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-basic.html"><a href="02-basic.html#section-2.4"><i class="fa fa-check"></i><b>2.4</b> 控制流程與自訂函數</a></li>
+<li class="chapter" data-level="2.5" data-path="02-basic.html"><a href="02-basic.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 綜合演練</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="02-basic.html"><a href="02-basic.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.5.1</b> First Step to Data Analysis</a></li>
+<li class="chapter" data-level="2.5.2" data-path="02-basic.html"><a href="02-basic.html#conditional-slicing"><i class="fa fa-check"></i><b>2.5.2</b> Conditional slicing</a></li>
+<li class="chapter" data-level="2.5.3" data-path="02-basic.html"><a href="02-basic.html#writeread-file"><i class="fa fa-check"></i><b>2.5.3</b> Write/Read file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-ETL.html"><a href="03-ETL.html"><i class="fa fa-check"></i><b>3</b> ETL - Using dplyr</a><ul>
+<li class="chapter" data-level="3.1" data-path="03-ETL.html"><a href="03-ETL.html#data-wrangling"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="03-ETL.html"><a href="03-ETL.html#dataset"><i class="fa fa-check"></i><b>3.2</b> Dataset</a></li>
+<li class="chapter" data-level="3.3" data-path="03-ETL.html"><a href="03-ETL.html#pipeline-style"><i class="fa fa-check"></i><b>3.3</b> Pipeline Style</a></li>
+<li class="chapter" data-level="3.4" data-path="03-ETL.html"><a href="03-ETL.html#librarydplyr"><i class="fa fa-check"></i><b>3.4</b> library(dplyr)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="03-ETL.html"><a href="03-ETL.html#select"><i class="fa fa-check"></i><b>3.4.1</b> select</a></li>
+<li class="chapter" data-level="3.4.2" data-path="03-ETL.html"><a href="03-ETL.html#filter"><i class="fa fa-check"></i><b>3.4.2</b> filter</a></li>
+<li class="chapter" data-level="3.4.3" data-path="03-ETL.html"><a href="03-ETL.html#mutate"><i class="fa fa-check"></i><b>3.4.3</b> mutate</a></li>
+<li class="chapter" data-level="3.4.4" data-path="03-ETL.html"><a href="03-ETL.html#group_by"><i class="fa fa-check"></i><b>3.4.4</b> group_by</a></li>
+<li class="chapter" data-level="3.4.5" data-path="03-ETL.html"><a href="03-ETL.html#summarise"><i class="fa fa-check"></i><b>3.4.5</b> summarise</a></li>
+<li class="chapter" data-level="3.4.6" data-path="03-ETL.html"><a href="03-ETL.html#arrange"><i class="fa fa-check"></i><b>3.4.6</b> arrange</a></li>
+<li class="chapter" data-level="3.4.7" data-path="03-ETL.html"><a href="03-ETL.html#bind"><i class="fa fa-check"></i><b>3.4.7</b> bind</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="03-ETL.html"><a href="03-ETL.html#libraryreshape2"><i class="fa fa-check"></i><b>3.5</b> library(reshape2)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="03-ETL.html"><a href="03-ETL.html#melt"><i class="fa fa-check"></i><b>3.5.1</b> melt</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03-ETL.html"><a href="03-ETL.html#cast"><i class="fa fa-check"></i><b>3.5.2</b> cast</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="03-ETL.html"><a href="03-ETL.html#-1"><i class="fa fa-check"></i><b>3.6</b> 綜合演練</a></li>
+<li class="chapter" data-level="3.7" data-path="03-ETL.html"><a href="03-ETL.html#cross-analysis"><i class="fa fa-check"></i><b>3.7</b> Cross Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-EDA.html"><a href="04-EDA.html"><i class="fa fa-check"></i><b>4</b> EDA - Using ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="04-EDA.html"><a href="04-EDA.html#eda"><i class="fa fa-check"></i><b>4.1</b> EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="04-EDA.html"><a href="04-EDA.html#libraryggplot2"><i class="fa fa-check"></i><b>4.2</b> library(ggplot2)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="04-EDA.html"><a href="04-EDA.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="04-EDA.html"><a href="04-EDA.html#line-chart"><i class="fa fa-check"></i><b>4.2.2</b> Line Chart</a></li>
+<li class="chapter" data-level="4.2.3" data-path="04-EDA.html"><a href="04-EDA.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="4.2.4" data-path="04-EDA.html"><a href="04-EDA.html#bar-chart"><i class="fa fa-check"></i><b>4.2.4</b> Bar Chart</a></li>
+<li class="chapter" data-level="4.2.5" data-path="04-EDA.html"><a href="04-EDA.html#pie-chart"><i class="fa fa-check"></i><b>4.2.5</b> Pie Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="04-EDA.html"><a href="04-EDA.html#facet_"><i class="fa fa-check"></i><b>4.3</b> facet_</a></li>
+<li class="chapter" data-level="4.4" data-path="04-EDA.html"><a href="04-EDA.html#librarygridextra"><i class="fa fa-check"></i><b>4.4</b> library(gridExtra)</a></li>
+<li class="chapter" data-level="4.5" data-path="04-EDA.html"><a href="04-EDA.html#libraryplotly"><i class="fa fa-check"></i><b>4.5</b> library(plotly)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-reporting.html"><a href="05-reporting.html"><i class="fa fa-check"></i><b>5</b> Reporting - Using rmarkdown</a><ul>
+<li class="chapter" data-level="5.1" data-path="05-reporting.html"><a href="05-reporting.html#markdown-.md"><i class="fa fa-check"></i><b>5.1</b> Markdown (*.md)</a></li>
+<li class="chapter" data-level="5.2" data-path="05-reporting.html"><a href="05-reporting.html#r-markdown-.rmd"><i class="fa fa-check"></i><b>5.2</b> R Markdown (*.Rmd)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-groceries.html"><a href="06-groceries.html"><i class="fa fa-check"></i><b>6</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="6.1" data-path="06-groceries.html"><a href="06-groceries.html#opendata"><i class="fa fa-check"></i><b>6.1</b> OpenData</a></li>
+<li class="chapter" data-level="6.2" data-path="06-groceries.html"><a href="06-groceries.html#from-local-files"><i class="fa fa-check"></i><b>6.2</b> From Local Files</a></li>
+<li class="chapter" data-level="6.3" data-path="06-groceries.html"><a href="06-groceries.html#batch-download-import"><i class="fa fa-check"></i><b>6.3</b> Batch Download &amp; import</a></li>
+<li class="chapter" data-level="6.4" data-path="06-groceries.html"><a href="06-groceries.html#accessing-an-api"><i class="fa fa-check"></i><b>6.4</b> Accessing an API</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="07-DBI.html"><a href="07-DBI.html"><i class="fa fa-check"></i><b>7</b> Using Database</a><ul>
+<li class="chapter" data-level="7.1" data-path="07-DBI.html"><a href="07-DBI.html#r-database-interface-dbi"><i class="fa fa-check"></i><b>7.1</b> R Database Interface (DBI)</a></li>
+<li class="chapter" data-level="7.2" data-path="07-DBI.html"><a href="07-DBI.html#sqlite"><i class="fa fa-check"></i><b>7.2</b> Sqlite</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html"><i class="fa fa-check"></i><b>8</b> Elementary Statistics - Quick Review</a><ul>
+<li class="chapter" data-level="8.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#preliminaries"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="8.2" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#descriptive-statistics"><i class="fa fa-check"></i><b>8.2</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#cross-analysis-1"><i class="fa fa-check"></i><b>8.2.1</b> Cross-Analysis</a></li>
+<li class="chapter" data-level="8.2.2" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#correlation"><i class="fa fa-check"></i><b>8.2.2</b> Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>8.3</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#hypothesis-testing"><i class="fa fa-check"></i><b>8.4</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#t-tests"><i class="fa fa-check"></i><b>8.4.1</b> t-tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#anova"><i class="fa fa-check"></i><b>8.4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="8.4.3" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#manova"><i class="fa fa-check"></i><b>8.4.3</b> MANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#linear-model"><i class="fa fa-check"></i><b>8.5</b> Linear Model</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#simple-linear-model"><i class="fa fa-check"></i><b>8.5.1</b> Simple Linear Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="08-elementaryStat.html"><a href="08-elementaryStat.html#generalized-linear-models"><i class="fa fa-check"></i><b>8.6</b> Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="09-multivariate.html"><a href="09-multivariate.html"><i class="fa fa-check"></i><b>9</b> Multivariate Statistics - Quick Review</a><ul>
+<li class="chapter" data-level="9.1" data-path="09-multivariate.html"><a href="09-multivariate.html#preliminaries-1"><i class="fa fa-check"></i><b>9.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="9.2" data-path="09-multivariate.html"><a href="09-multivariate.html#principal-components-analysis"><i class="fa fa-check"></i><b>9.2</b> Principal Components Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="09-multivariate.html"><a href="09-multivariate.html#factor-analysis"><i class="fa fa-check"></i><b>9.3</b> Factor Analysis</a></li>
+<li class="chapter" data-level="9.4" data-path="09-multivariate.html"><a href="09-multivariate.html#clustering---kmeans"><i class="fa fa-check"></i><b>9.4</b> Clustering - kmeans</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Thinking with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-statistics---quick-review" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Multivariate Statistics - Quick Review</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+Rafe C. H. Liu, LastUpdate: 2018-07-18
+</div>
+<div id="preliminaries-1" class="section level2">
+<h2><span class="header-section-number">9.1</span> Preliminaries</h2>
+<ul>
+<li>Necessaries
+<ul>
+<li><a href="http://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/src/multivariateanalysis.html">Using R for Multivariate Analysis</a></li>
+<li><a href="https://cran.r-project.org/web/packages/chemometrics/vignettes/chemometrics-vignette.pdf">Multivariate Statistical Analysis using the R package chemometrics</a></li>
+<li><a href="https://richardlent.github.io/post/multivariate-analysis-with-r/">Multivariate Analysis with R</a></li>
+<li><a href="https://bookdown.org/twoshotamericano/dissertation2/AAAA.html">Applications of Multivariate Analysis in Business</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="principal-components-analysis" class="section level2">
+<h2><span class="header-section-number">9.2</span> Principal Components Analysis</h2>
+<ul>
+<li>主成份分析
+<ul>
+<li>一種提取變數特徵的演算法，以達到縮減變數維度 (Dimension reduction) 的目的</li>
+<li><a href="https://www.quora.com/When-and-where-do-we-use-PCA">When and where do we use PCA?</a></li>
+</ul></li>
+<li>References
+<ul>
+<li><a href="https://rpubs.com/skydome20/R-Note7-PCA">2012美國職棒MLB</a></li>
+<li><a href="http://psych.colorado.edu/wiki/lib/exe/fetch.php?media=labs:learnr:emily_-_principal_components_analysis_in_r:pca_how_to.pdf">Principal Components Analysis: A How-To Manual for R</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ubike)</code></pre></div>
+<pre><code>        date hour sno  sarea                       sna      lat      lng tot sbi bemp  temp humidity pressure
+1 2014-12-08   15   2 大安區 捷運國父紀念館站(2號出口) 25.04100 121.5569  48  24   22 16.49    89.87  1020.56
+2 2014-12-08   15   3 信義區                台北市政府 25.03780 121.5652  40  11   30 16.24    91.76  1020.15
+3 2014-12-08   15   4 信義區                  市民廣場 25.03604 121.5623  60  40   21 16.31    91.62  1020.36
+4 2014-12-08   15   5 信義區                  興雅國中 25.03656 121.5687  60  35   26 16.16    92.38  1020.11
+5 2014-12-08   15   6 信義區                  世貿二館 25.03474 121.5657  80  32   48 16.25    92.32  1020.33
+6 2014-12-08   15   7 信義區         信義廣場(台北101) 25.03304 121.5656  80  24   57 16.27    92.58  1020.43</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 製作資料集，並將含有 NA 值的觀察過濾掉</span>
+dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sarea <span class="op">==</span><span class="st"> &#39;信義區&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(sbi, temp, humidity, pressure) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">na.omit</span>()
+
+<span class="co"># PCA</span>
+pr &lt;-<span class="st"> </span><span class="kw">prcomp</span>(<span class="op">~</span><span class="st"> </span>temp <span class="op">+</span><span class="st"> </span>humidity <span class="op">+</span><span class="st"> </span>pressure, 
+             <span class="dt">data =</span> dat,
+             <span class="dt">scale =</span> <span class="ot">TRUE</span>)  <span class="co"># 正規化</span>
+pr</code></pre></div>
+<pre><code>Standard deviations (1, .., p=3):
+[1] 1.5408655 0.7488696 0.2548097
+
+Rotation (n x k) = (3 x 3):
+                PC1        PC2       PC3
+temp      0.5908020 -0.5100526 0.6251394
+humidity  0.5039703  0.8383670 0.2077371
+pressure -0.6300531  0.1923202 0.7523603</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(pr)</code></pre></div>
+<pre><code>Importance of components:
+                          PC1    PC2     PC3
+Standard deviation     1.5409 0.7489 0.25481
+Proportion of Variance 0.7914 0.1869 0.02164
+Cumulative Proportion  0.7914 0.9784 1.00000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(pr)</code></pre></div>
+<pre><code>List of 6
+ $ sdev    : num [1:3] 1.541 0.749 0.255
+ $ rotation: num [1:3, 1:3] 0.591 0.504 -0.63 -0.51 0.838 ...
+  ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. ..$ : chr [1:3] &quot;temp&quot; &quot;humidity&quot; &quot;pressure&quot;
+  .. ..$ : chr [1:3] &quot;PC1&quot; &quot;PC2&quot; &quot;PC3&quot;
+ $ center  : Named num [1:3] 16.7 83 1021.1
+  ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;temp&quot; &quot;humidity&quot; &quot;pressure&quot;
+ $ scale   : Named num [1:3] 2.54 10.67 3.3
+  ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;temp&quot; &quot;humidity&quot; &quot;pressure&quot;
+ $ x       : num [1:3366, 1:3] 0.496 0.466 0.514 0.491 0.488 ...
+  ..- attr(*, &quot;dimnames&quot;)=List of 2
+  .. ..$ : chr [1:3366] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+  .. ..$ : chr [1:3] &quot;PC1&quot; &quot;PC2&quot; &quot;PC3&quot;
+ $ call    : language prcomp(formula = ~temp + humidity + pressure, data = dat, scale = TRUE)
+ - attr(*, &quot;class&quot;)= chr &quot;prcomp&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 特徵向量(原變數的線性組合)</span>
+<span class="co"># loadings: 依照係數組成判斷</span>
+pr<span class="op">$</span>rotation</code></pre></div>
+<pre><code>                PC1        PC2       PC3
+temp      0.5908020 -0.5100526 0.6251394
+humidity  0.5039703  0.8383670 0.2077371
+pressure -0.6300531  0.1923202 0.7523603</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># score</span>
+<span class="kw">head</span>(pr<span class="op">$</span>x)</code></pre></div>
+<pre><code>        PC1       PC2         PC3
+1 0.4961015 0.7244646 -0.16954624
+2 0.4657366 0.7116128 -0.10719870
+3 0.5143951 0.7869517 -0.18629316
+4 0.4905604 0.7769493 -0.11518197
+5 0.4884308 0.7991861 -0.08241585
+6 0.4795237 0.7425617 -0.10758756</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 陡坡圖(Scree plot): 選擇成分</span>
+<span class="kw">plot</span>(pr, <span class="dt">type=</span><span class="st">&quot;line&quot;</span>)
+
+<span class="co"># 主成分分析會將特徵值最大的因素先萃取出來，一般而言特徵值大於1，就是需選擇的因子。</span>
+<span class="co"># 用藍線標示出特徵值=1的地方</span>
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 經過主成份分析後，會轉換成新的以主成份代替的資料集</span>
+<span class="kw">head</span>(pr<span class="op">$</span>x)</code></pre></div>
+<pre><code>        PC1       PC2         PC3
+1 0.4961015 0.7244646 -0.16954624
+2 0.4657366 0.7116128 -0.10719870
+3 0.5143951 0.7869517 -0.18629316
+4 0.4905604 0.7769493 -0.11518197
+5 0.4884308 0.7991861 -0.08241585
+6 0.4795237 0.7425617 -0.10758756</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_pca.html</span>
+<span class="kw">library</span>(ggfortify)
+<span class="kw">autoplot</span>(pr, <span class="dt">loadings =</span> <span class="ot">TRUE</span>, <span class="dt">loadings.label =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-99-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pr<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span> <span class="co">#因子的標準差平方就是特徵值</span></code></pre></div>
+<pre><code>[1] 2.37426635 0.56080567 0.06492798</code></pre>
+</div>
+<div id="factor-analysis" class="section level2">
+<h2><span class="header-section-number">9.3</span> Factor Analysis</h2>
+<ul>
+<li>因素分析
+<ul>
+<li>與 PCA 相同，都是變數維度縮減的技術</li>
+<li>探索性因素分析 (Exploratory factor analysis, EFA) 及驗證性因素分析 (Confirmatory factor analysis, CFA)</li>
+<li>因素分析則更著重於變數間的潛在關係</li>
+</ul></li>
+<li><a href="https://molecular-service-science.com/2013/06/15/principal-component-analysis-and-factor-analysis/">主成分分析(PRINCIPAL COMPONENT ANALYSIS)與因素分析(FACTOR ANALYSIS)</a>
+<ul>
+<li>PCA 為「 Variance Oriented 」方法，因為它可以得到最大的解釋變異</li>
+<li>FA 則稱為「 Correlation Oriented 」方法，因為考慮誤差之後可以更清楚看出抽取出因素與問項之間的真實相關性。</li>
+<li>數學解的角度來說， PCA 也可看成是 FA 的特例。</li>
+</ul></li>
+<li>結構方程式 (Structural Equation Modeling, SEM)
+<ul>
+<li>驗證性因素分析 (Confirmatory factor analysis, CFA)</li>
+<li>因素結構已經確定 (透過文獻回顧) 情況下，檢驗觀察變數和潛在變數之關係</li>
+</ul></li>
+<li>References
+<ul>
+<li><a href="http://www.statmethods.net/advstats/factor.html">Quick-R: Principal Components and Factor Analysis</a></li>
+<li><a href="http://agc.ncue.edu.tw/text25-3.pdf">共同因素分析與主成份分析之比較</a></li>
+<li><a href="https://socserv.socsci.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-SEMs.pdf">Structural Equation Modeling in R with the sem Package</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fa &lt;-<span class="st"> </span><span class="kw">factanal</span>(dat[,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">factors =</span> <span class="dv">1</span>)
+fa</code></pre></div>
+<pre><code>
+Call:
+factanal(x = dat[, 2:4], factors = 1)
+
+Uniquenesses:
+    temp humidity pressure 
+   0.172    0.575    0.005 
+
+Loadings:
+         Factor1
+temp      0.910 
+humidity  0.652 
+pressure -0.998 
+
+               Factor1
+SS loadings      2.248
+Proportion Var   0.749
+
+The degrees of freedom for the model is 0 and the fit was 0.156 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fa)</code></pre></div>
+<pre><code>             Length Class    Mode     
+converged    1      -none-   logical  
+loadings     3      loadings numeric  
+uniquenesses 3      -none-   numeric  
+correlation  9      -none-   numeric  
+criteria     3      -none-   numeric  
+factors      1      -none-   numeric  
+dof          1      -none-   numeric  
+method       1      -none-   character
+n.obs        1      -none-   numeric  
+call         3      -none-   call     </code></pre>
+</div>
+<div id="clustering---kmeans" class="section level2">
+<h2><span class="header-section-number">9.4</span> Clustering - kmeans</h2>
+<ul>
+<li>聚類分析，「物以類聚」</li>
+<li>Kmeans
+<ul>
+<li>距離法，離組中點越近越好</li>
+<li>組內差異小，組間差異大</li>
+<li><a href="http://ccckmit.wikidot.com/ai:kmeans">K-Means 分群演算法</a></li>
+</ul></li>
+<li>References
+<ul>
+<li><a href="http://kanchengzxdfgcv.blogspot.com/2016/05/r-kmeans-cluster.html">R 資料分群 kmeans 與 cluster</a></li>
+</ul></li>
+<li>Quiz: 使用分群演算法對台北市腳踏車站進行分群</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Spatial dataset</span>
+dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sna, sarea, lat, lng) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">distinct</span>(sna, <span class="dt">.keep_all =</span> T)
+
+<span class="co"># 經度(longitude, x)，緯度(latitude, y)</span>
+<span class="kw">library</span>(ggplot2)
+dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> lng, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> sarea)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 繪製地圖</span>
+<span class="co"># https://blog.gtwang.org/r/r-ggmap-package-spatial-data-visualization/</span>
+<span class="kw">library</span>(ggmap)
+basemap &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="st">&quot;Taipei, Taiwan&quot;</span>, <span class="dt">zoom =</span> <span class="dv">12</span>, <span class="dt">maptype =</span> <span class="st">&quot;toner-lite&quot;</span>, <span class="dt">messaging =</span> <span class="ot">TRUE</span>)
+<span class="kw">ggmap</span>(basemap)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggmap</span>(basemap, <span class="dt">darken =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="st">&quot;white&quot;</span>))
+p1 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> lng, <span class="dt">y =</span> lat, <span class="dt">colour =</span> sarea)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>)
+p1</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># K-Means </span>
+myCluster &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dat[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">centers =</span> <span class="dv">5</span>, <span class="dt">nstart =</span> <span class="dv">20</span>)
+myCluster</code></pre></div>
+<pre><code>K-means clustering with 5 clusters of sizes 87, 31, 25, 36, 52
+
+Cluster means:
+       lat      lng
+1 25.04815 121.5522
+2 25.10282 121.5148
+3 25.06245 121.6215
+4 25.04375 121.4848
+5 25.00595 121.5361
+
+Clustering vector:
+  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 3 1 1 3 3 1 5 5 5 1 1 1 1 5 1 5 3 1 3 1 3 3 5 3 1 3 1 1 1 1 1 5 1 1 5 1 1 1 5 5 1 4 4 5 4 4 5 1 1 1 2
+ [73] 1 1 1 1 2 1 4 5 4 1 4 1 1 1 1 5 4 2 4 1 5 4 1 2 5 1 1 1 5 4 5 4 4 4 2 1 1 1 2 1 2 1 2 2 2 1 4 1 1 2 2 4 5 3 1 3 5 1 5 2 2 2 2 2 1 4 4 5 5 5 5 2
+[145] 2 2 2 2 1 5 2 4 2 1 3 1 3 1 1 2 1 5 2 2 5 2 5 4 1 1 1 1 1 1 2 3 5 2 1 5 3 3 3 5 5 3 4 4 4 3 3 3 4 4 4 5 2 4 4 4 3 5 5 5 5 5 3 4 4 4 5 4 5 5 5 5
+[217] 5 5 5 4 1 5 5 1 1 3 3 4 5 5 4
+
+Within cluster sum of squares by cluster:
+[1] 0.04759593 0.01996608 0.01482504 0.04103994 0.03011591
+ (between_SS / total_SS =  76.5 %)
+
+Available components:
+
+[1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;      </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myCluster<span class="op">$</span>cluster &lt;-<span class="st"> </span><span class="kw">as.factor</span>(myCluster<span class="op">$</span>cluster)
+<span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> lng, <span class="dt">y =</span> lat, <span class="dt">color =</span> myCluster<span class="op">$</span>cluster)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 繪製分群後地圖</span>
+p2 &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> lng, <span class="dt">y =</span> lat, <span class="dt">color =</span> myCluster<span class="op">$</span>cluster)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>)
+p2</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 前後比較</span>
+<span class="co">#install.packages(&#39;gridExtra&#39;)</span>
+gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(p1, p2, <span class="dt">nrow =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-6.png" width="672" /></p>
+
+</div>
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QK7CK4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<br>
+<hr>
+
+<div style="padding: 0 0 0 10px;">
+  <span style="font-size: 1.5em; font-weight: 500;">Rafe C.H. Liu (劉佳欣)</span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Data Thinking, Machine Learning & E-commerce expert </span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　<a href="mailto:snexuz@gmail.com">Contact Info</a> | <a href="http://tw.linkedin.com/in/rafechliu" target="_blank">Linkedin Profile</a></span>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="08-elementaryStat.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "linkedin", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>
