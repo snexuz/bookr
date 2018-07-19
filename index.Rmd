@@ -41,7 +41,7 @@ link-citations: yes
 favicon: "img/Blackvariant-Button-Ui-Requests-5-RStudio.ico"
 description: "資料思考 (Data Thinking) 是結合顧客旅程圖 (Customer Journey Map) 的概念所建立的資料專案框架，本教材是資料思考課程的一部分，介紹資料科學家最常用的 R 程式語言。"
 cover-image: "img/cover.png"
-url: "http://chiahs.xyz/"
+url: "http\\://chiahs.xyz/"
 ---
 
 # Perface{-}
@@ -60,3 +60,6 @@ url: "http://chiahs.xyz/"
 Sheng Lin / Alger Yang 對於教材編寫之貢獻與指教
     - 本教材使用 R + `library(bookdown)` 製作，封面使用 [O RLY Cover Generator](https://dev.to/rly)
     - 本教材網址：[http://chiahs.xyz/](http://chiahs.xyz/)
+<p style="text-align: center;">
+  <a href="mailto:snexuz@gmail.com?subject=關於R教材"><img src="img/cover.png" style="border: 1px solid #ccc;"></a>
+</p>
