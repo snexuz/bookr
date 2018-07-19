@@ -6,21 +6,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Data Thinking with R</title>
-  <meta name="description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言">
+  <meta name="description" content="資料思考 (Data Thinking) 是結合顧客旅程圖 (Customer Journey Map) 的概念所建立的資料專案框架，本教材是資料思考課程的一部分，介紹資料科學家最常用的 R 程式語言。">
   <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
 
   <meta property="og:title" content="Data Thinking with R" />
   <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  <meta property="og:url" content="<a href="http://chiahs.xyz/" class="uri">http://chiahs.xyz/</a>" />
+  <meta property="og:image" content="<a href="http://chiahs.xyz/" class="uri">http://chiahs.xyz/</a>images/cover.png" />
+  <meta property="og:description" content="資料思考 (Data Thinking) 是結合顧客旅程圖 (Customer Journey Map) 的概念所建立的資料專案框架，本教材是資料思考課程的一部分，介紹資料科學家最常用的 R 程式語言。" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Data Thinking with R" />
   
-  <meta name="twitter:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
-  
+  <meta name="twitter:description" content="資料思考 (Data Thinking) 是結合顧客旅程圖 (Customer Journey Map) 的概念所建立的資料專案框架，本教材是資料思考課程的一部分，介紹資料科學家最常用的 R 程式語言。" />
+  <meta name="twitter:image" content="<a href="http://chiahs.xyz/" class="uri">http://chiahs.xyz/</a>images/cover.png" />
 
 <meta name="author" content="Rafe C.H. Liu (劉佳欣)">
 
@@ -233,7 +233,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="elementary-statistics---quick-review" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Elementary Statistics - Quick Review</h1>
+<h1><span class="header-section-number">8</span> Elementary Statistics - Quick Review</h1>
 <div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
 Rafe C. H. Liu, LastUpdate: 2018-07-18
 </div>
@@ -381,7 +381,7 @@ ubike &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span cl
 <span class="kw">hist</span>(ubike<span class="op">$</span>bemp) <span class="co"># hist plot</span>
 <span class="kw">boxplot</span>(ubike<span class="op">$</span>bemp, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>) <span class="co"># boxplot</span>
 <span class="kw">plot</span>(<span class="kw">density</span>(ubike<span class="op">$</span>bemp)) <span class="co"># kernel density plots</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-88-1.png" width="1152" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="1152" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># reset</span></code></pre></div>
 <div id="cross-analysis-1" class="section level3">
 <h3><span class="header-section-number">8.2.1</span> Cross-Analysis</h3>
@@ -474,7 +474,7 @@ ubike <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">y =</span> sbi, <span class="dt">group =</span> sna, <span class="dt">color =</span> sna)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(date<span class="op">~</span>.) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) <span class="co"># for MAC user</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 </div>
 <div id="hypothesis-testing" class="section level2">
 <h2><span class="header-section-number">8.4</span> Hypothesis Testing</h2>
@@ -552,17 +552,17 @@ dat <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">y =</span> sbi, <span class="dt">group =</span> sna, <span class="dt">colour =</span> sna)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(hour, sna) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(sbi)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">y =</span> <span class="st">`</span><span class="dt">mean(sbi)</span><span class="st">`</span>, <span class="dt">group =</span> sna, <span class="dt">colour =</span> sna)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 檢定四車站(sna)的平均租借數(sbi)是否相等
 dat <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> sna, <span class="dt">y =</span> sbi)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&#39;STHeiti&#39;</span>)) </code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Ho: u1 = u2 = u3 = u4, H1: 全不相等
 ## results
 fit &lt;-<span class="st"> </span><span class="kw">aov</span>(sbi <span class="op">~</span><span class="st"> </span>sna, <span class="dt">data =</span> dat) 
@@ -588,7 +588,7 @@ Residuals   608 201236     331
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-4.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-4.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># post-hoc test: Multiple Comparisons</span>
 <span class="kw">TukeyHSD</span>(fit)</code></pre></div>
 <pre><code>  Tukey multiple comparisons of means
@@ -787,7 +787,7 @@ dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sele
 <span class="co"># install.packages(&#39;corrplot&#39;)</span>
 <span class="kw">library</span>(corrplot)
 dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sbi, temp, humidity, pressure) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">corrplot</span>()</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Model #####</span>
 fit &lt;-<span class="st"> </span><span class="kw">lm</span>(sbi <span class="op">~</span><span class="st"> </span>humidity, <span class="dt">data =</span> dat)
 <span class="kw">summary</span>(fit)</code></pre></div>
@@ -837,7 +837,7 @@ humidity     -0.120342  0.5741849</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## diagnostic plots  #####
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(fit)</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-95-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-2.png" width="672" /></p>
 <ul>
 <li>迴歸診斷 (Regression Diagnostics)
 <ul>
@@ -960,7 +960,7 @@ ubike <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">se
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hv_cars =</span> <span class="kw">round</span>(bemp<span class="op">/</span>tot, <span class="dt">digits =</span> <span class="dv">4</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hv_cars)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.05</span>) </code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># hv_cars rate &gt;60%，hv_cars_yn is 1 (TRUE)</span>
 dat &lt;-<span class="st"> </span>ubike <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">       </span><span class="kw">mutate</span>(<span class="dt">hv_cars =</span> <span class="kw">round</span>(bemp<span class="op">/</span>tot, <span class="dt">digits =</span> <span class="dv">4</span>),

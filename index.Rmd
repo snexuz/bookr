@@ -38,9 +38,10 @@ output:
         all: ['facebook', 'linkedin', 'twitter']
 documentclass: book
 link-citations: yes
-description: R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言
 favicon: "img/Blackvariant-Button-Ui-Requests-5-RStudio.ico"
-cover-image: null
+description: "資料思考 (Data Thinking) 是結合顧客旅程圖 (Customer Journey Map) 的概念所建立的資料專案框架，本教材是資料思考課程的一部分，介紹資料科學家最常用的 R 程式語言。"
+cover-image: "images/cover.png"
+url: "http://chiahs.xyz/"
 ---
 
 # Perface{-}
@@ -57,4 +58,5 @@ cover-image: null
     - 本教材為筆者於進修班授課、學界分享及企業導入資料科學顧問時使用，亦為筆者之健忘筆記，歡迎交流分享，勘誤指教請連繫 <a href="mailto:snexuz@gmail.com?subject=關於R教材">(Contact Info)</a>。
     - 特別感謝一路上的教學夥伴：Johnson Hsieh / George Chao / Alto Lee / Noah Chen / Ning Chen / 
 Sheng Lin / Alger Yang 對於教材編寫之貢獻與指教
-    - 本教材使用 R + `library(bookdown)` 製作 
+    - 本教材使用 R + `library(bookdown)` 製作，封面使用 [O RLY Cover Generator](https://dev.to/rly)
+    - 本教材網址 [http://chiahs.xyz/](http://chiahs.xyz/)
