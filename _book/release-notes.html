@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Data Thinking with R</title>
+  <meta name="description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Data Thinking with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Thinking with R" />
+  
+  <meta name="twitter:description" content="R, R Tutorial, dplyr, ggplot2, Statistics, Machine Learning, Data Mining, Data Science, Data Analystics, R學習, R教材, R語言" />
+  
+
+<meta name="author" content="Rafe C.H. Liu (劉佳欣)">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <link rel="shortcut icon" href="img/Blackvariant-Button-Ui-Requests-5-RStudio.ico" type="image/x-icon">
+<link rel="prev" href="9-4-clustering-kmeans.html">
+
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="assets/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="assets/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="assets/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="assets/plotly-binding-4.5.6/plotly.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5QK7CK4');</script>
+<!-- End Google Tag Manager -->
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Perface</a></li>
+<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-prerequisites.html"><a href="1-1-prerequisites.html"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-working-directory.html"><a href="1-2-working-directory.html"><i class="fa fa-check"></i><b>1.2</b> Working Directory</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-working-directory.html"><a href="1-2-working-directory.html#r-project"><i class="fa fa-check"></i><b>1.2.1</b> R project</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-packages.html"><a href="1-3-packages.html"><i class="fa fa-check"></i><b>1.3</b> Packages</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-resources.html"><a href="1-4-resources.html"><i class="fa fa-check"></i><b>1.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-r-basic.html"><a href="2-r-basic.html"><i class="fa fa-check"></i><b>2</b> R Basic</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html"><i class="fa fa-check"></i><b>2.1</b> 變數與常用資料結構</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html#-vector"><i class="fa fa-check"></i><b>2.1.1</b> 向量 (vector)</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html#-data.frame"><i class="fa fa-check"></i><b>2.1.2</b> 資料框 (data.frame)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html#-factor"><i class="fa fa-check"></i><b>2.1.3</b> 類別物件 (factor)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html#-matrix"><i class="fa fa-check"></i><b>2.1.4</b> 陣列或矩陣 (matrix)</a></li>
+<li class="chapter" data-level="2.1.5" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html#-list"><i class="fa fa-check"></i><b>2.1.5</b> 序列 (list)</a></li>
+<li class="chapter" data-level="2.1.6" data-path="2-1-section-2-1.html"><a href="2-1-section-2-1.html#section-2.1.6"><i class="fa fa-check"></i><b>2.1.6</b> 特殊變數介紹</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-section-2-2.html"><a href="2-2-section-2-2.html"><i class="fa fa-check"></i><b>2.2</b> 基本運算</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-section-2-2.html"><a href="2-2-section-2-2.html#section-2.2.1"><i class="fa fa-check"></i><b>2.2.1</b> 數學運算</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-section-2-2.html"><a href="2-2-section-2-2.html#section-2.2.2"><i class="fa fa-check"></i><b>2.2.2</b> 基礎統計</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-section-2-2.html"><a href="2-2-section-2-2.html#section-2.2.3"><i class="fa fa-check"></i><b>2.2.3</b> 文字處理</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-io.html"><a href="2-3-io.html"><i class="fa fa-check"></i><b>2.3</b> 基礎 I/O</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-io.html"><a href="2-3-io.html#inputoutput"><i class="fa fa-check"></i><b>2.3.1</b> Input/Output</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-io.html"><a href="2-3-io.html#troubleshooting"><i class="fa fa-check"></i><b>2.3.2</b> TroubleShooting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-section-2-4.html"><a href="2-4-section-2-4.html"><i class="fa fa-check"></i><b>2.4</b> 控制流程與自訂函數</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-section-2-5.html"><a href="2-5-section-2-5.html"><i class="fa fa-check"></i><b>2.5</b> 綜合演練</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-5-section-2-5.html"><a href="2-5-section-2-5.html#first-step-to-data-analysis"><i class="fa fa-check"></i><b>2.5.1</b> First Step to Data Analysis</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-5-section-2-5.html"><a href="2-5-section-2-5.html#conditional-slicing"><i class="fa fa-check"></i><b>2.5.2</b> Conditional slicing</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-5-section-2-5.html"><a href="2-5-section-2-5.html#writeread-file"><i class="fa fa-check"></i><b>2.5.3</b> Write/Read file</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-etl-using-dplyr.html"><a href="3-etl-using-dplyr.html"><i class="fa fa-check"></i><b>3</b> ETL - Using dplyr</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-data-wrangling.html"><a href="3-1-data-wrangling.html"><i class="fa fa-check"></i><b>3.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-dataset.html"><a href="3-2-dataset.html"><i class="fa fa-check"></i><b>3.2</b> Dataset</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-pipeline-style.html"><a href="3-3-pipeline-style.html"><i class="fa fa-check"></i><b>3.3</b> Pipeline Style</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html"><i class="fa fa-check"></i><b>3.4</b> library(dplyr)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#select"><i class="fa fa-check"></i><b>3.4.1</b> select</a></li>
+<li class="chapter" data-level="3.4.2" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#filter"><i class="fa fa-check"></i><b>3.4.2</b> filter</a></li>
+<li class="chapter" data-level="3.4.3" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#mutate"><i class="fa fa-check"></i><b>3.4.3</b> mutate</a></li>
+<li class="chapter" data-level="3.4.4" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#group_by"><i class="fa fa-check"></i><b>3.4.4</b> group_by</a></li>
+<li class="chapter" data-level="3.4.5" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#summarise"><i class="fa fa-check"></i><b>3.4.5</b> summarise</a></li>
+<li class="chapter" data-level="3.4.6" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#arrange"><i class="fa fa-check"></i><b>3.4.6</b> arrange</a></li>
+<li class="chapter" data-level="3.4.7" data-path="3-4-librarydplyr.html"><a href="3-4-librarydplyr.html#bind"><i class="fa fa-check"></i><b>3.4.7</b> bind</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="3-5-libraryreshape2.html"><a href="3-5-libraryreshape2.html"><i class="fa fa-check"></i><b>3.5</b> library(reshape2)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="3-5-libraryreshape2.html"><a href="3-5-libraryreshape2.html#melt"><i class="fa fa-check"></i><b>3.5.1</b> melt</a></li>
+<li class="chapter" data-level="3.5.2" data-path="3-5-libraryreshape2.html"><a href="3-5-libraryreshape2.html#cast"><i class="fa fa-check"></i><b>3.5.2</b> cast</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-6-1.html"><a href="3-6-1.html"><i class="fa fa-check"></i><b>3.6</b> 綜合演練</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-cross-analysis.html"><a href="3-7-cross-analysis.html"><i class="fa fa-check"></i><b>3.7</b> Cross Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-eda-using-ggplot2.html"><a href="4-eda-using-ggplot2.html"><i class="fa fa-check"></i><b>4</b> EDA - Using ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-eda.html"><a href="4-1-eda.html"><i class="fa fa-check"></i><b>4.1</b> EDA</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-libraryggplot2.html"><a href="4-2-libraryggplot2.html"><i class="fa fa-check"></i><b>4.2</b> library(ggplot2)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-libraryggplot2.html"><a href="4-2-libraryggplot2.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-libraryggplot2.html"><a href="4-2-libraryggplot2.html#line-chart"><i class="fa fa-check"></i><b>4.2.2</b> Line Chart</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-libraryggplot2.html"><a href="4-2-libraryggplot2.html#histogram"><i class="fa fa-check"></i><b>4.2.3</b> Histogram</a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-libraryggplot2.html"><a href="4-2-libraryggplot2.html#bar-chart"><i class="fa fa-check"></i><b>4.2.4</b> Bar Chart</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4-2-libraryggplot2.html"><a href="4-2-libraryggplot2.html#pie-chart"><i class="fa fa-check"></i><b>4.2.5</b> Pie Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-facet-.html"><a href="4-3-facet-.html"><i class="fa fa-check"></i><b>4.3</b> facet_</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-librarygridextra.html"><a href="4-4-librarygridextra.html"><i class="fa fa-check"></i><b>4.4</b> library(gridExtra)</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-libraryplotly.html"><a href="4-5-libraryplotly.html"><i class="fa fa-check"></i><b>4.5</b> library(plotly)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-reporting-using-rmarkdown.html"><a href="5-reporting-using-rmarkdown.html"><i class="fa fa-check"></i><b>5</b> Reporting - Using rmarkdown</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-markdown-md.html"><a href="5-1-markdown-md.html"><i class="fa fa-check"></i><b>5.1</b> Markdown (*.md)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-r-markdown-rmd.html"><a href="5-2-r-markdown-rmd.html"><i class="fa fa-check"></i><b>5.2</b> R Markdown (*.Rmd)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-data-acquisition.html"><a href="6-data-acquisition.html"><i class="fa fa-check"></i><b>6</b> Data Acquisition</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-opendata.html"><a href="6-1-opendata.html"><i class="fa fa-check"></i><b>6.1</b> OpenData</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-from-local-files.html"><a href="6-2-from-local-files.html"><i class="fa fa-check"></i><b>6.2</b> From Local Files</a></li>
+<li class="chapter" data-level="6.3" data-path="6-3-batch-download-import.html"><a href="6-3-batch-download-import.html"><i class="fa fa-check"></i><b>6.3</b> Batch Download &amp; import</a></li>
+<li class="chapter" data-level="6.4" data-path="6-4-accessing-an-api.html"><a href="6-4-accessing-an-api.html"><i class="fa fa-check"></i><b>6.4</b> Accessing an API</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-using-database.html"><a href="7-using-database.html"><i class="fa fa-check"></i><b>7</b> Using Database</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-r-database-interface-dbi.html"><a href="7-1-r-database-interface-dbi.html"><i class="fa fa-check"></i><b>7.1</b> R Database Interface (DBI)</a></li>
+<li class="chapter" data-level="7.2" data-path="7-2-sqlite.html"><a href="7-2-sqlite.html"><i class="fa fa-check"></i><b>7.2</b> Sqlite</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-elementary-statistics-quick-review.html"><a href="8-elementary-statistics-quick-review.html"><i class="fa fa-check"></i><b>8</b> Elementary Statistics - Quick Review</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-preliminaries.html"><a href="8-1-preliminaries.html"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-descriptive-statistics.html"><a href="8-2-descriptive-statistics.html"><i class="fa fa-check"></i><b>8.2</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-2-descriptive-statistics.html"><a href="8-2-descriptive-statistics.html#cross-analysis-1"><i class="fa fa-check"></i><b>8.2.1</b> Cross-Analysis</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8-2-descriptive-statistics.html"><a href="8-2-descriptive-statistics.html#correlation"><i class="fa fa-check"></i><b>8.2.2</b> Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-3-exploratory-data-analysis.html"><a href="8-3-exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8.3</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="8.4" data-path="8-4-hypothesis-testing.html"><a href="8-4-hypothesis-testing.html"><i class="fa fa-check"></i><b>8.4</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="8-4-hypothesis-testing.html"><a href="8-4-hypothesis-testing.html#t-tests"><i class="fa fa-check"></i><b>8.4.1</b> t-tests</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8-4-hypothesis-testing.html"><a href="8-4-hypothesis-testing.html#anova"><i class="fa fa-check"></i><b>8.4.2</b> ANOVA</a></li>
+<li class="chapter" data-level="8.4.3" data-path="8-4-hypothesis-testing.html"><a href="8-4-hypothesis-testing.html#manova"><i class="fa fa-check"></i><b>8.4.3</b> MANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8-5-linear-model.html"><a href="8-5-linear-model.html"><i class="fa fa-check"></i><b>8.5</b> Linear Model</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="8-5-linear-model.html"><a href="8-5-linear-model.html#simple-linear-model"><i class="fa fa-check"></i><b>8.5.1</b> Simple Linear Model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="8-6-generalized-linear-models.html"><a href="8-6-generalized-linear-models.html"><i class="fa fa-check"></i><b>8.6</b> Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-multivariate-statistics-quick-review.html"><a href="9-multivariate-statistics-quick-review.html"><i class="fa fa-check"></i><b>9</b> Multivariate Statistics - Quick Review</a><ul>
+<li class="chapter" data-level="9.1" data-path="9-1-preliminaries-1.html"><a href="9-1-preliminaries-1.html"><i class="fa fa-check"></i><b>9.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="9.2" data-path="9-2-principal-components-analysis.html"><a href="9-2-principal-components-analysis.html"><i class="fa fa-check"></i><b>9.2</b> Principal Components Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="9-3-factor-analysis.html"><a href="9-3-factor-analysis.html"><i class="fa fa-check"></i><b>9.3</b> Factor Analysis</a></li>
+<li class="chapter" data-level="9.4" data-path="9-4-clustering-kmeans.html"><a href="9-4-clustering-kmeans.html"><i class="fa fa-check"></i><b>9.4</b> Clustering - kmeans</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="release-notes.html"><a href="release-notes.html"><i class="fa fa-check"></i>Release Notes</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Thinking with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="release-notes" class="section level1 unnumbered">
+<h1>Release Notes</h1>
+<div style="float: right; font-size:10px; margin-top: -20px; color: #ccc;">
+
+</div>
+<div style="font-size: 0.75em !important;">
+<ul>
+<li>20180720 First Upload</li>
+</ul>
+</div>
+
+</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QK7CK4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<br>
+<hr>
+
+<div style="padding: 0 0 0 10px;">
+  <span style="font-size: 1.5em; font-weight: 500;">Rafe C.H. Liu (劉佳欣)</span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　Data Thinking, Machine Learning & E-commerce expert </span><br>
+  <span style="font-size: 1em; font-weight: 300; color: #3b3f54;">　<a href="mailto:snexuz@gmail.com">Contact Info</a> | <a href="http://tw.linkedin.com/in/rafechliu" target="_blank">Linkedin Profile</a></span>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="9-4-clustering-kmeans.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "linkedin", "twitter"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

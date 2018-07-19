@@ -68,6 +68,11 @@ h1.title {
 }
 
 /***************/
+.author {
+  margin-top: -20px;
+  font-size: 1.2em;
+  font-weight: 500;
+}
 
 body {
 	font-family: "Noto Sans TC", "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
