@@ -60,6 +60,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <meta name="google-site-verification" content="31axDkPIY8dHEU8wWjGoY71hZnVJIGAtWhtnVzV60Ns" />
 
+<script src="https://hypothes.is/embed.js" async></script>
+
 
 <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -453,24 +455,24 @@ p1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># K-Means </span>
 myCluster &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dat[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">centers =</span> <span class="dv">5</span>, <span class="dt">nstart =</span> <span class="dv">20</span>)
 myCluster</code></pre></div>
-<pre><code>K-means clustering with 5 clusters of sizes 87, 31, 25, 52, 36
+<pre><code>K-means clustering with 5 clusters of sizes 31, 52, 25, 87, 36
 
 Cluster means:
        lat      lng
-1 25.04815 121.5522
-2 25.10282 121.5148
+1 25.10282 121.5148
+2 25.00595 121.5361
 3 25.06245 121.6215
-4 25.00595 121.5361
+4 25.04815 121.5522
 5 25.04375 121.4848
 
 Clustering vector:
-  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 4 1 1 3 1 1 3 3 1 4 4 4 1 1 1 1 4 1 4 3 1 3 1 3 3 4 3 1 3 1 1 1 1 1 4 1 1 4 1 1 1 4 4 1 5 5 4 5 5 4 1 1 1 2
- [73] 1 1 1 1 2 1 5 4 5 1 5 1 1 1 1 4 5 2 5 1 4 5 1 2 4 1 1 1 4 5 4 5 5 5 2 1 1 1 2 1 2 1 2 2 2 1 5 1 1 2 2 5 4 3 1 3 4 1 4 2 2 2 2 2 1 5 5 4 4 4 4 2
-[145] 2 2 2 2 1 4 2 5 2 1 3 1 3 1 1 2 1 4 2 2 4 2 4 5 1 1 1 1 1 1 2 3 4 2 1 4 3 3 3 4 4 3 5 5 5 3 3 3 5 5 5 4 2 5 5 5 3 4 4 4 4 4 3 5 5 5 4 5 4 4 4 4
-[217] 4 4 4 5 1 4 4 1 1 3 3 5 4 4 5
+  [1] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 4 4 3 4 4 3 3 4 2 2 2 4 4 4 4 2 4 2 3 4 3 4 3 3 2 3 4 3 4 4 4 4 4 2 4 4 2 4 4 4 2 2 4 5 5 2 5 5 2 4 4 4 1
+ [73] 4 4 4 4 1 4 5 2 5 4 5 4 4 4 4 2 5 1 5 4 2 5 4 1 2 4 4 4 2 5 2 5 5 5 1 4 4 4 1 4 1 4 1 1 1 4 5 4 4 1 1 5 2 3 4 3 2 4 2 1 1 1 1 1 4 5 5 2 2 2 2 1
+[145] 1 1 1 1 4 2 1 5 1 4 3 4 3 4 4 1 4 2 1 1 2 1 2 5 4 4 4 4 4 4 1 3 2 1 4 2 3 3 3 2 2 3 5 5 5 3 3 3 5 5 5 2 1 5 5 5 3 2 2 2 2 2 3 5 5 5 2 5 2 2 2 2
+[217] 2 2 2 5 4 2 2 4 4 3 3 5 2 2 5
 
 Within cluster sum of squares by cluster:
-[1] 0.04759593 0.01996608 0.01482504 0.03011591 0.04103994
+[1] 0.01996608 0.03011591 0.01482504 0.04759593 0.04103994
  (between_SS / total_SS =  76.5 %)
 
 Available components:

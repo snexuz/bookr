@@ -362,7 +362,7 @@ select(ubike, hour, sarea, sna, avg.sbi) %>%
 
 ```{r, echo = FALSE}
 select(ubike, hour, sarea, sna, max.anemo, lng, lat) %>%
-  filter(sarea == "汐止區", hour == 15) %>%
+  filter(sarea == "中和區", hour == 15) %>%
   group_by(sna) %>%
   summarise(avg_anemo = mean(max.anemo, na.rm = T)) %>%
   arrange(avg_anemo) %>%

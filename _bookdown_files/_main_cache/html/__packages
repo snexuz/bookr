@@ -8,11 +8,3 @@ stats
 knitr
 ggplot2
 reshape2
-magrittr
-dplyr
-bindrcpp
-corrplot
-ggfortify
-ggmap
-xml2
-rvest
